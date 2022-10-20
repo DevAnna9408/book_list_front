@@ -45,6 +45,14 @@ let routes = [
     }
   },
   {
+    path: '/user/login',
+    name: 'user-login',
+    component: loadView('user-login'),
+    meta: {
+      title: 'user.login'
+    }
+  },
+  {
     path: '/user',
     name: 'user',
     components: parent('user'),
@@ -58,14 +66,6 @@ let routes = [
       component: loadView('user-register'),
       meta: {
         title: 'user.register'
-      }
-    },
-    {
-      path: 'login',
-      name: 'user-login',
-      component: loadView('user-login'),
-      meta: {
-        title: 'user.login'
       }
     },
     {
