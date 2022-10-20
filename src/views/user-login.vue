@@ -17,7 +17,7 @@
           <form @submit.prevent="passes(_signApi)">
             <div class="form-item">
               <input-text
-                v-model="user.email"
+                v-model="user.userId"
                 name="이메일"
                 :label="'이메일'"
                 input-type="text"
@@ -75,7 +75,7 @@ export default {
   data: () => ({
     apiUrl: '',
     user: {
-      email: '',
+      userId: '',
       password: ''
     }
   }),
@@ -93,16 +93,11 @@ export default {
         if (con.value) {
           if (con.value === this.user.password) {
             this.register({
-              userEmail: this.user.email,
+              userId: this.user.userId,
               password: this.user.password
             })
               .then(() => {
-                apxAlert.question(null, '회원가입 완료되었습니다. 지금 바로 차곡차곡을 사용 해 볼까요?', '네', '나중에').then(con => {
-                  if (con.value) {
-                    this._login()
-                    window.location.reload(true)
-                  }
-                })
+                apxAlert.noIcon(null, '회원가입 완료되었습니다.', '확인')
               }).catch(() => {})
           } else {
             apxAlert.noIcon(null, '비밀번호가 일치하지 않습니다. 다시 한번 입력 해 주세요.', '확인').then(() => {
@@ -114,11 +109,11 @@ export default {
     },
     _login () {
       this.login({
-        userEmail: this.user.email,
+        userId: this.user.userId,
         password: this.user.password
       })
         .then(() => {
-          this.$router.push({ name: 'user-main' })
+          this.$router.push({ name: 'user-board' })
         }).catch(() => {})
     }
   }

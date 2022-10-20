@@ -42,7 +42,7 @@ const mutations = {
 const actions = {
   login ({ commit }, _user) {
     return new Promise((resolve, reject) => {
-      ajax('POST', '/login', _user)
+      ajax('POST', '/api/sign-in', _user)
         .then(_data => {
           let accessToken = _data.accessToken
           let _user = {}
@@ -59,7 +59,7 @@ const actions = {
   },
   register ({ commit }, _user) {
     return new Promise((resolve, reject) => {
-      ajax('POST', '/register/sign-up', _user)
+      ajax('POST', '/api/sign-up', _user)
         .then(_data => {
           let accessToken = _data.accessToken
           let _user = {}
