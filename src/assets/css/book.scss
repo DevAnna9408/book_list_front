@@ -407,7 +407,7 @@ body {
     background-color: transparent;
     padding: 0;
     width: 210px;
-    height: 160px;
+    height: 150px;
     margin: 0;
   }
 
@@ -419,4 +419,169 @@ body {
 
 }
 
+// my page
+#user-my-page {
+  .title {
+    text-align: center;
+    color: #2c3e50;
+  }
+
+  /* CONTAINERS */
+
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .twelve {
+    width: 100%;
+  }
+
+  .eleven {
+    width: 91.53%;
+  }
+
+  .ten {
+    width: 83.06%;
+  }
+
+  .nine {
+    width: 74.6%;
+  }
+
+  .eight {
+    width: 66.13%;
+  }
+
+  .seven {
+    width: 57.66%;
+  }
+
+  .six {
+    width: 49.2%;
+  }
+
+  .five {
+    width: 40.73%;
+  }
+
+  .four {
+    width: 32.26%;
+  }
+
+  .three {
+    width: 23.8%;
+  }
+
+  .two {
+    width: 15.33%;
+  }
+
+  .one {
+    width: 6.866%;
+  }
+
+  /* COLUMNS */
+
+  .col {
+    display: block;
+    float: left;
+    margin: 1% 0 1% 1.6%;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+  }
+
+  /* CLEARFIX */
+
+  .cf {
+    &:before {
+      content: " ";
+      display: table;
+    }
+
+    &:after {
+      content: " ";
+      display: table;
+      clear: both;
+    }
+
+    *zoom: 1;
+  }
+
+  /* PROFILES */
+
+  .card {
+    width: 300px;
+    height: 450px;
+    background-color: #fff;
+    font-family: 'Arimo', sans-serif;
+    font-size: 14px;
+  }
+
+  /* CARD ! */
+
+  #card1 {
+    text-align: center;
+    color: #2c3e50;
+    padding: 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    .image-wrapper {
+      width: 100px;
+      height: 100px;
+      margin: 10px auto;
+    }
+
+    .info .four {
+      text-align: center;
+      border-right: 1px solid #2c3e50;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+
+      &:last-of-type {
+        border-right: none;
+      }
+
+      .number {
+        display: block;
+        font-size: 20px;
+        padding: 3px 0;
+        font-weight: 700;
+      }
+    }
+
+    .options {
+      margin-top: 30px;
+      text-align: left;
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        .icon {
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          background-color: #8DC63F;
+          //border-radius: 100%;
+          margin: 0 10px 0 10px;
+          vertical-align: middle;
+          color: #fff;
+          line-height: 30px;
+          text-align: center;
+        }
+
+        li {
+          margin: 12px 0;
+        }
+      }
+    }
+  }
+}
 

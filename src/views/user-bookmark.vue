@@ -6,7 +6,7 @@
       class="survey-item">
 
       <div
-        style="overflow-y: auto; height: 100px;"
+        style="overflow-y: auto; height: 150px;"
         class="survey-country grid-only">
         "뜨거운 여름밤은 가고 남은건 볼품없지만. <br /> 또 다시 찾아오는 누군갈 위해서 남겨두겠소."
       </div>
@@ -36,12 +36,6 @@
       </div>
     </li>
   </ul>
-  <div class="button__menu__wrapper">
-    <button
-      class="basic__button">
-      전체
-    </button>
-  </div>
   <pagination
     id="pagination"
     v-model="currentPage"
@@ -54,8 +48,6 @@
 </template>
 
 <script>
-import apxAlert from '@/wrapper/apex-alert'
-
 export default {
   name: 'user-bookmark',
   data () {
