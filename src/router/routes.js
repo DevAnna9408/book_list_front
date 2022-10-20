@@ -33,8 +33,8 @@ const parent = (parentName) => {
 let routes = [
   {
     path: '/',
-    name: 'home-main',
-    components: loadViewHeaderFooterSide('home-main'),
+    name: 'user-board',
+    components: loadViewHeaderFooterSide('user-board'),
     props: {
       header: {},
       sidebar: {},
@@ -58,14 +58,6 @@ let routes = [
       component: loadView('user-login'),
       meta: {
         title: 'user.login'
-      }
-    },
-    {
-      path: 'board',
-      name: 'user-board',
-      component: loadView('user-board'),
-      meta: {
-        title: 'user.board'
       }
     },
     {
@@ -115,7 +107,7 @@ let routes = [
 routes.push({
   path: '*',
   redirect: {
-    name: 'home-main'
+    name: 'user-board'
   }
 })
 

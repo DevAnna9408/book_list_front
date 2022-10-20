@@ -111,7 +111,7 @@
 
 | 패턴                                       | name                 | 화면 명         | $route.params                |
 | ------------------------------------------ | -------------------- | --------------- | ---------------------------- |
-| /                                          | home-main            | 메인 화면       |                              |
+| /                                          | user-board            | 메인 화면       |                              |
 | /user/login                                | user-login           | 로그인화면      |                              |
 | /user/agree                                | user-agree           | 약관동의        |                              |
 | /user/register                             | user-register        | 회원가입        |                              |

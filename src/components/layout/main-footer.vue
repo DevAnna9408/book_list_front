@@ -6,15 +6,11 @@
         <img
           src="@/assets/img/logo@2x.png"
           alt="apexFW"
-          @click="$router.push({ name: 'home-main' })"
+          @click="$router.push({ name: 'user-board' })"
         >
       </div>
       <div class="footer-address">
-        {{ year }}, made by
-        <a
-          href="http://www.apexsoft.co.kr/"
-          target="_blank"
-        >Anna</a>
+        {{ year }}, made by Anna
       </div>
     </div>
   </footer>

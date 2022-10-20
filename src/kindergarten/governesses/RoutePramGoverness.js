@@ -6,7 +6,7 @@ export default class RoutePramGoverness extends HeadGoverness {
     if (to.params.apexkey === process.env.VUE_APP_APEX_ROUTE_DATA_KEY) {
       let isUser = store.getters['users/isUser']
       return this.isAllowed(action) ? next() : next({
-        name: isUser ? 'home-main' : 'user-login'
+        name: isUser ? 'user-board' : 'user-login'
       })
     } else {
       store.dispatch('errors/populateErrors', {
@@ -15,7 +15,7 @@ export default class RoutePramGoverness extends HeadGoverness {
         }
       })
       next({
-        name: to.meta.goHome ? 'home-main' : 'user-login'
+        name: to.meta.goHome ? 'user-board' : 'user-login'
       })
     }
   }

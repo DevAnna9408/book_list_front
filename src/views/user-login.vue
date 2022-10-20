@@ -109,7 +109,7 @@ export default {
           .then(() => {
             const firstPrefix = this.prepage.substr(1).split('/')
             if (this.prepage && firstPrefix[0] !== 'user') this.$router.push(this.prepage)
-            else this.$router.push({ name: 'home-main' })
+            else this.$router.push({ name: 'user-board' })
           })
           .catch(_err => {
             if (_err.exceptionName === 'UserLockException') {

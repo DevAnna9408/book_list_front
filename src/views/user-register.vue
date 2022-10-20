@@ -147,7 +147,7 @@ export default {
       this.user_register(this.user)
         .then(() => {
           this.isSaveData = true
-          this.$router.push({ name: 'home-main' })
+          this.$router.push({ name: 'user-board' })
         })
         .catch(_err => {})
     },

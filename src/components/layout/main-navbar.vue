@@ -1,7 +1,7 @@
 <template>
   <div class="header-container admin">
     <div class="nav-brand">
-      <router-link :to="{ name: 'home-main' }">
+      <router-link :to="{ name: 'user-board' }">
         <!-- FIXME: [프로젝트 초기설정] 로고 변경필요 -->
         <img
           src="@/assets/img/logo@2x.png"
@@ -11,12 +11,14 @@
     </div>
     <div class="nav-items">
       <ul class="nav-bar-container">
-        <li>
-          <div>
-            책방
-          </div>
-          <i class="fa-solid fa-house"></i>
-        </li>
+        <router-link to="user-board">
+          <li>
+            <div>
+              책방
+            </div>
+            <i class="fa-solid fa-house"></i>
+          </li>
+        </router-link>
         <li>
           <div>
             글쓰기

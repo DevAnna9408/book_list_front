@@ -13,7 +13,7 @@ const getters = {
 const mutations = {
   SET_ERROR: (state, _error) => { state.errors = _error },
   SET_GLOBAL_ERROR: (state, _error) => {
-    router.push({ name: 'home-main' })
+    router.push({ name: 'user-board' })
     state.globalErrors = {
       ..._error,
       message: 'ERROR ALERT 다시 시도해 주세요 please try again'
