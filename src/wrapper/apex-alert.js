@@ -24,7 +24,6 @@ const confirm = (icon, title, text, confirmButtonText, showConfirmButton = true)
     timer: showConfirmButton ? '' : 1500
   })
 }
-
 const input = (icon, text, confirmButtonText, showConfirmButton = true) => {
   return swalWithMertButtons.fire({
     icon,
@@ -113,7 +112,7 @@ const sweetAlert = {
       confirmButtonText: confirmButtonText,
       cancelButtonText: cancelButtonText
     })
-  }
+  },
 
 }
 export default sweetAlert
