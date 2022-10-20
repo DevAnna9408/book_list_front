@@ -10,13 +10,15 @@
       </router-link>
     </div>
     <div class="nav-items">
-      <ul class="nav-bar-container">
+      <ul
+        id="nav__icons"
+        class="nav-bar-container">
         <router-link :to="{ name: 'user-board' }">
           <li>
             <div>
-              책방
+              책장
             </div>
-            <i class="fa-solid fa-house" />
+            <i class="fa-solid fa-list" />
           </li>
         </router-link>
         <router-link :to="{ name: 'user-post' }">
@@ -24,7 +26,7 @@
             <div>
               글쓰기
             </div>
-            <i class="fa-solid fa-house" />
+            <i class="fa-solid fa-square-plus" />
           </li>
         </router-link>
           <li
@@ -33,14 +35,14 @@
             <div>
               팝업
             </div>
-            <i class="fa-solid fa-house" />
+            <i class="fa-solid fa-book" />
           </li>
         <router-link :to="{ name: 'user-bookmark' }">
         <li>
           <div>
             책갈피
           </div>
-          <i class="fa-solid fa-house" />
+          <i class="fa-solid fa-bookmark" />
         </li>
         </router-link>
         <router-link :to="{ name: 'user-my-page' }">
@@ -48,7 +50,7 @@
           <div>
             마이페이지
           </div>
-          <i class="fa-solid fa-house" />
+          <i class="fa-solid fa-user" />
         </li>
         </router-link>
 <!--        <li v-if="isUser">-->
