@@ -28,6 +28,9 @@
         중에서
       </span>
       </div>
+      <span class="survey-completes">
+            👍 5 / 👎 10
+          </span>
     </li>
   </ul>
   <div class="button__menu__wrapper">

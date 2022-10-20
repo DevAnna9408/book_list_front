@@ -23,7 +23,7 @@
 
         <span class="survey-progress-labels">
           <span class="survey-progress-label">
-            50%
+            👍 50%
           </span>
 
           <span class="survey-completes">
@@ -103,7 +103,7 @@ export default {
       apxAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
     },
     _getThumb () {
-      apxAlert.question(null, '이 글에 대한 느낌은?', '추천', '비추천')
+      apxAlert.question(null, '이 글에 대한 느낌은?', '추천 👍', '비추천 👎')
     },
     _pageInput () {
     }
