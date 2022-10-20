@@ -409,6 +409,38 @@ body {
     width: 210px;
     height: 150px;
     margin: 0;
+
+    @media screen and (max-width: 600px) {
+      border: transparent;
+      background-color: transparent;
+      padding: 0;
+      width: 210px;
+      height: 110px;
+      margin: 0;
+    }
+
+  }
+
+}
+
+#user__board__content {
+  overflow-y: auto;
+  height: 100px;
+
+  @media screen and (max-width: 600px) {
+    overflow-y: auto;
+    height: 50px;
+  }
+
+}
+
+#user__bookmark__content {
+  overflow-y: auto;
+  height: 180px;
+
+  @media screen and (max-width: 600px) {
+    overflow-y: auto;
+    height: 120px;
   }
 
 }

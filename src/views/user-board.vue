@@ -10,8 +10,7 @@
         />
       </div>
     <div @dblclick="_getThumb">
-       <div
-          style="overflow-y: auto; height: 100px;"
+       <div id="user__board__content"
           class="survey-country grid-only">
         "뜨거운 여름밤은 가고 남은건 볼품없지만. <br /> 또 다시 찾아오는 누군갈 위해서 남겨두겠소."
       </div>
