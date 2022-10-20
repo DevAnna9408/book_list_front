@@ -1,12 +1,6 @@
 <template>
 <div id="user-bookmark">
   <ul class="surveys grid">
-    <div class="button__menu__wrapper">
-      <button
-        class="basic__button">
-        전체
-      </button>
-    </div>
     <li
       v-for="(item, index) in 6" :key="index"
       class="survey-item">
@@ -39,6 +33,12 @@
       </div>
     </li>
   </ul>
+  <div class="button__menu__wrapper">
+    <button
+      class="basic__button">
+      전체
+    </button>
+  </div>
   <pagination
     id="pagination"
     v-model="currentPage"
