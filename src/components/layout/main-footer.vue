@@ -4,8 +4,8 @@
       <div class="footer-logo">
         <!-- FIXME: [프로젝트 초기설정] 로고 변경필요 -->
         <img
-          src="@/assets/img/logo@2x.png"
-          alt="apexFW"
+          src="@/assets/img/logo.png"
+          alt="logo"
           @click="$router.push({ name: 'user-board' })"
         >
       </div>
