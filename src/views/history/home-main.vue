@@ -48,12 +48,12 @@
 </template>
 
 <script>
-import Editor from '../components/editor/editor.vue'
+import Editor from '../../components/editor/editor.vue'
 import ajax from '@/wrapper/ajax'
 import * as url from 'url'
 import apxAlert from '@/wrapper/apex-alert'
 import i18n from '@/store/modules/i18n'
-import ColorPicker from '../components/color-picker.vue'
+import ColorPicker from '../../components/color-picker.vue'
 export default {
   name: 'home-main',
   props: {},

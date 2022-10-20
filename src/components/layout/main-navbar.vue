@@ -11,7 +11,7 @@
     </div>
     <div class="nav-items">
       <ul class="nav-bar-container">
-        <router-link to="user-board">
+        <router-link :to="{ name: 'user-board' }">
           <li>
             <div>
               책방
@@ -19,30 +19,36 @@
             <i class="fa-solid fa-house"></i>
           </li>
         </router-link>
-        <li>
-          <div>
-            글쓰기
-          </div>
-          <i class="fa-solid fa-house"></i>
-        </li>
-        <li>
-          <div>
-            팝업
-          </div>
-          <i class="fa-solid fa-house"></i>
-        </li>
+        <router-link :to="{ name: 'user-post' }">
+          <li>
+            <div>
+              글쓰기
+            </div>
+            <i class="fa-solid fa-house"></i>
+          </li>
+        </router-link>
+          <li>
+            <div>
+              팝업
+            </div>
+            <i class="fa-solid fa-house"></i>
+          </li>
+        <router-link :to="{ name: 'user-bookmark' }">
         <li>
           <div>
             책갈피
           </div>
           <i class="fa-solid fa-house"></i>
         </li>
+        </router-link>
+        <router-link :to="{ name: 'user-my-page' }">
         <li>
           <div>
             마이페이지
           </div>
           <i class="fa-solid fa-house"></i>
         </li>
+        </router-link>
 <!--        <li v-if="isUser">-->
 <!--          <a @click="_logout()">로그아웃</a>-->
 <!--        </li>-->

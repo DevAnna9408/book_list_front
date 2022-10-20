@@ -53,22 +53,6 @@ let routes = [
       footer: {}
     },
     children: [{
-      path: 'login',
-      name: 'user-login',
-      component: loadView('user-login'),
-      meta: {
-        title: 'user.login'
-      }
-    },
-    {
-      path: 'agree',
-      name: 'user-agree',
-      component: loadView('user-agree'),
-      meta: {
-        title: 'user.register'
-      }
-    },
-    {
       path: 'register',
       name: 'user-register',
       component: loadView('user-register'),
@@ -77,29 +61,69 @@ let routes = [
       }
     },
     {
-      path: 'find/id',
-      name: 'user-find-id',
-      component: loadView('user-find-id'),
+      path: 'login',
+      name: 'user-login',
+      component: loadView('user-login'),
       meta: {
-        title: 'user.find.id'
+        title: 'user.login'
       }
     },
     {
-      path: 'find/pwd',
-      name: 'user-find-pwd',
-      component: loadView('user-find-pwd'),
+      path: 'post',
+      name: 'user-post',
+      component: loadView('user-post'),
       meta: {
-        title: 'user.find.pw'
+        title: 'user.post'
       }
     },
     {
-      path: 'modify/pwd/:userId/:expireDate/:hash',
-      name: 'user-modify-pwd',
-      component: loadView('user-modify-pwd'),
+      path: 'bookmark',
+      name: 'user-bookmark',
+      component: loadView('user-bookmark'),
       meta: {
-        title: 'user.change_password'
+        title: 'user.bookmark'
+      }
+    },
+    {
+      path: 'my-page',
+      name: 'user-my-page',
+      component: loadView('user-my-page'),
+      meta: {
+        title: 'user.my-page'
       }
     }
+    // {
+    //   path: 'agree',
+    //   name: 'user-agree',
+    //   component: loadView('user-agree'),
+    //   meta: {
+    //     title: 'user.register'
+    //   }
+    // },
+    // {
+    //   path: 'find/id',
+    //   name: 'user-find-id',
+    //   component: loadView('user-find-id'),
+    //   meta: {
+    //     title: 'user.find.id'
+    //   }
+    // },
+    // {
+    //   path: 'find/pwd',
+    //   name: 'user-find-pwd',
+    //   component: loadView('user-find-pwd'),
+    //   meta: {
+    //     title: 'user.find.pw'
+    //   }
+    // },
+    // {
+    //   path: 'modify/pwd/:userId/:expireDate/:hash',
+    //   name: 'user-modify-pwd',
+    //   component: loadView('user-modify-pwd'),
+    //   meta: {
+    //     title: 'user.change_password'
+    //   }
+    // }
     ]
   }
 ]
