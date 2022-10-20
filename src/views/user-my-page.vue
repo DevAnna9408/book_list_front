@@ -2,27 +2,37 @@
 <div id="user-my-page">
   <ul class="surveys grid">
     <li class="survey-item">
-      <span class="survey-country grid-only">
-        내용을 입력 해 주세요
+      <span>
+        닉네임: 닉네임
+        <i class="fa-solid fa-house" />
       </span>
-      <div class="survey-end-date-wrapper">
-      <span class="survey-end-date">
-         작가 혹은 가수
-      </span>
-        <br />
-        <span
-          class="survey-end-date">
-        - 제목 -
+      <div >
+      <span >
+         이메일
       </span>
       </div>
+      <ul>
+        <li>
+          공지사항
+        </li>
+        <li>
+          공지사항
+        </li>
+        <li>
+          공지사항
+        </li>
+        <li>
+          공지사항
+        </li>
+      </ul>
       <div
         class="button__wrapper"
       >
-        <button class="basic__button">
-          버튼
-        </button>
         <button class="cancel__button">
-          버튼
+          회원탈퇴
+        </button>
+        <button class="basic__button">
+          로그아웃
         </button>
       </div>
     </li>

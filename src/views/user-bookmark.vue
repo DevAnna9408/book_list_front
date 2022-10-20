@@ -1,6 +1,12 @@
 <template>
 <div id="user-bookmark">
   <ul class="surveys grid">
+    <div class="button__menu__wrapper">
+      <button
+        class="basic__button">
+        전체
+      </button>
+    </div>
     <li
       v-for="(item, index) in 6" :key="index"
       class="survey-item">
@@ -18,25 +24,50 @@
           class="survey-end-date">
         - 뜨거운 여름밤은 가고 남은건 볼품 없지만 -
        </span>
+        <br />
+        <span
+          class="survey-end-date">
+        중에서
+      </span>
       </div>
       <div
         class="button__wrapper"
       >
-        <button class="basic__button">
-          버튼
-        </button>
         <button class="cancel__button">
-          버튼
+          해제
         </button>
       </div>
     </li>
   </ul>
+  <pagination
+    id="pagination"
+    v-model="currentPage"
+    with-text
+    :per-page="results.number"
+    :page-count="results.totalPages"
+    @input="_pageInput"
+  ></pagination>
 </div>
 </template>
 
 <script>
+import apxAlert from '@/wrapper/apex-alert'
+
 export default {
-  name: 'user-bookmark'
+  name: 'user-bookmark',
+  data () {
+    return {
+      currentPage: 1,
+      results: {
+        number: 1,
+        totalPages: 10
+      }
+    }
+  },
+  methods: {
+    _pageInput () {
+    }
+  }
 }
 </script>
 

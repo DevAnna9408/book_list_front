@@ -1,7 +1,15 @@
 <template>
 <div id="user-board">
   <ul class="surveys grid">
+    <div class="button__menu__wrapper">
+          <button
+            @click="_getFilters"
+            class="basic__button">
+            검색필터
+          </button>
+    </div>
     <li
+      @click="_getThumb"
       v-for="(item, index) in 6" :key="index"
       class="survey-item">
 
@@ -48,12 +56,40 @@
       </div>
     </li>
   </ul>
+  <pagination
+    id="pagination"
+    v-model="currentPage"
+    with-text
+    :per-page="results.number"
+    :page-count="results.totalPages"
+    @input="_pageInput"
+  ></pagination>
 </div>
 </template>
 
 <script>
+import apxAlert from '@/wrapper/apex-alert'
 export default {
-  name: 'user-board'
+  name: 'user-board',
+  data () {
+    return {
+      currentPage: 1,
+      results: {
+        number: 1,
+        totalPages: 10
+      }
+    }
+  },
+  methods: {
+    _getThumb () {
+      apxAlert.noIcon()
+    },
+    _getFilters () {
+      apxAlert.noIcon()
+    },
+    _pageInput () {
+    }
+  }
 }
 </script>
 

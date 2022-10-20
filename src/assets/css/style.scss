@@ -1121,24 +1121,24 @@ hyphens: auto;
 }
 
 /* Pagination */
-.dashboard-box #pagination {
+#pagination {
   display:flex;
   justify-content:center;
   margin:30px 0 20px;
 }
-.dashboard-box #pagination li {
+#pagination li {
   margin:0 7px;
   cursor:pointer;
 }
-.dashboard-box #pagination li.active a {
+#pagination li.active a {
   background-color:#3D3D3D;
   color:#fff;
   border:1px solid #3D3D3D;
 }
-.dashboard-box #pagination li:first-child a, .dashboard-box #pagination li:last-child a {
+#pagination li:first-child a, .dashboard-box #pagination li:last-child a {
   border:0;
 }
-.dashboard-box #pagination li a {
+#pagination li a {
   padding:3px 7px;
   border:1px solid #ddd;
   border-radius:3px;
@@ -1147,7 +1147,7 @@ hyphens: auto;
   -ms-border-radius:3px;
   -o-border-radius:3px;
 }
-.dashboard-box #pagination li:hover a {
+#pagination li:hover a {
   background:#ddd;
 }
 

@@ -16,7 +16,7 @@
             <div>
               책방
             </div>
-            <i class="fa-solid fa-house"></i>
+            <i class="fa-solid fa-house" />
           </li>
         </router-link>
         <router-link :to="{ name: 'user-post' }">
@@ -24,21 +24,23 @@
             <div>
               글쓰기
             </div>
-            <i class="fa-solid fa-house"></i>
+            <i class="fa-solid fa-house" />
           </li>
         </router-link>
-          <li>
+          <li
+            @click="_getRandomBook"
+          >
             <div>
               팝업
             </div>
-            <i class="fa-solid fa-house"></i>
+            <i class="fa-solid fa-house" />
           </li>
         <router-link :to="{ name: 'user-bookmark' }">
         <li>
           <div>
             책갈피
           </div>
-          <i class="fa-solid fa-house"></i>
+          <i class="fa-solid fa-house" />
         </li>
         </router-link>
         <router-link :to="{ name: 'user-my-page' }">
@@ -46,7 +48,7 @@
           <div>
             마이페이지
           </div>
-          <i class="fa-solid fa-house"></i>
+          <i class="fa-solid fa-house" />
         </li>
         </router-link>
 <!--        <li v-if="isUser">-->
@@ -61,6 +63,7 @@
 </template>
 
 <script>
+import apxAlert from '@/wrapper/apex-alert'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   name: 'main-navbar',
@@ -72,6 +75,9 @@ export default {
     ...mapActions({}),
     _logout () {
       this.logout()
+    },
+    _getRandomBook () {
+      apxAlert.noIcon()
     }
   }
 }

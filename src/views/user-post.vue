@@ -19,10 +19,7 @@
       class="button__wrapper"
       >
         <button class="basic__button">
-          버튼
-        </button>
-        <button class="cancel__button">
-          버튼
+          작성
         </button>
       </div>
     </li>

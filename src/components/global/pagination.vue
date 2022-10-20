@@ -2,19 +2,19 @@
   <ul id="pagination">
     <li>
       <a aria-label="Previous" @click="prevPage">
-        <template v-if="withText">이전</template>
+        <template v-if="withText">👈</template>
       </a>
     </li>
     <li
       v-for="item in range(minPage, maxPage)"
       :key="item"
-      :class="value==item ? 'active': ''"
+      :class="value===item ? 'active': ''"
     >
       <a @click="changePage(item)">{{ item }}</a>
     </li>
     <li>
       <a aria-label="Next" @click="nextPage">
-        <template v-if="withText" >다음</template>
+        <template v-if="withText">👉</template>
       </a>
     </li>
   </ul>
