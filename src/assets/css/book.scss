@@ -387,3 +387,36 @@ body {
   }
 
 }
+.user_add_post__title__input {
+
+  input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+  }
+
+}
+
+.user__post__content {
+  padding: 0;
+  width: 100%;
+  //text-align: left;
+
+  .textArea-resize {
+    border: transparent;
+    background-color: transparent;
+    padding: 0;
+    width: 210px;
+    height: 160px;
+    margin: 0;
+  }
+
+}
+
+.justify__right {
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+

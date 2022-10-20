@@ -4,15 +4,17 @@
     <li
       v-for="(item, index) in 6" :key="index"
       class="survey-item">
-      <input-checkbox
-      @input="_bookmark"
-      />
-    <div
-    @click="_getThumb"
-    >
-        <span class="survey-country grid-only">
-        뜨거운 여름밤은 가고 남은건 볼품없지만. 또 다시 찾아오는 누군갈 위해서 남겨두겠소.
-      </span>
+      <div class="justify__right">
+        <input-checkbox
+          @input="_bookmark"
+        />
+      </div>
+    <div @dblclick="_getThumb">
+       <div
+          style="overflow-y: auto; height: 100px;"
+          class="survey-country grid-only">
+        "뜨거운 여름밤은 가고 남은건 볼품없지만. <br /> 또 다시 찾아오는 누군갈 위해서 남겨두겠소."
+      </div>
 
   <div class="pull-right">
           <span class="survey-progress">
@@ -36,14 +38,16 @@
         </span>
       </span>
   </div>
-  <div class="survey-end-date-wrapper">
+  <div
+    style="text-align: right"
+    class="survey-end-date-wrapper">
       <span class="survey-end-date">
          잔나비의
       </span>
     <br />
     <span
       class="survey-end-date">
-        - 뜨거운 여름밤은 가고 남은건 볼품 없지만 -
+        뜨거운 여름밤은 가고 남은건 볼품 없지만
        </span>
     <br />
     <span

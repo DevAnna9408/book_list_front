@@ -3,16 +3,26 @@
   <ul class="surveys grid">
     <li class="survey-item">
       <span class="survey-country grid-only">
-        내용을 입력 해 주세요
+              <div class="user__post__content">
+                <input-text-area
+                  :maxlength="maxLength"
+                  v-model="userBoardIn.content"
+                  :placeholder="'내 마음에 와닿은,\n\n다른 사람과 공유하고 싶은\n\n글귀를 적어 주세요 :)'"
+                />
+              </div>
       </span>
       <div class="survey-end-date-wrapper">
-      <span class="survey-end-date">
-         작가 혹은 가수
-      </span>
-        <br />
-        <span
-          class="survey-end-date">
-        - 제목 -
+        <span class="survey-end-date">
+          <input-text
+            class="user_add_post__title__input"
+            :placeholder="'작가 혹은 가수'"
+            v-model="userBoardIn.author"
+            />
+          <input-text
+            class="user_add_post__title__input"
+            :placeholder="'제목 혹은 곡명'"
+            v-model="userBoardIn.title"
+          />
       </span>
       </div>
       <div
@@ -29,7 +39,20 @@
 
 <script>
 export default {
-  name: 'user-post'
+  name: 'user-post',
+  data () {
+    return {
+      userBoardIn: {
+        title: '',
+        content: '',
+        author: ''
+      },
+      contentLength: 0,
+      maxLength: '200'
+    }
+  },
+  methods: {
+  }
 }
 </script>
 
