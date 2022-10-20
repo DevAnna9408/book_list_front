@@ -1,0 +1,10 @@
+{
+    "attributes": {
+        "userId": "아이디 ",
+        "password": "비밀번호",
+        "password_confirmation":"비밀번호 확인 ",
+        "email": "이메일",
+        "title": "제목",
+        "find_id_email":"회원가입 시 사용한 이메일"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "names": {
+        "password": "Password",
+        "userId": "UserId",
+        "email": "Email",
+        "password_confirmation": "Password confirmation"
+    }
+}

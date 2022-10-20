@@ -1,0 +1,10 @@
+{
+    "attributes": {
+        "userId": "ID ",
+        "password": "Password",
+        "password_confirmation":"Confirm password",
+        "email": "Email",
+        "title": "Title",
+        "find_id_email":"Email"
+    }
+}

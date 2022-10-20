@@ -1,0 +1,10 @@
+{
+    "fields": {
+        "password": {
+            "regex": "{_field_}: 6 to 16 characters including at least one lowercase letter + uppercase letter + number"
+        },
+        "userId": {
+            "regex": "{_field_} can only be lowercase and numbers."
+        }
+    }
+}

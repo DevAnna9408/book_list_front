@@ -1,0 +1,17 @@
+version: 0.1
+phases:
+  pre_build:
+    commands:
+      - echo Installing source yarn dependencies...
+      - yarn install
+  build:
+    commands:
+      - echo Build started on `date`
+      - yarn testbuild
+  post_build:
+    commands:
+      - pwd
+artifacts:
+  files:
+    - '**/*'
+  base-directory: dist

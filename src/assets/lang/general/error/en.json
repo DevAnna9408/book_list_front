@@ -1,0 +1,30 @@
+{
+  "error": {
+    "server": "The server encountered an error." ,
+    "file" :{
+      "download":{
+        "title":"File download",
+        "failMessage":"Download failed. please try again!"
+      },
+      "upload":{
+        "title":"File upload",
+        "failMessage":"Upload failed. please try again!"
+      }
+    },
+    "image":{
+      "loading" :{
+        "title":"Preview image",
+        "failMessage":"please try again."
+      }
+    },
+    "save": {
+      "failMessage": "Failed to save. please try again."
+    },
+    "delete": {
+      "failMessage": "Failed to delete. please try again."
+    },
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No"
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "names": {
+        "password": " 비밀번호",
+        "userId": "아이디",
+        "email" : "이메일",
+        "password_confirmation" : "비밀번호 확인"
+    }
+}
