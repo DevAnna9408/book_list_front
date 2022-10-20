@@ -61,6 +61,9 @@ body {
 .survey-name {
   font-weight: 400;
 }
+.survey-end-date-wrapper {
+  margin-top: 10px;
+}
 
 .list {
   .survey-item {
@@ -186,7 +189,7 @@ body {
     @media screen and (max-width: 600px) {
       display: block;
       width: auto;
-      height: 200px;
+      height: 250px;
       margin: 10px auto;
     }
   }
@@ -208,16 +211,6 @@ body {
   .survey-country,
   .survey-end-date {
     color: $secondary-text-color;
-  }
-
-  .survey-end-date {
-    &:before {
-      content: 'Ends\00a0';
-    }
-
-    &.ended:before {
-      content: '';
-    }
   }
 
   .survey-progress {
