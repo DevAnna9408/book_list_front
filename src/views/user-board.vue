@@ -39,7 +39,7 @@
         <span
           class="survey-end-date">
         - 뜨거운 여름밤은 가고 남은건 볼품 없지만 -
-      </span>
+       </span>
         <br />
         <span
           class="survey-end-date">

@@ -14,26 +14,36 @@ $theme-color: #8DC63F;
   box-sizing: border-box;
 }
 
-#user-post {
+#user-board,
+#user-post,
+#user-bookmark,
+#user-my-page {
   ul {
     text-align: center;
+    li {
+      text-align: left;
+    }
   }
+}
+
+#user-my-page {
 
   .grid {
-    margin-top: 100px;
 
     .survey-item {
       position: relative;
       display: inline-block;
       vertical-align: top;
-      height: 300px;
-      width: 500px;
+      height: 400px;
+      width: 270px;
       margin: 10px;
       @media screen and (max-width: 600px) {
-        display: block;
-        width: auto;
-        height: 250px;
-        margin: 10px auto;
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        height: 400px;
+        width: 270px;
+        margin: 10px;
       }
     }
   }
@@ -329,4 +339,41 @@ body {
   left: 0;
   margin: 0;
   background: $theme-color;
+}
+
+.button__wrapper {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.basic__button {
+  background-color: #55acee;
+  box-shadow: 0 5px 0 0 #3C93D5;
+}
+
+.cancel__button {
+  background-color: #e77471;
+  box-shadow: 0 5px 0 0 #f75d59;
+}
+
+.basic__button,
+.cancel__button {
+
+  border-style: none;
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  margin: 5px;
+
+  &:active {
+    transform: translate(0px, 5px);
+    -webkit-transform: translate(0px, 5px);
+    box-shadow: 0 1px 0 0;
+  }
+
 }

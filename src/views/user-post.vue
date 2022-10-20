@@ -16,9 +16,14 @@
       </span>
       </div>
       <div
-      style="position: absolute; bottom: 10px; right: 10px;"
+      class="button__wrapper"
       >
-      버튼
+        <button class="basic__button">
+          버튼
+        </button>
+        <button class="cancel__button">
+          버튼
+        </button>
       </div>
     </li>
   </ul>
