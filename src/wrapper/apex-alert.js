@@ -112,7 +112,7 @@ const sweetAlert = {
       confirmButtonText: confirmButtonText,
       cancelButtonText: cancelButtonText
     })
-  },
+  }
 
 }
 export default sweetAlert
