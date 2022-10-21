@@ -48,6 +48,10 @@
             </li>
             <li>
               <span class="icon" />
+              가이드
+            </li>
+            <li>
+              <span class="icon" />
               로그아웃
             </li>
             <li>
