@@ -16,7 +16,9 @@
         <div
           style="margin-top: 5px;"
           class="info cf">
-          <div class="four col">
+          <div
+            @click="$router.push({ name: 'user-my-board' })"
+            class="four col">
             <span class="number">
               {{ bookData.postCount }}개
             </span>

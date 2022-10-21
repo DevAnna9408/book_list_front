@@ -53,6 +53,14 @@ let routes = [
     }
   },
   {
+    path: '/user/my-board',
+    name: 'user-my-board',
+    component: loadView('user-my-board'),
+    meta: {
+      title: 'user.my-board'
+    }
+  },
+  {
     path: '/user',
     name: 'user',
     components: parent('user'),
