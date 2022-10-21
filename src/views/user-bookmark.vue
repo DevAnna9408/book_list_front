@@ -2,7 +2,7 @@
 <div id="user-bookmark">
   <ul class="surveys grid">
     <li
-      @dblclick="_getThumb"
+      @dblclick="_deleteBookmark(item.bookOid)"
       v-for="(item, index) in results.content" :key="index"
       class="survey-item">
 
@@ -28,9 +28,9 @@
         중에서
       </span>
       </div>
-      <span class="survey-completes">
-            👍 {{ item.thumbsUp }} / 👎 {{ item.thumbsDown }}
-      </span>
+<!--      <span class="survey-completes">-->
+<!--        👍 {{ item.thumbsUp }} / 👎 {{ item.thumbsDown }}-->
+<!--      </span>-->
     </li>
   </ul>
   <div class="button__menu__wrapper">
@@ -80,7 +80,6 @@ export default {
           author: '',
           bookOid: 0,
           content: '',
-          markedUserOid: 0,
           thumbsDown: 0,
           thumbsUp: 0,
           title: ''
@@ -103,9 +102,18 @@ export default {
     _reverseWritten () {
       this.isWritten = !this.isWritten
     },
-    _getThumb () {
-      // 내 글일 경우 해제, 다른 사람 글이면 해제
-      apxAlert.question(null, '책갈피에서 해제할까요?', '해제한다', '아니오')
+    _deleteBookmark (bookOid) {
+      apxAlert.question(null, '책갈피에서 해제할까요?', '해제한다', '아니오').then(con => {
+        if (con.value) {
+          ajax('DELETE', '/api/bookmark', null, null, {
+            userOid: this.userOid,
+            bookOid: bookOid
+          }).then(() => {
+            apxAlert.noIcon(null, '책갈피에서 삭제했습니다.', '확인')
+            this._getBookmarkList()
+          })
+        }
+      })
     },
     _pageInput (page) {
       this.searchParam.page = page - 1
