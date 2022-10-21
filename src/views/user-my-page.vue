@@ -56,7 +56,9 @@
               로그아웃
             </li>
             <li>
-              <span class="icon" />
+              <span
+                @click="_deleteUser"
+                class="icon" />
               회원탈퇴
             </li>
           </ul>
@@ -98,6 +100,20 @@ export default {
       apxAlert.question(null, '로그아웃 할까요?', '로그아웃', '아니오').then(con => {
         if (con.value) {
           this.logout()
+        }
+      })
+    },
+    _deleteUser () {
+      apxAlert.question(null, '회원 탈퇴 하시겠어요? 데이터가 모두 삭제됩니다.', '탈퇴하기', '아니오').then(con => {
+        if (con.value) {
+          apxAlert.question(null, '한번만 더 생각 해 보세요. 정말 회원탈퇴 하시겠어요?', '탈퇴하기', '아니오').then(con => {
+            if (con.value) {
+              ajax('DELETE', `/api/users/${this.userOid}`).then(() => {
+                this.logout()
+                apxAlert.noIcon(null, '모든 데이터가 삭제되었습니다. 그 동안 이용 해 주셔서 감사합니다 :)', '확인')
+              })
+            }
+          })
         }
       })
     },
