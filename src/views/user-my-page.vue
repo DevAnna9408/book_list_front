@@ -12,28 +12,27 @@
         >
           <img src="@/assets/img/logo.png" alt="img">
         </div>
-        <h3 class="name">userId</h3>
-        <h3 class="name">userEmail</h3>
+        <h3 class="name">{{ userCustomInfo.userId }}</h3>
         <div
           style="margin-top: 5px;"
           class="info cf">
           <div class="four col">
             <span class="number">
-              100개
+              {{ bookData.postCount }}개
             </span>
             내가 쓴 글
           </div>
           <div class="four col">
             <span class="number">
-              100개
+              {{ bookData.thumbsUp }}개
             </span>
             받은 추천
           </div>
           <div class="four col">
             <span class="number">
-              100일
+              {{ bookData.bookmark }}개
             </span>
-            함께한 날
+            책갈피
           </div>
         </div>
         <div class="options">
@@ -71,13 +70,25 @@
 
 <script>
 import apxAlert from '@/wrapper/apex-alert'
-import { mapMutations } from 'vuex'
+import ajax from '@/wrapper/ajax'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'user-my-page',
   data () {
     return {
-      postImg: '@/assets/img/logo.png'
+      userOid: 0,
+      postImg: '@/assets/img/logo.png',
+      bookData: {
+        postCount: 0,
+        thumbsUp: 0,
+        bookmark: 0
+      }
     }
+  },
+  computed: {
+    ...mapGetters({
+      userCustomInfo: 'users/userCustomInfo'
+    })
   },
   methods: {
     ...mapMutations({
@@ -89,7 +100,18 @@ export default {
           this.logout()
         }
       })
+    },
+    _getPostCountAndThumbsUp () {
+      ajax('GET', '/api/book/post-count-and-thumb-up', null, null, {
+        userOid: this.userOid
+      }).then(res => {
+        this.bookData = res
+      })
     }
+  },
+  mounted () {
+    this.userOid = this.userCustomInfo.userOid
+    this._getPostCountAndThumbsUp()
   }
 }
 </script>
