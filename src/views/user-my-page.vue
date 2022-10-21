@@ -51,7 +51,9 @@
               가이드
             </li>
             <li>
-              <span class="icon" />
+              <span
+                @click="_logout"
+                class="icon" />
               로그아웃
             </li>
             <li>
@@ -68,11 +70,25 @@
 </template>
 
 <script>
+import apxAlert from '@/wrapper/apex-alert'
+import { mapMutations } from 'vuex'
 export default {
   name: 'user-my-page',
   data () {
     return {
       postImg: '@/assets/img/logo.png'
+    }
+  },
+  methods: {
+    ...mapMutations({
+      logout: 'users/LOGOUT'
+    }),
+    _logout () {
+      apxAlert.question(null, '로그아웃 할까요?', '로그아웃', '아니오').then(con => {
+        if (con.value) {
+          this.logout()
+        }
+      })
     }
   }
 }

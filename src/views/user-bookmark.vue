@@ -3,24 +3,24 @@
   <ul class="surveys grid">
     <li
       @dblclick="_getThumb"
-      v-for="(item, index) in 6" :key="index"
+      v-for="(item, index) in results.content" :key="index"
       class="survey-item">
 
       <div
         id="user__bookmark__content"
         class="survey-country grid-only">
-        "뜨거운 여름밤은 가고 남은건 볼품없지만. <br /> 또 다시 찾아오는 누군갈 위해서 남겨두겠소."
+        <p v-html="item.content"></p>
       </div>
       <div
         style="text-align: right"
         class="survey-end-date-wrapper">
       <span class="survey-end-date">
-         잔나비의
+         {{ item.author }}의
       </span>
         <br />
         <span
           class="survey-end-date">
-        뜨거운 여름밤은 가고 남은건 볼품 없지만
+        {{ item.title }}
        </span>
         <br />
         <span
@@ -29,15 +29,28 @@
       </span>
       </div>
       <span class="survey-completes">
-            👍 5 / 👎 10
-          </span>
+            👍 {{ item.thumbsUp }} / 👎 {{ item.thumbsDown }}
+      </span>
     </li>
   </ul>
   <div class="button__menu__wrapper">
     <button
+      v-if="!isWritten"
+      @click="_reverseWritten"
       class="basic__button">
       전체
     </button>
+    <button
+      v-else
+      @click="_reverseWritten"
+      class="basic__button">
+      내가 쓴 글
+    </button>
+      <button
+        @click="_getBookmarkList"
+        class="basic__button">
+        검색
+      </button>
   </div>
   <pagination
     id="pagination"
@@ -52,25 +65,67 @@
 
 <script>
 import apxAlert from '@/wrapper/apex-alert'
+import ajax from '@/wrapper/ajax'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'user-bookmark',
   data () {
     return {
+      isWritten: false,
+      userOid: 0,
       currentPage: 1,
       results: {
+        content: [{
+          author: '',
+          bookOid: 0,
+          content: '',
+          markedUserOid: 0,
+          thumbsDown: 0,
+          thumbsUp: 0,
+          title: ''
+        }],
         number: 1,
         totalPages: 10
+      },
+      searchParam: {
+        page: 0,
+        size: 10
       }
     }
   },
+  computed: {
+    ...mapGetters({
+      userCustomInfo: 'users/userCustomInfo'
+    })
+  },
   methods: {
+    _reverseWritten () {
+      this.isWritten = !this.isWritten
+    },
     _getThumb () {
       // 내 글일 경우 해제, 다른 사람 글이면 해제
       apxAlert.question(null, '책갈피에서 해제할까요?', '해제한다', '아니오')
     },
-    _pageInput () {
+    _pageInput (page) {
+      this.searchParam.page = page - 1
+      this._getBookmarkList()
+    },
+    _getBookmarkList () {
+      ajax('GET', '/api/bookmark', null, null, {
+        userOid: this.userOid,
+        isWritten: this.isWritten,
+        page: this.searchParam.page,
+        size: this.searchParam.size
+      }).then(res => {
+        this.currentPage = this.searchParam.page + 1
+        this.results = res
+      })
     }
+  },
+  mounted () {
+    this.userOid = this.userCustomInfo.userOid
+    this._getBookmarkList()
   }
 }
 </script>

@@ -30,19 +30,6 @@ export default {
   },
 
   created () {
-    let style1 = [
-      'background-color:#3c5a9a',
-      'color:#ffffff',
-      'font-size:23px;'
-    ].join(';')
-    let style2 = [
-      'background-color:#ffffff',
-      'color:#3c5a9a',
-      'font-size:23px'
-    ].join(';')
-
-    console.log('%c APEX %c SOFT ', style1, style2) // 콘솔 로고
-
     // backspace input, textarea 아니면 적용안됨
     window.addEventListener('keydown', e => {
       if (e.key === 'Backspace' && e.target.nodeName !== 'INPUT' && e.target.nodeName !== 'TEXTAREA') {

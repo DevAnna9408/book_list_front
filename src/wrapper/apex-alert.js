@@ -85,8 +85,8 @@ const sweetAlert = {
   error (title, text, buttonText) {
     return confirm(null, title, text, buttonText)
   },
-  warning (title, text, buttonText) {
-    return confirm(null, title, text, buttonText)
+  warning (title, text) {
+    return confirm(null, title, text, '확인')
   },
   noIcon (title, text, buttonText, showConfirmButton) {
     return confirm(null, title, text, buttonText, showConfirmButton)

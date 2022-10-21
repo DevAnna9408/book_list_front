@@ -4,12 +4,6 @@
     <li
       v-for="(item, index) in results.content" :key="index"
       class="survey-item">
-      <div class="justify__right">
-        <input-checkbox
-          @input="_bookmark"
-          v-model="item.isMarked"
-        />
-      </div>
     <div @dblclick="_getThumb">
        <div id="user__board__content"
           class="survey-country grid-only">
@@ -33,10 +27,18 @@
             {{ item.thumbsUp }} / 10
           </span>
 
-          <!--          <span class="survey-completes">-->
-          <!--            <i class="fa-solid fa-house" /> / <i class="fa-solid fa-house" />-->
-          <!--          </span>-->
-
+          <span
+            @click="_bookmark(item.isMarked, item.bookOid)"
+            class="survey-progress-label">
+              <i
+                v-if="item.isMarked"
+                style="font-size: 15px;"
+                class="fa-solid fa-bookmark" />
+            <i
+              v-else
+              style="font-size: 15px;"
+              class="fa-regular fa-bookmark" />
+          </span>
         </span>
       </span>
   </div>
@@ -96,7 +98,7 @@
     id="pagination"
     v-model="currentPage"
     with-text
-    :per-page="results.number"
+    :per-page="results.size"
     :page-count="results.totalPages"
     @input="_pageInput"
   ></pagination>
@@ -105,21 +107,23 @@
 
 <script>
 import apxAlert from '@/wrapper/apex-alert'
-import InputCheckbox from '@/components/global/input-checkbox'
 import ajax from '@/wrapper/ajax'
+import { mapGetters } from 'vuex'
 export default {
   name: 'user-board',
-  components: { InputCheckbox },
   data () {
     return {
-      reverseOrder: false,
+      userOid: 0,
+      markedOids: [],
+      reverseOrder: true,
       thumbsOrder: false,
       currentPage: 1,
       results: {
         content: [{
+          bookOid: 0,
           author: '',
           content: '',
-          isMarked: true,
+          isMarked: false,
           thumbsDown: 0,
           thumbsUp: 0,
           title: ''
@@ -133,6 +137,11 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters({
+      userCustomInfo: 'users/userCustomInfo'
+    })
+  },
   methods: {
     _reverseOrder () {
       this.reverseOrder = !this.reverseOrder
@@ -142,27 +151,56 @@ export default {
     },
     _pageInput (page) {
       this.searchParam.page = page - 1
+      this._getBookList()
     },
     _getBookList () {
+      this._getBookOidsInBookmark()
       ajax('GET', '/api/book/list', null, null, {
         sortParam: this.thumbsOrder,
         reverse: this.reverseOrder,
         page: this.searchParam.page,
         size: this.searchParam.size
       }).then(res => {
-        this.currentPage = this.searchParam.page - 1
+        this.currentPage = this.searchParam.page + 1
         this.results = res
+        this.results.content.forEach(c => {
+          if (this._checkIsMarked(c.bookOid)) c.isMarked = true
+        })
       })
     },
-    _bookmark () {
-      apxAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
+    _getBookOidsInBookmark () {
+      ajax('GET', '/api/bookmark/book-oids', null, null, {
+        userOid: this.userOid
+      }).then(res => {
+        this.markedOids = res
+      })
+    },
+    _checkIsMarked (bookOid) {
+      return this.markedOids.includes(bookOid)
+    },
+    _bookmark (isMarked, bookOid) {
+      if (!isMarked) {
+        apxAlert.question(null, '내 책갈피에 저장할까요?', '네', '아니오').then(con => {
+          if (con.value) {
+            ajax('POST', '/api/bookmark', null, null, {
+              userOid: this.userOid,
+              bookOid: bookOid
+            }).then(() => {
+              apxAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
+              this._getBookList()
+            }).catch(() => {})
+          }
+        })
+      }
     },
     _getThumb () {
       apxAlert.question(null, '이 글에 대한 느낌은?', '추천 👍', '비추천 👎')
     }
   },
-  mounted () {
-    this._getBookList()
+  async mounted () {
+    this.userOid = this.userCustomInfo.userOid
+    await this._getBookOidsInBookmark()
+    await this._getBookList()
   }
 }
 </script>

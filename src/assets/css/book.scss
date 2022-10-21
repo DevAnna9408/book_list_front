@@ -288,7 +288,7 @@ body {
 
   .survey-progress-labels {
     position: absolute;
-    right: 20px;
+    right: 10px;
     top: 0;
     line-height: 40px;
 
@@ -438,18 +438,18 @@ body {
 
 #user__board__content {
   overflow-y: auto;
-  height: 100px;
+  height: 135px;
 
   @media screen and (max-width: 600px) {
     overflow-y: auto;
-    height: 50px;
+    height: 100px;
   }
 
 }
 
 #user__bookmark__content {
   overflow-y: auto;
-  height: 180px;
+  height: 170px;
 
   @media screen and (max-width: 600px) {
     overflow-y: auto;
