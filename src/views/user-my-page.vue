@@ -39,15 +39,7 @@
           <ul style="text-align: left">
             <li>
               <span class="icon" />
-              공지사항
-            </li>
-            <li>
-              <span class="icon" />
-                개발자 연락처
-            </li>
-            <li>
-              <span class="icon" />
-              가이드
+              공지사항 & 가이드
             </li>
             <li>
               <span
