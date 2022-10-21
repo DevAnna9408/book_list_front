@@ -6,7 +6,7 @@
               <div class="user__post__content">
                 <input-text-area
                   :maxlength="'100'"
-                  v-model="userBoardIn.content"
+                  v-model="userBookIn.content"
                   :placeholder="'내 마음에 와닿은,\n\n다른 사람과 공유하고 싶은\n\n글귀를 적어 주세요 :)'"
                 />
               </div>
@@ -17,20 +17,23 @@
             class="user_add_post__title__input"
             :maxlength="50"
             :placeholder="'작가 혹은 가수'"
-            v-model="userBoardIn.author"
+            v-model="userBookIn.author"
             />
           <input-text
             class="user_add_post__title__input"
             :maxlength="50"
             :placeholder="'제목 혹은 곡명'"
-            v-model="userBoardIn.title"
+            v-model="userBookIn.title"
           />
       </span>
       </div>
       <div
       class="button__wrapper"
       >
-        <button class="basic__button">
+        <button
+          class="basic__button"
+          @click="_createBook"
+        >
           작성
         </button>
       </div>
@@ -40,18 +43,56 @@
 </template>
 
 <script>
+import apxAlert from '@/wrapper/apex-alert'
+import ajax from '@/wrapper/ajax'
+import { mapGetters } from 'vuex'
 export default {
   name: 'user-post',
   data () {
     return {
-      userBoardIn: {
-        title: '',
+      userBookIn: {
         content: '',
-        author: ''
+        author: '',
+        title: '',
+        userOid: 0
       }
     }
   },
+  computed: {
+    ...mapGetters({
+      userCustomInfo: 'users/userCustomInfo'
+    })
+  },
   methods: {
+    _createBook () {
+      if (this.userBookIn.content === '') {
+        apxAlert.noIcon(null, '내용을 입력 해 주세요', '확인')
+      } else if (this.userBookIn.author === '') {
+        apxAlert.noIcon(null, '작가 혹은 가수명을 입력 해 주세요', '확인')
+      } else if (this.userBookIn.title === '제목 혹은 곡명을 입력 해 주세요') {
+        apxAlert.noIcon(null, '', '확인')
+      } else {
+        ajax('POST', '/api/book', {
+          content: this.userBookIn.content.replaceAll('\n', '<br />'),
+          author: this.userBookIn.author,
+          title: this.userBookIn.title,
+          userOid: this.userBookIn.userOid
+        }).then(() => {
+          this.userBookIn = {
+            content: '',
+            author: '',
+            title: '',
+            userOid: this.userCustomInfo.userOid
+          }
+          apxAlert.noIcon(null, '글 작성이 완료되었습니다 :)', '확인')
+        }).catch(err => {
+          apxAlert.noIcon(null, err.message, '확인')
+        })
+      }
+    }
+  },
+  mounted () {
+    this.userBookIn.userOid = this.userCustomInfo.userOid
   }
 }
 </script>

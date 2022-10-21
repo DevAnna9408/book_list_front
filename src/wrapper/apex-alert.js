@@ -82,12 +82,12 @@ const sweetAlert = {
   // success (title, text, showConfirmButton, buttonText) {
   //   return confirm(null, title, text, buttonText, showConfirmButton)
   // },
-  // error (title, text, buttonText) {
-  //   return confirm(null, title, text, buttonText)
-  // },
-  // warning (title, text, buttonText) {
-  //   return confirm(null, title, text, buttonText)
-  // },
+  error (title, text, buttonText) {
+    return confirm(null, title, text, buttonText)
+  },
+  warning (title, text, buttonText) {
+    return confirm(null, title, text, buttonText)
+  },
   noIcon (title, text, buttonText, showConfirmButton) {
     return confirm(null, title, text, buttonText, showConfirmButton)
   },
