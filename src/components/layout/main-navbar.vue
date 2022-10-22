@@ -15,7 +15,7 @@
         class="nav-bar-container">
         <router-link :to="{ name: 'user-board' }">
           <li>
-            <div>
+            <div style="min-width: 50px;">
               책장
             </div>
             <i class="fa-solid fa-list" />
@@ -23,7 +23,7 @@
         </router-link>
         <router-link :to="{ name: 'user-post' }">
           <li>
-            <div>
+            <div style="min-width: 50px;">
               글쓰기
             </div>
             <i class="fa-solid fa-square-plus" />
@@ -32,14 +32,14 @@
           <li
             @click="_getRandomBook"
           >
-            <div>
-              팝업
+            <div style="min-width: 50px;">
+              책 꺼내기
             </div>
             <i class="fa-solid fa-book" />
           </li>
         <router-link :to="{ name: 'user-bookmark' }">
         <li>
-          <div>
+          <div style="min-width: 50px;">
             책갈피
           </div>
           <i class="fa-solid fa-bookmark" />
@@ -47,7 +47,7 @@
         </router-link>
         <router-link :to="{ name: 'user-my-page' }">
         <li>
-          <div>
+          <div style="min-width: 80px;">
             마이페이지
           </div>
           <i class="fa-solid fa-user" />
