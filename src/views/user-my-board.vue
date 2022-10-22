@@ -109,7 +109,6 @@ export default {
   data () {
     return {
       userOid: 0,
-      markedOids: [],
       reverseOrder: true,
       thumbsOrder: false,
       currentPage: 1,
@@ -153,9 +152,8 @@ export default {
       this.searchParam.page = page - 1
       this._getBookList()
     },
-    async _getBookList () {
-      await this._getBookOidsInBookmark()
-      await ajax('GET', '/api/book/my-list', null, null, {
+    _getBookList () {
+      ajax('GET', '/api/book/my-list', null, null, {
         userOid: this.userOid,
         sortParam: this.thumbsOrder,
         reverse: this.reverseOrder,
@@ -164,20 +162,17 @@ export default {
       }).then(res => {
         this.currentPage = this.searchParam.page + 1
         this.results = res
-        this.results.content.forEach(c => {
-          if (this._checkIsMarked(c.bookOid)) c.isMarked = true
-        })
+        this._getBookOidsInBookmark()
       })
     },
     _getBookOidsInBookmark () {
       ajax('GET', '/api/bookmark/book-oids', null, null, {
         userOid: this.userOid
       }).then(res => {
-        this.markedOids = res
+        this.results.content.forEach(c => {
+          if (res.includes(c.bookOid)) c.isMarked = true
+        })
       })
-    },
-    _checkIsMarked (bookOid) {
-      return this.markedOids.includes(bookOid)
     },
     _bookmark (isMarked, bookOid) {
       if (!isMarked) {
@@ -219,7 +214,6 @@ export default {
   async mounted () {
     this.userOid = this.userCustomInfo.userOid
     await this._getBookList()
-    await this._getPostCountAndThumbsUp()
   },
   created () {
     this._getPostCountAndThumbsUp()

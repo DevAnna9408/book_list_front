@@ -117,7 +117,6 @@ export default {
   data () {
     return {
       userOid: 0,
-      markedOids: [],
       reverseOrder: true,
       thumbsOrder: false,
       currentPage: 1,
@@ -156,9 +155,8 @@ export default {
       this.searchParam.page = page - 1
       this._getBookList()
     },
-    async _getBookList () {
-      await this._getBookOidsInBookmark()
-      await ajax('GET', '/api/book/list', null, null, {
+    _getBookList () {
+      ajax('GET', '/api/book/list', null, null, {
         sortParam: this.thumbsOrder,
         reverse: this.reverseOrder,
         page: this.searchParam.page,
@@ -166,20 +164,17 @@ export default {
       }).then(res => {
         this.currentPage = this.searchParam.page + 1
         this.results = res
-        this.results.content.forEach(c => {
-          if (this._checkIsMarked(c.bookOid)) c.isMarked = true
-        })
+        this._getBookOidsInBookmark()
       })
     },
     _getBookOidsInBookmark () {
       ajax('GET', '/api/bookmark/book-oids', null, null, {
         userOid: this.userOid
       }).then(res => {
-        this.markedOids = res
+        this.results.content.forEach(c => {
+          if (res.includes(c.bookOid)) c.isMarked = true
+        })
       })
-    },
-    _checkIsMarked (bookOid) {
-      return this.markedOids.includes(bookOid)
     },
     _bookmark (isMarked, bookOid) {
       if (!isMarked) {
@@ -200,20 +195,20 @@ export default {
       apxAlert.radio('이 글에 대한 느낌은?', {
         false: '비추천 👎',
         true: '추천 👍'
-      }).then(con => {
+      }, '닫기').then(con => {
         if (con.value === 'true') {
           ajax('PUT', '/api/book/thumbs-up', null, null, {
             userOid: this.userOid,
             bookOid: bookOid
           }).then(() => {
-            apxAlert.noIcon(null, '감사합니다 :)', '확인')
+            apxAlert.noIcon(null, '글을 추천했습니다. 감사합니다 :)', '확인')
           }).catch(() => {})
         } else if (con.value === 'false') {
           ajax('PUT', '/api/book/thumbs-down', null, null, {
             userOid: this.userOid,
             bookOid: bookOid
           }).then(() => {
-            apxAlert.noIcon(null, '감사합니다 :)', '확인')
+            apxAlert.noIcon(null, '글을 비추천 했습니다. 감사합니다 :)', '확인')
           }).catch(() => {}).finally(() => {
             this._getBookList()
           })
