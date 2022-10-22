@@ -157,6 +157,7 @@ export default {
     },
     _getBookList () {
       ajax('GET', '/api/book/list', null, null, {
+        userOid: this.userOid,
         sortParam: this.thumbsOrder,
         reverse: this.reverseOrder,
         page: this.searchParam.page,
