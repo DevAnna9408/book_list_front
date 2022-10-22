@@ -4,7 +4,7 @@
     <li
       v-for="(item, index) in results.content" :key="index"
       class="survey-item">
-    <div @dblclick="_getThumb">
+    <div @dblclick="_getThumb(item.bookOid)">
        <div id="user__board__content"
           class="survey-country grid-only">
          <p v-html="item.content" />
@@ -20,7 +20,7 @@
 
         <span class="survey-progress-labels">
           <span class="survey-progress-label">
-            👍 {{ item.thumbsUp / 10 * 100 }}%
+            👍 {{ Math.ceil(item.thumbsUp / 10 * 100) }}%
           </span>
 
           <span class="survey-completes">
@@ -193,8 +193,29 @@ export default {
         })
       }
     },
-    _getThumb () {
-      apxAlert.question(null, '이 글에 대한 느낌은?', '추천 👍', '비추천 👎')
+    _getThumb (bookOid) {
+      apxAlert.radio('이 글에 대한 느낌은?', {
+        false: '비추천 👎',
+        true: '추천 👍'
+      }).then(con => {
+        if (con.value === 'true') {
+          ajax('PUT', '/api/book/thumbs-up', null, null, {
+            userOid: this.userOid,
+            bookOid: bookOid
+          }).then(() => {
+            apxAlert.noIcon(null, '감사합니다 :)', '확인')
+          }).catch(() => {})
+        } else if (con.value === 'false') {
+          ajax('PUT', '/api/book/thumbs-down', null, null, {
+            userOid: this.userOid,
+            bookOid: bookOid
+          }).then(() => {
+            apxAlert.noIcon(null, '감사합니다 :)', '확인')
+          }).catch(() => {}).finally(() => {
+            this._getBookList()
+          })
+        }
+      })
     }
   },
   async mounted () {

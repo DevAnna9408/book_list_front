@@ -112,6 +112,14 @@ const sweetAlert = {
       confirmButtonText: confirmButtonText,
       cancelButtonText: cancelButtonText
     })
+  },
+  radio (text, inputOptions) {
+    return swalWithMertButtons.fire({
+      icon: null,
+      text,
+      input: 'radio',
+      inputOptions: inputOptions
+    })
   }
 
 }
