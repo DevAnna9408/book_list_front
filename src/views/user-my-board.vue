@@ -7,7 +7,7 @@
     <li
       v-for="(item, index) in results.content" :key="index"
       class="survey-item">
-    <div @dblclick="_getThumb">
+    <div @dblclick="_getThumb(item.bookOid)">
        <div id="user__board__content"
           class="survey-country grid-only">
          <p v-html="item.content" />
@@ -126,6 +126,11 @@ export default {
         number: 1,
         totalPages: 10
       },
+      bookData: {
+        postCount: 0,
+        thumbsUp: 0,
+        bookmark: 0
+      },
       searchParam: {
         page: 0,
         size: 10
@@ -189,13 +194,35 @@ export default {
         })
       }
     },
-    _getThumb () {
-      apxAlert.question(null, '글을 삭제 하시겠어요?', '삭제', '아니오')
+    _getThumb (bookOid) {
+      apxAlert.html(`<p>글을 삭제 하시겠어요? <br /> 다른 사람들의 책갈피에서도 글이 사라집니다.<p>`, '삭제', true, '아니오').then(con => {
+        if (con.value) {
+          ajax('DELETE', '/api/book', null, null, {
+            userOid: this.userOid,
+            bookOid: bookOid
+          }).then(() => {
+            apxAlert.noIcon(null, '글을 삭제했습니다.', '확인')
+            this._getBookList()
+          })
+        }
+      })
+    },
+    _getPostCountAndThumbsUp () {
+      ajax('GET', '/api/book/post-count-and-thumb-up', null, null, {
+        userOid: this.userOid
+      }).then(res => {
+        this.bookData = res
+        apxAlert.html(`<p>지금까지 총 ${this.bookData.postCount}개의 포스팅, <br />${this.bookData.thumbsUp}개의 추천을 받았어요 :)<p>`, '확인', false, null)
+      })
     }
   },
   async mounted () {
     this.userOid = this.userCustomInfo.userOid
     await this._getBookList()
+    await this._getPostCountAndThumbsUp()
+  },
+  created () {
+    this._getPostCountAndThumbsUp()
   }
 }
 </script>

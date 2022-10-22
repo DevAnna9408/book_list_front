@@ -62,12 +62,7 @@ export default {
   name: 'user-my-page',
   data () {
     return {
-      userOid: 0,
-      bookData: {
-        postCount: 0,
-        thumbsUp: 0,
-        bookmark: 0
-      }
+      userOid: 0
     }
   },
   computed: {
@@ -99,18 +94,10 @@ export default {
           })
         }
       })
-    },
-    _getPostCountAndThumbsUp () {
-      ajax('GET', '/api/book/post-count-and-thumb-up', null, null, {
-        userOid: this.userOid
-      }).then(res => {
-        this.bookData = res
-      })
     }
   },
   mounted () {
     this.userOid = this.userCustomInfo.userOid
-    this._getPostCountAndThumbsUp()
   }
 }
 </script>
