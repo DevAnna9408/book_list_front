@@ -23,7 +23,9 @@
         <div class="options">
           <ul style="text-align: left">
             <li>
-              <span class="icon" />
+              <span
+                @click="_openNotice"
+                class="icon" />
               공지사항 & 가이드
             </li>
             <li>
@@ -80,6 +82,9 @@ export default {
           this.logout()
         }
       })
+    },
+    _openNotice () {
+      window.open('https://www.instagram.com/thousand.book/')
     },
     _deleteUser () {
       apxAlert.question(null, '회원 탈퇴 하시겠어요? 데이터가 모두 삭제됩니다.', '탈퇴하기', '아니오').then(con => {
