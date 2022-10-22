@@ -67,10 +67,16 @@
 <script>
 import apxAlert from '@/wrapper/apex-alert'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
+import ajax from '@/wrapper/ajax'
 export default {
   name: 'main-navbar',
+  data () {
+    return {
+      userOid: 0
+    }
+  },
   computed: {
-    ...mapGetters({ isUser: 'users/isUser' })
+    ...mapGetters({ isUser: 'users/isUser', userCustomInfo: 'users/userCustomInfo' })
   },
   methods: {
     ...mapMutations({ logout: 'users/LOGOUT' }),
@@ -79,8 +85,27 @@ export default {
       this.logout()
     },
     _getRandomBook () {
-      apxAlert.noIcon()
+      ajax('GET', '/api/book/random', null, null, {
+        userOid: this.userOid
+      }).then(res => {
+        apxAlert.html('<p style="font-size: 11px; color: #A1A1A4;">' +
+          res.content + '</p> <br /> <p style="font-size: 11px; color: #A1A1A4;">' +
+          res.author + '_' + res.title + '</p>',
+        '책갈피로', true, '닫기').then(con => {
+          if (con.value) {
+            ajax('POST', '/api/bookmark', null, null, {
+              userOid: this.userOid,
+              bookOid: res.bookOid
+            }).then(() => {
+              apxAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
+            }).catch(() => {})
+          }
+        })
+      })
     }
+  },
+  created () {
+    this.userOid = this.userCustomInfo.userOid
   }
 }
 </script>
