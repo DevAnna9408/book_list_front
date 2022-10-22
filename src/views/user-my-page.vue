@@ -17,8 +17,10 @@
         </div>
         <h3 class="name">{{ userCustomInfo.userId }}</h3>
         <h3 class="name">
-          닉네임 추가
-          <i class="fa-solid fa-pen-to-square"></i>
+          {{ nickName }}
+          <i
+            @click="_editNickName"
+            class="fa-solid fa-pen-to-square"></i>
         </h3>
         <div class="options">
           <ul style="text-align: left">
@@ -64,7 +66,8 @@ export default {
   name: 'user-my-page',
   data () {
     return {
-      userOid: 0
+      userOid: 0,
+      nickName: ''
     }
   },
   computed: {
@@ -74,7 +77,8 @@ export default {
   },
   methods: {
     ...mapMutations({
-      logout: 'users/LOGOUT'
+      logout: 'users/LOGOUT',
+      setUserCustomInfo: 'users/SET_USER_CUSTOM_INFO'
     }),
     _logout () {
       apxAlert.question(null, '로그아웃 할까요?', '로그아웃', '아니오').then(con => {
@@ -85,6 +89,20 @@ export default {
     },
     _openNotice () {
       window.open('https://www.instagram.com/thousand.book/')
+    },
+    _editNickName () {
+      apxAlert.input('작가명을 입력 해 주세요', '변경하기').then(con => {
+        if (con.value) {
+          ajax('PATCH', `/api/users/nick-name/${this.userOid}`, null, null, {
+            nickName: con.value
+          }).then(res => {
+            apxAlert.noIcon(null, '닉네임이 변경되었습니다.', '확인')
+            localStorage.removeItem('userCustomInfo')
+            this.setUserCustomInfo(res)
+            this.nickName = this.userCustomInfo.nickName
+          })
+        }
+      })
     },
     _deleteUser () {
       apxAlert.question(null, '회원 탈퇴 하시겠어요? 데이터가 모두 삭제됩니다.', '탈퇴하기', '아니오').then(con => {
@@ -103,6 +121,7 @@ export default {
   },
   mounted () {
     this.userOid = this.userCustomInfo.userOid
+    this.nickName = this.userCustomInfo.nickName
   }
 }
 </script>
