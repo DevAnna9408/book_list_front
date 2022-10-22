@@ -61,7 +61,9 @@
           </form>
         </ValidationObserver>
         <div class="form-footer">
-          <p><a>비밀번호를 모를 때 클릭 :)</a></p>
+          <p><a
+          @click="_resetPassword"
+          >비밀번호를 모를 때 클릭 :)</a></p>
         </div>
       </div>
     </div>
@@ -84,6 +86,9 @@ export default {
       login: 'users/login',
       register: 'users/register'
     }),
+    _resetPassword () {
+      apxAlert.html(`<p>죄송합니다. <br /> 아직 서비스 승인이 되지 않은 기능입니다. <br /> <a href="https://www.instagram.com/thousand.book/" target="_blank">👉 링크</a>를 확인 해 주세요. <p>`, '확인', false, null)
+    },
     _signApi () {
       if (this.apiUrl === 'login') this._login()
       else this._signUp()
