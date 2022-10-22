@@ -1,5 +1,8 @@
 <template>
 <div id="user-post">
+  <div class="component__title">
+    {{ $route.meta.title }}
+  </div>
   <ul class="surveys grid">
     <li class="survey-item">
       <span class="survey-country grid-only">

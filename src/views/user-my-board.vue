@@ -1,5 +1,8 @@
 <template>
 <div id="user-my-board">
+  <div class="component__title__my__board">
+    {{ $route.meta.title }}
+  </div>
   <ul class="surveys grid">
     <li
       v-for="(item, index) in results.content" :key="index"
@@ -145,9 +148,9 @@ export default {
       this.searchParam.page = page - 1
       this._getBookList()
     },
-    _getBookList () {
-      this._getBookOidsInBookmark()
-      ajax('GET', '/api/book/my-list', null, null, {
+    async _getBookList () {
+      await this._getBookOidsInBookmark()
+      await ajax('GET', '/api/book/my-list', null, null, {
         userOid: this.userOid,
         sortParam: this.thumbsOrder,
         reverse: this.reverseOrder,
@@ -187,12 +190,11 @@ export default {
       }
     },
     _getThumb () {
-      apxAlert.question(null, '이 글에 대한 느낌은?', '추천 👍', '비추천 👎')
+      apxAlert.question(null, '글을 삭제 하시겠어요?', '삭제', '아니오')
     }
   },
   async mounted () {
     this.userOid = this.userCustomInfo.userOid
-    await this._getBookOidsInBookmark()
     await this._getBookList()
   }
 }

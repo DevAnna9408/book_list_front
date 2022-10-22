@@ -1,5 +1,8 @@
 <template>
 <div id="user-board">
+  <div class="component__title">
+    {{ $route.meta.title }}
+  </div>
   <ul class="surveys grid">
     <li
       v-for="(item, index) in results.content" :key="index"
@@ -153,9 +156,9 @@ export default {
       this.searchParam.page = page - 1
       this._getBookList()
     },
-    _getBookList () {
-      this._getBookOidsInBookmark()
-      ajax('GET', '/api/book/list', null, null, {
+    async _getBookList () {
+      await this._getBookOidsInBookmark()
+      await ajax('GET', '/api/book/list', null, null, {
         sortParam: this.thumbsOrder,
         reverse: this.reverseOrder,
         page: this.searchParam.page,
@@ -220,7 +223,6 @@ export default {
   },
   async mounted () {
     this.userOid = this.userCustomInfo.userOid
-    await this._getBookOidsInBookmark()
     await this._getBookList()
   }
 }

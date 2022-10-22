@@ -41,7 +41,7 @@ let routes = [
       footer: {}
     },
     meta: {
-      title: 'home.title'
+      title: '책장'
     }
   },
   {
@@ -49,7 +49,7 @@ let routes = [
     name: 'user-login',
     component: loadView('user-login'),
     meta: {
-      title: 'user.login'
+      title: '로그인'
     }
   },
   {
@@ -57,7 +57,7 @@ let routes = [
     name: 'user-my-board',
     component: loadView('user-my-board'),
     meta: {
-      title: 'user.my-board'
+      title: '내가 쓴 글'
     }
   },
   {
@@ -73,7 +73,7 @@ let routes = [
       name: 'user-register',
       component: loadView('user-register'),
       meta: {
-        title: 'user.register'
+        title: '회원가입'
       }
     },
     {
@@ -81,7 +81,7 @@ let routes = [
       name: 'user-post',
       component: loadView('user-post'),
       meta: {
-        title: 'user.post'
+        title: '글쓰기'
       }
     },
     {
@@ -89,7 +89,7 @@ let routes = [
       name: 'user-bookmark',
       component: loadView('user-bookmark'),
       meta: {
-        title: 'user.bookmark'
+        title: '책갈피'
       }
     },
     {
@@ -97,41 +97,9 @@ let routes = [
       name: 'user-my-page',
       component: loadView('user-my-page'),
       meta: {
-        title: 'user.my-page'
+        title: '마이페이지'
       }
     }
-    // {
-    //   path: 'agree',
-    //   name: 'user-agree',
-    //   component: loadView('user-agree'),
-    //   meta: {
-    //     title: 'user.register'
-    //   }
-    // },
-    // {
-    //   path: 'find/id',
-    //   name: 'user-find-id',
-    //   component: loadView('user-find-id'),
-    //   meta: {
-    //     title: 'user.find.id'
-    //   }
-    // },
-    // {
-    //   path: 'find/pwd',
-    //   name: 'user-find-pwd',
-    //   component: loadView('user-find-pwd'),
-    //   meta: {
-    //     title: 'user.find.pw'
-    //   }
-    // },
-    // {
-    //   path: 'modify/pwd/:userId/:expireDate/:hash',
-    //   name: 'user-modify-pwd',
-    //   component: loadView('user-modify-pwd'),
-    //   meta: {
-    //     title: 'user.change_password'
-    //   }
-    // }
     ]
   }
 ]

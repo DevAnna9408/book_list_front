@@ -1,7 +1,10 @@
 <template>
 <div id="user-my-page">
+  <div class="component__title">
+    {{ $route.meta.title }}
+  </div>
   <div
-    style="margin-top: 100px;"
+    style="margin-top: 15px;"
     class="container">
     <div
       style="display: flex; justify-content: center"
@@ -13,35 +16,22 @@
           <img src="@/assets/img/logo.png" alt="img">
         </div>
         <h3 class="name">{{ userCustomInfo.userId }}</h3>
-        <div
-          style="margin-top: 5px;"
-          class="info cf">
-          <div
-            @click="$router.push({ name: 'user-my-board' })"
-            class="four col">
-            <span class="number">
-              {{ bookData.postCount }}개
-            </span>
-            내가 쓴 글
-          </div>
-          <div class="four col">
-            <span class="number">
-              {{ bookData.thumbsUp }}개
-            </span>
-            받은 추천
-          </div>
-          <div class="four col">
-            <span class="number">
-              {{ bookData.bookmark }}개
-            </span>
-            책갈피
-          </div>
-        </div>
+        <h3 class="name">
+          닉네임 추가
+          <i class="fa-solid fa-pen-to-square"></i>
+        </h3>
         <div class="options">
           <ul style="text-align: left">
             <li>
               <span class="icon" />
               공지사항 & 가이드
+            </li>
+            <li>
+              <span
+                class="icon"
+                @click="$router.push({ name: 'user-my-board' })"
+              />
+              내가 쓴 글
             </li>
             <li>
               <span
@@ -73,7 +63,6 @@ export default {
   data () {
     return {
       userOid: 0,
-      postImg: '@/assets/img/logo.png',
       bookData: {
         postCount: 0,
         thumbsUp: 0,

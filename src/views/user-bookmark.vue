@@ -1,5 +1,8 @@
 <template>
 <div id="user-bookmark">
+  <div class="component__title">
+    {{ $route.meta.title }}
+  </div>
   <ul class="surveys grid">
     <li
       @dblclick="_deleteBookmark(item.bookOid)"
