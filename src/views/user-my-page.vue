@@ -91,7 +91,7 @@ export default {
       window.open('https://www.instagram.com/thousand.book/')
     },
     _editNickName () {
-      apxAlert.input('작가명을 입력 해 주세요', '변경하기').then(con => {
+      apxAlert.input('프로필명을 입력 해 주세요', '변경하기').then(con => {
         if (con.value) {
           ajax('PATCH', `/api/users/nick-name/${this.userOid}`, null, null, {
             nickName: con.value
