@@ -97,9 +97,8 @@ export default {
             nickName: con.value
           }).then(res => {
             apxAlert.noIcon(null, '닉네임이 변경되었습니다.', '확인')
-            localStorage.removeItem('userCustomInfo')
             this.setUserCustomInfo(res)
-            this.nickName = this.userCustomInfo.nickName
+            this.nickName = con.value
           })
         }
       })

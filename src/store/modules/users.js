@@ -69,13 +69,9 @@ const actions = {
     return new Promise((resolve, reject) => {
       ajax('POST', '/api/sign-up', _user)
         .then(_data => {
-          let accessToken = _data.accessToken
           let _user = {}
           _user.userId = _data.userId
           _user.roles = _data.roles
-          commit('SET_ACCESS_TOKEN', accessToken)
-          commit('SET_USER', _user)
-          commit('SET_USER_CUSTOM_INFO', _data.customInfo)
           resolve(_data)
         }).catch(_err => {
           reject(_err)
