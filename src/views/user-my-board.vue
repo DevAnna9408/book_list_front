@@ -211,11 +211,11 @@ export default {
       })
     }
   },
-  async mounted () {
-    this.userOid = this.userCustomInfo.userOid
-    await this._getBookList()
+  mounted () {
+    this._getBookList()
   },
   created () {
+    this.userOid = this.userCustomInfo.userOid
     this._getPostCountAndThumbsUp()
   }
 }
