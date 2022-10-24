@@ -203,7 +203,9 @@ export default {
             bookOid: bookOid
           }).then(() => {
             apxAlert.noIcon(null, '글을 추천했습니다. 감사합니다 :)', '확인')
-          }).catch(() => {})
+          }).catch(() => {}).finally(() => {
+            this._getBookList()
+          })
         } else if (con.value === 'false') {
           ajax('PUT', '/api/book/thumbs-down', null, null, {
             userOid: this.userOid,
