@@ -88,19 +88,23 @@ export default {
       ajax('GET', '/api/book/random', null, null, {
         userOid: this.userOid
       }).then(res => {
-        apxAlert.html('<p style="font-size: 11px; color: #A1A1A4;">' +
+        if (res.length === 0) {
+          apxAlert.noIcon(null, '아직 추천이 10개가 넘은 글이 없어요 :(', '확인')
+        } else {
+          apxAlert.html('<p style="font-size: 11px; color: #A1A1A4;">' +
           res.content + '</p> <br /> <p style="font-size: 11px; color: #A1A1A4;">' +
           res.author + '_' + res.title + '</p>',
-        '책갈피로', true, '닫기').then(con => {
-          if (con.value) {
-            ajax('POST', '/api/bookmark', null, null, {
-              userOid: this.userOid,
-              bookOid: res.bookOid
-            }).then(() => {
-              apxAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
-            }).catch(() => {})
-          }
-        })
+          '책갈피로', true, '닫기').then(con => {
+            if (con.value) {
+              ajax('POST', '/api/bookmark', null, null, {
+                userOid: this.userOid,
+                bookOid: res.bookOid
+              }).then(() => {
+                apxAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
+              }).catch(() => {})
+            }
+          })
+        }
       })
     }
   },
