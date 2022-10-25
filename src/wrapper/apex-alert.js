@@ -133,7 +133,28 @@ const sweetAlert = {
       confirmButtonText: confirmButtonText,
       cancelButtonText: cancelButtonText
     })
+  },
+  signUp (confirmButtonText) {
+    return swalWithMertButtons.fire({
+      title: '회원가입',
+      html:
+        '<p>비밀번호는 대소문자 및 <br /> 숫자를 포함한 <br /> 16자 이내로 작성 해 주세요.</p>' +
+        '<input id="swal-input1" class="swal2-input" placeholder="이메일">' +
+        '<input id="swal-input2" class="swal2-input" placeholder="비밀번호" required="true" maxlength="16" type="password">' +
+        '<input id="swal-input3" class="swal2-input" placeholder="한번 더 입력 해 주세요." required="true" maxlength="16" type="password">',
+      confirmButtonText: confirmButtonText,
+      showCancelButton: true,
+      cancelButtonText: '닫기',
+      focusConfirm: false,
+      allowOutsideClick: false,
+      preConfirm: () => {
+        return [
+          document.getElementById('swal-input1').value,
+          document.getElementById('swal-input2').value,
+          document.getElementById('swal-input3').value
+        ]
+      }
+    })
   }
-
 }
 export default sweetAlert

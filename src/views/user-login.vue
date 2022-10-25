@@ -14,7 +14,7 @@
             alt="logo">
         </div>
         <ValidationObserver v-slot="{ invalid, passes }">
-          <form @submit.prevent="passes(_signApi)">
+          <form @submit.prevent="passes( _login())">
             <div class="form-item">
               <input-text
                 v-model="user.userId"
@@ -50,19 +50,17 @@
                   type="submit"
                 >로그인
                 </button>
-                <button
-                  @click="apiUrl = 'signUp'"
-                  class="basic__button"
-                  type="submit"
-                >회원가입
-                </button>
               </div>
             </div>
           </form>
         </ValidationObserver>
         <div class="form-footer">
+          <p>
+            <a
+          @click="_signUp"
+          >회원가입</a></p>
           <p><a
-          @click="_resetPassword"
+            @click="_resetPassword"
           >비밀번호를 모를 때 클릭 :)</a></p>
         </div>
       </div>
@@ -89,26 +87,27 @@ export default {
     _resetPassword () {
       apxAlert.html(`<p>죄송합니다. <br /> 아직 서비스 승인이 되지 않은 기능입니다. <br /> <a href="https://www.instagram.com/thousand.book/" target="_blank">👉 링크</a>를 확인 해 주세요. <p>`, '확인', false, null)
     },
-    _signApi () {
-      if (this.apiUrl === 'login') this._login()
-      else this._signUp()
-    },
     _signUp () {
-      apxAlert.password('비밀번호를 한번 더 입력 해 주세요', '회원가입').then(con => {
-        if (con.value) {
-          if (con.value === this.user.password) {
-            this.register({
-              userId: this.user.userId,
-              password: this.user.password
-            })
-              .then(() => {
-                apxAlert.noIcon(null, '회원가입 완료되었습니다.', '확인')
-              }).catch(() => {})
-          } else {
-            apxAlert.noIcon(null, '비밀번호가 일치하지 않습니다. 다시 한번 입력 해 주세요.', '확인').then(() => {
-              this._signUp()
-            })
-          }
+      apxAlert.signUp('회원가입').then(con => {
+        if (!con.value[0].match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)) {
+          apxAlert.noIcon(null, '올바른 이메일 형식이 아닙니다.', '확인').then(() => {
+            this._signUp()
+          })
+        } else if (!con.value[1].match(/^(?=.*[a-z])(?=.*[-0-9])(?=.*[A-Z])(?=.*[A-Z]).{6,}/)) {
+          apxAlert.noIcon(null, '올바른 비밀번호 형식이 아닙니다.', '확인').then(() => {
+            this._signUp()
+          })
+        } else if (con.value[1] !== con.value[2]) {
+          apxAlert.noIcon(null, '비밀번호가 일치하지 않습니다.', '확인').then(() => {
+            this._signUp()
+          })
+        } else {
+          this.register({
+            userId: con.value[0],
+            password: con.value[1]
+          }).then(() => {
+            apxAlert.noIcon(null, '회원가입 완료되었습니다.', '확인')
+          }).catch(() => {})
         }
       })
     },
