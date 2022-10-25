@@ -135,7 +135,8 @@ export default {
     }
   },
   mounted () {
-    this.userOid = this.userCustomInfo.userOid
+    this.userOid = 1
+    // this.userOid = this.userCustomInfo.userOid
     this._getBookmarkList()
   }
 }

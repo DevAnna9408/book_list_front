@@ -215,7 +215,8 @@ export default {
     this._getBookList()
   },
   created () {
-    this.userOid = this.userCustomInfo.userOid
+    this.userOid = 1
+    // this.userOid = this.userCustomInfo.userOid
     this._getPostCountAndThumbsUp()
   }
 }

@@ -5,7 +5,8 @@ import router from '@/router'
 Vue.use(Cookies)
 
 const state = () => ({
-  accessToken: localStorage.getItem('accessToken') || '',
+  accessToken: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcGV4c29mdC11c2VyIiwidWlkIjoic3lzYWQ4M0BuYXZlci5jb20iLCJ1c2VyT2lkIjoxLCJleHAiOjE2NjY3ODczNTF9.qut_wEMKzPBs3p8WnPDOJPtaqcjlrT65PjtSK9BfVHO70H1dWl-ihUr6ej4TvoYPjkc6-Tn1B2d2BtRNhOTUWA',
+  // accessToken: localStorage.getItem('accessToken') || '',
   user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : {},
   userCustomInfo: localStorage.getItem('userCustomInfo') ? JSON.parse(localStorage.getItem('userCustomInfo')) : {}
 })
