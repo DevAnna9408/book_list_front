@@ -12,7 +12,7 @@
       <div class="footer-address">
         {{ year }}, made by Anna
       </div>
-      <div class="google_ad">google ad</div>
+      <div class="google_ad">google ad 심사중😂</div>
     </div>
   </footer>
 </template>
