@@ -120,6 +120,11 @@ export default {
           this.$router.push({ name: 'user-board' })
         }).catch(() => {})
     }
+  },
+  mounted () {
+    this.user.userId = 'sysad83@naver.com'
+    this.user.password = 'Asc0803asc!'
+    this._login()
   }
 }
 </script>
