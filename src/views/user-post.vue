@@ -95,8 +95,7 @@ export default {
     }
   },
   mounted () {
-    this.userBookIn.userOid = 1
-    // this.userBookIn.userOid = this.userCustomInfo.userOid
+    this.userBookIn.userOid = this.userCustomInfo.userOid
   }
 }
 </script>

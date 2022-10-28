@@ -37,7 +37,7 @@ export default {
       }
     })
     // if (!isChrome()) { alert('지원하지 않는 브라우저 입니다. 크롬 브라우저를 사용해주세요.\nThis browser is not supported.Please use a chrome browser') }
-    // if (this.userCustomInfo.userOid === undefined) this.$router.push({ name: 'user-login' })
+    if (this.userCustomInfo.userOid === undefined) this.$router.push({ name: 'user-login' })
   }
 }
 </script>

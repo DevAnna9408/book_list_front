@@ -119,10 +119,8 @@ export default {
     }
   },
   mounted () {
-    this.userOid = 1
-    // this.userOid = this.userCustomInfo.userOid
-    this.nickName = 'hello google'
-    // this.nickName = this.userCustomInfo.nickName
+    this.userOid = this.userCustomInfo.userOid
+    this.nickName = this.userCustomInfo.nickName
   }
 }
 </script>
