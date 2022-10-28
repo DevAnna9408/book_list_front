@@ -12,6 +12,17 @@ $theme-color: #8DC63F;
 
 * {
   box-sizing: border-box;
+
+  img {
+    pointer-events : none !important;
+    -webkit-user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+  }
+
+  -webkit-tap-highlight-color: transparent !important;
+
 }
 
 .component__title {
