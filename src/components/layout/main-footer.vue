@@ -14,15 +14,6 @@
 <!--      </div>-->
 <!--      <div class="google_ad">google ad 심사중😂</div>-->
     </div>
-    <div>
-      <Adsense
-        data-ad-client="ca-pub-2818931405092561"
-        data-ad-slot="2844063608"
-        data-ad-format="auto"
-        :data-full-width-responsive="true"
-      >
-      </Adsense>
-    </div>
   </footer>
 </template>
 <script>
