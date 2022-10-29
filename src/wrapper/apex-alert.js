@@ -138,10 +138,13 @@ const sweetAlert = {
     return swalWithMertButtons.fire({
       title: '회원가입',
       html:
-        '<p>비밀번호는 대소문자 및 <br /> 숫자를 포함한 <br /> 16자 이내로 작성 해 주세요.</p>' +
-        '<input id="swal-input1" class="swal2-input" placeholder="이메일">' +
-        '<input id="swal-input2" class="swal2-input" placeholder="비밀번호" required="true" maxlength="16" type="password">' +
-        '<input id="swal-input3" class="swal2-input" placeholder="한번 더 입력 해 주세요." required="true" maxlength="16" type="password">',
+        '<input id="swal-input1" class="swal2-input" placeholder="이메일" style="font-size: 15px">' +
+        '<p style="font-size: 15px;">비밀번호는 대소문자 및 숫자를 포함한 <br /> 16자 이내로 작성 해 주세요.</p>' +
+        '<input id="swal-input2" class="swal2-input" placeholder="비밀번호" required="true" maxlength="16" type="password" style="font-size: 15px">' +
+        '<input id="swal-input3" class="swal2-input" placeholder="한번 더 입력 해 주세요." required="true" maxlength="16" type="password" style="font-size: 15px">' +
+        '<p style="font-size: 15px;">비밀번호 분실시 사용할 <br /> 본인 확인 질문을 작성 해 주세요.</p>' +
+        '<input id="swal-input4" class="swal2-input" placeholder="본인 확인 질문" style="font-size: 15px">' +
+        '<input id="swal-input5" class="swal2-input" placeholder="답변" style="font-size: 15px">',
       confirmButtonText: confirmButtonText,
       showCancelButton: true,
       cancelButtonText: '닫기',
@@ -151,7 +154,67 @@ const sweetAlert = {
         return [
           document.getElementById('swal-input1').value,
           document.getElementById('swal-input2').value,
-          document.getElementById('swal-input3').value
+          document.getElementById('swal-input3').value,
+          document.getElementById('swal-input4').value,
+          document.getElementById('swal-input5').value
+        ]
+      }
+    })
+  },
+  findPassword (confirmButtonText) {
+    return swalWithMertButtons.fire({
+      title: '비밀번호 찾기',
+      html:
+        '<input id="swal-input1" class="swal2-input" placeholder="이메일" style="font-size: 15px">' +
+        '<input id="swal-input2" class="swal2-input" placeholder="프로필명" style="font-size: 15px">' +
+        '<p style="font-size: 15px;">프로필명을 설정 한 적이 없다면 <br /> 이메일의 @ 앞 부분을 적어주세요</p>',
+      confirmButtonText: confirmButtonText,
+      showCancelButton: true,
+      cancelButtonText: '닫기',
+      focusConfirm: false,
+      allowOutsideClick: false,
+      preConfirm: () => {
+        return [
+          document.getElementById('swal-input1').value,
+          document.getElementById('swal-input2').value
+        ]
+      }
+    })
+  },
+  answerPassword (answer, confirmButtonText) {
+    return swalWithMertButtons.fire({
+      title: '',
+      html:
+        '<p style="font-size: 15px;">' + answer + '</p>' +
+        '<input id="swal-input1" class="swal2-input" placeholder="답변" style="font-size: 15px">',
+      confirmButtonText: confirmButtonText,
+      showCancelButton: true,
+      cancelButtonText: '닫기',
+      focusConfirm: false,
+      allowOutsideClick: false,
+      preConfirm: () => {
+        return [
+          document.getElementById('swal-input1').value
+        ]
+      }
+    })
+  },
+  resetPassword (confirmButtonText) {
+    return swalWithMertButtons.fire({
+      title: '',
+      html:
+        '<p style="font-size: 15px;"> 새로운 비밀번호를 입력 해 주세요. <br /> 비밀번호는 대소문자 및 숫자를 포함한 <br /> 16자 이내로 작성 해 주세요. </p>' +
+        '<input id="swal-input1" class="swal2-input" placeholder="비밀번호" required="true" maxlength="16" type="password" style="font-size: 15px">' +
+        '<input id="swal-input2" class="swal2-input" placeholder="한번 더 입력 해 주세요." required="true" maxlength="16" type="password" style="font-size: 15px">',
+      confirmButtonText: confirmButtonText,
+      showCancelButton: true,
+      cancelButtonText: '닫기',
+      focusConfirm: false,
+      allowOutsideClick: false,
+      preConfirm: () => {
+        return [
+          document.getElementById('swal-input1').value,
+          document.getElementById('swal-input2').value
         ]
       }
     })
