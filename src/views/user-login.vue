@@ -61,7 +61,7 @@
           >회원가입</a></p>
           <p><a
             @click="_resetPassword"
-          >비밀번호를 모를 때 클릭 :)</a></p>
+          >비밀번호를 모를 때 & <br /> 계정 잠금 해제시 클릭 :)</a></p>
         </div>
       </div>
     </div>
@@ -118,7 +118,7 @@ export default {
                           this._resetPassword()
                         })
                       } else {
-                        ajax('POST', `/api/change-password/${userId}`, {
+                        ajax('PUT', `/api/change-password/${userId}`, {
                           newPassword: pass.value[0]
                         }).then(() => {
                           apxAlert.noIcon(null, '새로운 비밀번호로 변경되었습니다.', '확인')
@@ -126,7 +126,7 @@ export default {
                       }
                     })
                   } else {
-                    apxAlert.noIcon(null, '본인 확인 질문에 대한 답변이 일치하지 않습니다.')
+                    apxAlert.noIcon(null, '본인 확인 질문에 대한 답변이 일치하지 않습니다.', '확인')
                   }
                 }).catch(() => {})
               }
