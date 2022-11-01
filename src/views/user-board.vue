@@ -196,7 +196,7 @@ export default {
       apxAlert.radio('이 글에 대한 느낌은?', {
         false: '비추천 👎',
         true: '추천 👍'
-      }, '닫기').then(con => {
+      }, '확인').then(con => {
         if (con.value === 'true') {
           ajax('PUT', '/api/book/thumbs-up', null, null, {
             userOid: this.userOid,
