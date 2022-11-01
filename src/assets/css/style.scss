@@ -576,31 +576,31 @@ select {
   animation: wave 2s ease-out infinite;
 }
 .form-saving .dot:nth-child(1) {
-  background: #ffd380;
+  background: #F1F8E9;
 }
 .form-saving .dot:nth-child(1)::before {
   animation-delay: 0.2s;
 }
 .form-saving .dot:nth-child(2) {
-  background: #ffa700;
+  background: #C5E1A5;
 }
 .form-saving .dot:nth-child(2)::before {
   animation-delay: 0.4s;
 }
 .form-saving .dot:nth-child(3) {
-  background: #FF8900;
+  background: #9CCC65;
 }
 .form-saving .dot:nth-child(3)::before {
   animation-delay: 0.6s;
 }
 .form-saving .dot:nth-child(4) {
-  background: #FF7500;
+  background: #7CB342;
 }
 .form-saving .dot:nth-child(4)::before {
   animation-delay: 0.8s;
 }
 .form-saving .dot:nth-child(5) {
-  background: #f60;
+  background: #558B2F;
 }
 .form-saving .dot:nth-child(5)::before {
   animation-delay: 1s;
