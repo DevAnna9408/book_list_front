@@ -10,9 +10,8 @@ const UNAUTHORIZED = 401
 const BAD_REQUEST = 400
 const INTERNAL_SERVER_ERROR = 500
 
-const setError = (_data, errTitle) => {
-  let message = _data.warningMessage || _data.message
-  apxAlert.warning(errTitle, message || i18n.t('error.server'))
+const setError = (_data) => {
+  apxAlert.noIcon(null, _data.message, '확인')
   store.commit('errors/SET_ERROR', _data)
   throw _data
 }
@@ -36,7 +35,7 @@ const setNetworkError = (result, alert) => {
 }
 
 const removeAccessToken = _err => {
-  apxAlert.warning('', _err.warningMessage || _err.message)
+  apxAlert.noIcon('', _err.message, '확인')
   store.commit('errors/SET_ERROR', _err)
   store.commit('users/LOGOUT')
   throw _err
@@ -56,7 +55,7 @@ function exception (result, errTitle, alert) {
         break
       case BAD_REQUEST:
       case INTERNAL_SERVER_ERROR:
-        setError(err.data, errTitle) // 사용자 에러 처리
+        setError(err.data) // 사용자 에러 처리
         break
       default:
         setNetworkError(result, alert)
