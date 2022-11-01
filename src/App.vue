@@ -9,7 +9,10 @@
       <router-view name="sidebar" />
     </div> -->
     <router-view />
-    <router-view name="footer" />
+    <router-view class="footer" name="footer" />
+    <div class="footer-address">
+      {{ year }}, made by Anna
+    </div>
   </div>
 </template>
 <script>
@@ -19,6 +22,7 @@ export default {
   name: 'App',
   data () {
     return {
+      year: new Date().getFullYear()
     }
   },
   computed: {
@@ -42,4 +46,10 @@ export default {
 }
 </script>
 <style></style>
-<style scoped></style>
+<style lang="scss">
+.footer {
+@media screen and (max-width: 600px) {
+  display: none;
+}
+}
+</style>

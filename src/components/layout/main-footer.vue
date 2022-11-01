@@ -2,16 +2,12 @@
   <footer id="main-footer">
     <div class="container">
       <div class="footer-logo">
-        <!-- FIXME: [프로젝트 초기설정] 로고 변경필요 -->
         <img
           src="@/assets/img/logo.png"
           alt="logo"
           @click="$router.push({ name: 'user-board' })"
         >
       </div>
-<!--      <div class="footer-address">-->
-<!--        {{ year }}, made by Anna-->
-<!--      </div>-->
 <!--      <div class="google_ad">google ad 심사중😂</div>-->
     </div>
   </footer>
@@ -33,7 +29,6 @@ export default {
   },
   data () {
     return {
-      year: new Date().getFullYear()
     }
   },
   computed: {
