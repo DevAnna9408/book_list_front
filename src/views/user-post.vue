@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import apxAlert from '@/wrapper/apex-alert'
+import sweetAlert from '@/wrapper/sweet-alert'
 import ajax from '@/wrapper/ajax'
 import { mapGetters } from 'vuex'
 export default {
@@ -69,11 +69,11 @@ export default {
   methods: {
     _createBook () {
       if (this.userBookIn.content === '') {
-        apxAlert.noIcon(null, '내용을 입력 해 주세요', '확인')
+        sweetAlert.noIcon(null, '내용을 입력 해 주세요', '확인')
       } else if (this.userBookIn.author === '') {
-        apxAlert.noIcon(null, '작가 혹은 가수명을 입력 해 주세요', '확인')
+        sweetAlert.noIcon(null, '작가 혹은 가수명을 입력 해 주세요', '확인')
       } else if (this.userBookIn.title === '제목 혹은 곡명을 입력 해 주세요') {
-        apxAlert.noIcon(null, '', '확인')
+        sweetAlert.noIcon(null, '', '확인')
       } else {
         ajax('POST', '/api/book', {
           content: this.userBookIn.content.replaceAll('\n', '<br />'),
@@ -87,9 +87,9 @@ export default {
             title: '',
             userOid: this.userCustomInfo.userOid
           }
-          apxAlert.noIcon(null, '글 작성이 완료되었습니다 :)', '확인')
+          sweetAlert.noIcon(null, '글 작성이 완료되었습니다 :)', '확인')
         }).catch(err => {
-          apxAlert.noIcon(null, err.message, '확인')
+          sweetAlert.noIcon(null, err.message, '확인')
         })
       }
     }

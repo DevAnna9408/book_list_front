@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import apxAlert from '@/wrapper/apex-alert'
+import sweetAlert from '@/wrapper/sweet-alert'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 import ajax from '@/wrapper/ajax'
 export default {
@@ -87,7 +87,7 @@ export default {
       ajax('GET', '/api/book/random', null, null, {
         userOid: this.userOid
       }).then(res => {
-        apxAlert.html('<p style="font-size: 11px; color: #A1A1A4;">' +
+        sweetAlert.html('<p style="font-size: 11px; color: #A1A1A4;">' +
           res.content + '</p> <br /> <p style="font-size: 11px; color: #A1A1A4;">' +
           res.author + '_' + res.title + '</p>',
         '책갈피로', true, '닫기').then(con => {
@@ -96,7 +96,7 @@ export default {
               userOid: this.userOid,
               bookOid: res.bookOid
             }).then(() => {
-              apxAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
+              sweetAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
             }).catch(() => {})
           }
         })

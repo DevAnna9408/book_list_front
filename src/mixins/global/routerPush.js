@@ -1,9 +1,9 @@
 export default {
   methods: {
-    apexRouterPush (_name, _params) {
+    bookRouterPush (_name, _params) {
       let params = {
         ..._params,
-        apexkey: process.env.VUE_APP_APEX_ROUTE_DATA_KEY
+        routeKey: process.env.VUE_APP_ROUTE_DATA_KEY
       }
       if (_name === this.$route.name) {
         this.$router.push({

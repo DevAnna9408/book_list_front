@@ -1,4 +1,4 @@
-import apxAlert from '@/wrapper/apex-alert'
+import sweetAlert from '@/wrapper/sweet-alert'
 import store from '@/store'
 import { s3 } from '@/wrapper/s3'
 import Constants from '@/Constants'
@@ -24,7 +24,7 @@ export class Image {
       this.insertToEditor(fileResult.fullURL)
     } catch (err) {
       store.commit('errors/SET_ERROR', err)
-      apxAlert.error('', '6MB 이하의 이미지만 올릴 수 있습니다.') // FIXME: 메세지 수정필요
+      sweetAlert.error('', '6MB 이하의 이미지만 올릴 수 있습니다.') // FIXME: 메세지 수정필요
     }
   }
   insertToEditor (url) {

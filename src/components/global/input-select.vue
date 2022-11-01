@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="input-title"> {{ label }}</div>
-  <div class="apexsoft-select input-group">
+  <div class="book-list-select input-group">
     <v-select
       v-model="selected" :name="name"
       :options="options"

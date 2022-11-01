@@ -109,7 +109,7 @@
 </template>
 
 <script>
-import apxAlert from '@/wrapper/apex-alert'
+import sweetAlert from '@/wrapper/sweet-alert'
 import ajax from '@/wrapper/ajax'
 import { mapGetters } from 'vuex'
 export default {
@@ -179,13 +179,13 @@ export default {
     },
     _bookmark (isMarked, bookOid) {
       if (!isMarked) {
-        apxAlert.question(null, '내 책갈피에 저장할까요?', '네', '아니오').then(con => {
+        sweetAlert.question(null, '내 책갈피에 저장할까요?', '네', '아니오').then(con => {
           if (con.value) {
             ajax('POST', '/api/bookmark', null, null, {
               userOid: this.userOid,
               bookOid: bookOid
             }).then(() => {
-              apxAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
+              sweetAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
               this._getBookList()
             }).catch(() => {})
           }
@@ -193,7 +193,7 @@ export default {
       }
     },
     _getThumb (bookOid) {
-      apxAlert.radio('이 글에 대한 느낌은?', {
+      sweetAlert.radio('이 글에 대한 느낌은?', {
         false: '비추천 👎',
         true: '추천 👍'
       }, '확인').then(con => {
@@ -202,7 +202,7 @@ export default {
             userOid: this.userOid,
             bookOid: bookOid
           }).then(() => {
-            apxAlert.noIcon(null, '글을 추천했습니다. 감사합니다 :)', '확인')
+            sweetAlert.noIcon(null, '글을 추천했습니다. 감사합니다 :)', '확인')
           }).catch(() => {}).finally(() => {
             this._getBookList()
           })
@@ -211,7 +211,7 @@ export default {
             userOid: this.userOid,
             bookOid: bookOid
           }).then(() => {
-            apxAlert.noIcon(null, '글을 비추천 했습니다. 감사합니다 :)', '확인')
+            sweetAlert.noIcon(null, '글을 비추천 했습니다. 감사합니다 :)', '확인')
           }).catch(() => {}).finally(() => {
             this._getBookList()
           })

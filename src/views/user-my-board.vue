@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import apxAlert from '@/wrapper/apex-alert'
+import sweetAlert from '@/wrapper/sweet-alert'
 import ajax from '@/wrapper/ajax'
 import { mapGetters } from 'vuex'
 export default {
@@ -176,13 +176,13 @@ export default {
     },
     _bookmark (isMarked, bookOid) {
       if (!isMarked) {
-        apxAlert.question(null, '내 책갈피에 저장할까요?', '네', '아니오').then(con => {
+        sweetAlert.question(null, '내 책갈피에 저장할까요?', '네', '아니오').then(con => {
           if (con.value) {
             ajax('POST', '/api/bookmark', null, null, {
               userOid: this.userOid,
               bookOid: bookOid
             }).then(() => {
-              apxAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
+              sweetAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
               this._getBookList()
             }).catch(() => {})
           }
@@ -190,13 +190,13 @@ export default {
       }
     },
     _getThumb (bookOid) {
-      apxAlert.html(`<p>글을 삭제 하시겠어요? <br /> 다른 사람들의 책갈피에서도 글이 사라집니다.<p>`, '삭제', true, '아니오').then(con => {
+      sweetAlert.html(`<p>글을 삭제 하시겠어요? <br /> 다른 사람들의 책갈피에서도 글이 사라집니다.<p>`, '삭제', true, '아니오').then(con => {
         if (con.value) {
           ajax('DELETE', '/api/book', null, null, {
             userOid: this.userOid,
             bookOid: bookOid
           }).then(() => {
-            apxAlert.noIcon(null, '글을 삭제했습니다.', '확인')
+            sweetAlert.noIcon(null, '글을 삭제했습니다.', '확인')
             this._getBookList()
           })
         }
@@ -207,7 +207,7 @@ export default {
         userOid: this.userOid
       }).then(res => {
         this.bookData = res
-        apxAlert.html(`<p>지금까지 총 ${this.bookData.postCount}개의 포스팅, <br />${this.bookData.thumbsUp}개의 추천을 받았어요 :)<p>`, '확인', false, null)
+        sweetAlert.html(`<p>지금까지 총 ${this.bookData.postCount}개의 포스팅, <br />${this.bookData.thumbsUp}개의 추천을 받았어요 :)<p>`, '확인', false, null)
       })
     }
   },

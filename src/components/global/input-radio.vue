@@ -1,5 +1,5 @@
 <template>
-  <div class="apexFW-radio">
+  <div class="book-list-radio">
     <ValidationProvider tag="span" :vid="id" :name="name" :rules="rules" v-slot="{ errors, invalid }">
       <div :class="labelClass">{{label}}<span v-if="required" class="required"></span></div>
       <label :class="labelClass" style="margin:10px" v-for="radio of options" :key="radio.code">
@@ -10,7 +10,7 @@
           :value="radio.code"
           type="radio"
         />
-        <span class="apexFW-radio-label"> {{ radio.value }}</span>
+        <span class="book-list-radio-label"> {{ radio.value }}</span>
       </label>
       <span :class="errorMsgClass" v-if="invalid">{{ errors[0] }}</span>
     </ValidationProvider>

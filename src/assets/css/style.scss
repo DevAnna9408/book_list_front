@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------
- APEX FW style table of contents.
+ reset style table of contents.
 ----------------------------------------------------------------
 # Imported & Common variable
 # Typography
@@ -425,7 +425,7 @@ select {
 select::-ms-expand {
   display: none;
 }
-.apexFW-select {
+.book-list-select {
   position: relative;
   width: 100%;
   height: 50px;
@@ -434,28 +434,28 @@ select::-ms-expand {
   color: #b0b0b0;
 
 }
-.apexFW-select select {
+.book-list-select select {
   border-radius:10px;
   border-radius: 10px;
   border: 1px solid #e0e0e0;
 }
-.apexFW-select select.has-error {
+.book-list-select select.has-error {
   border-color:#ff0045;
 }
-.apexFW-select span {
+.book-list-select span {
   display: block;
 }
-.apexFW-select label {
+.book-list-select label {
   display: flex;
 }
 /* select 충돌 */
-.apexFW-select::after {
+.book-list-select::after {
   display:none;
 }
-.apexFW-select .v-select, .apexFW-select .vs__dropdown-toggle {
+.book-list-select .v-select, .book-list-select .vs__dropdown-toggle {
   height:100%;
 }
-.apexFW-select .vs__selected {
+.book-list-select .vs__selected {
   line-height:1.9;
 
 }
@@ -466,7 +466,7 @@ select {
   color: #b0b0b0;
   cursor: pointer;
 }
-.apexFW-select::after {
+.book-list-select::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -482,30 +482,30 @@ select {
   border-width: 0 2px 2px 0;
   transform: translateY(-50%) rotate(45deg);
 }
-.apexFW-select:hover::after {
+.book-list-select:hover::after {
   color: #f39c12;
 }
-.apexFW-select:hover select {
+.book-list-select:hover select {
   color: #1d1d1d;
 }
 
-.apexFW-radio {
+.book-list-radio {
   padding-top: 7px;
 }
-.apexFW-radio > span > label > label {
+.book-list-radio > span > label > label {
   margin-right: 12px;
 }
-.apexFW-radio-label {
+.book-list-radio-label {
   position: relative;
   padding-left: 24px;
   cursor: pointer;
   font-size:16px;
 }
-.apexFW-radio input[type="radio"] {
+.book-list-radio input[type="radio"] {
   position: absolute;
   display: none;
 }
-.apexFW-radio input[type="radio"] + .apexFW-radio-label:before {
+.book-list-radio input[type="radio"] + .book-list-radio-label:before {
   content: "";
   background: #f4f4f4;
   border-radius: 100%;
@@ -521,20 +521,20 @@ select {
   text-align: center;
   transition: all 250ms ease;
 }
-.apexFW-radio input[type="radio"]:checked + .apexFW-radio-label:before {
+.book-list-radio input[type="radio"]:checked + .book-list-radio-label:before {
   background-color: #ffa700;
   box-shadow: inset 0 0 0 4px #f4f4f4;
 }
-.apexFW-radio input[type="radio"]:focus + .apexFW-radio-label:before {
+.book-list-radio input[type="radio"]:focus + .book-list-radio-label:before {
   outline: none;
   border-color: #ffa700;
 }
-.apexFW-radio input[type="radio"]:disabled + .apexFW-radio-label:before {
+.book-list-radio input[type="radio"]:disabled + .book-list-radio-label:before {
   box-shadow: inset 0 0 0 4px #f4f4f4;
   border-color: #b4b4b4;
   background: #b4b4b4;
 }
-.apexFW-radio input[type="radio"] + .apexFW-radio-label:empty:before {
+.book-list-radio input[type="radio"] + .book-list-radio-label:empty:before {
   margin-right: 0;
 }
 
@@ -1080,22 +1080,22 @@ hyphens: auto;
 .detail-list-style-table .no-result td {
   text-align:center;
 }
-.list-style-table .apexFW-checkbox {
+.list-style-table .book-list-fw-checkbox {
   font-size:14px;
   margin:0;
   height:auto;
   padding-left:22px;
 }
-.list-style-table .apexFW-checkbox input ~ .pseudo-checkbox {
+.list-style-table .book-list-fw-checkbox input ~ .pseudo-checkbox {
   width:18px;
   height:18px;
 }
-.list-style-table .apexFW-checkbox input ~ .pseudo-checkbox:before, .list-style-table .direct-apexFW-check input ~ label:before {
+.list-style-table .book-list-fw-checkbox input ~ .pseudo-checkbox:before, .list-style-table .direct-book-list-check input ~ label:before {
   width:18px;
   height:18px;
 }
 
-.list-style-table .apexFW-checkbox input ~ .pseudo-checkbox:after, .list-style-table .direct-apexFW-check input ~ label:after {
+.list-style-table .book-list-fw-checkbox input ~ .pseudo-checkbox:after, .list-style-table .direct-book-list-check input ~ label:after {
   left: 5px;
   top: 2px;
 }
@@ -1300,16 +1300,16 @@ hyphens: auto;
 .college-info-banner .name {
   margin-right: 15px;
 }
-.about-apexFW-arrow {
+.about-book-list-arrow {
   color: #ff6600;
   text-align: center;
   margin-bottom: 20px;
 }
-.about-apexFW-arrow .text {
+.about-book-list-arrow .text {
   font-size: 16px;
   font-weight: 700;
 }
-.about-apexFW-arrow .orange-arrow-down {
+.about-book-list-arrow .orange-arrow-down {
   border: solid #ff6600;
   border-width: 0 2px 2px 0;
   display: inline-block;
@@ -1920,7 +1920,7 @@ hyphens: auto;
   text-align:left;
   font-weight: normal;
 }
-.apexFW-checkbox .errors-msg {
+.book-list-fw-checkbox .errors-msg {
   margin-left:-6px; /*DRMVSN - 단일 체크박스 에러메세지의 경우 */
 }
 .errors-msg::after, .error-if-exist:after {
@@ -1933,8 +1933,8 @@ hyphens: auto;
   // border-style: solid;
   // border-color: transparent transparent red transparent;
 }
-.apexFW-checkbox,
-.direct-apexFW-check {
+.book-list-fw-checkbox,
+.direct-book-list-check {
   display: block;
   position: relative;
   margin-bottom: 15px;
@@ -1947,27 +1947,27 @@ hyphens: auto;
   height: 20px;
   line-height: 1.3;
 }
-.apexFW-checkbox label,
-.direct-apexFW-check label {
+.book-list-fw-checkbox label,
+.direct-book-list-check label {
   cursor: pointer;
 }
-.apexFW-checkbox input,
-.direct-apexFW-check input {
+.book-list-fw-checkbox input,
+.direct-book-list-check input {
   display: none;
 }
-.apexFW-checkbox input ~ .pseudo-checkbox {
+.book-list-fw-checkbox input ~ .pseudo-checkbox {
   left: 0;
   top: 0;
   position: absolute;
   width: 26px;
   height: 26px;
 }
-.direct-apexFW-check input ~ label {
+.direct-book-list-check input ~ label {
   width: 26px;
   height: 26px;
 }
-.apexFW-checkbox input ~ .pseudo-checkbox:before,
-.direct-apexFW-check input ~ label:before {
+.book-list-fw-checkbox input ~ .pseudo-checkbox:before,
+.direct-book-list-check input ~ label:before {
   content: "";
   width: 26px;
   height: 26px;
@@ -1978,8 +1978,8 @@ hyphens: auto;
   border-radius: 50%;
   transform: translateY(-50%);
 }
-.apexFW-checkbox input ~ .pseudo-checkbox:after,
-.direct-apexFW-check input ~ label:after {
+.book-list-fw-checkbox input ~ .pseudo-checkbox:after,
+.direct-book-list-check input ~ label:after {
   content: "";
   left: 10px;
   top: 6px;
@@ -1991,26 +1991,26 @@ hyphens: auto;
   transform: rotate(45deg);
 }
 
-.apexFW-checkbox input:checked ~ .pseudo-checkbox:before,
-.direct-apexFW-check input:checked ~ label:before {
+.book-list-fw-checkbox input:checked ~ .pseudo-checkbox:before,
+.direct-book-list-check input:checked ~ label:before {
   background: #8DC63F;
 }
-.apexFW-radio {
+.book-list-radio {
   padding-top: 7px;
 }
-.apexFW-radio > span > label > label {
+.book-list-radio > span > label > label {
   margin-right: 12px;
 }
-.apexFW-radio-label {
+.book-list-radio-label {
   position: relative;
   padding-left: 24px;
   cursor: pointer;
 }
-.apexFW-radio input[type="radio"] {
+.book-list-radio input[type="radio"] {
   position: absolute;
   display: none;
 }
-.apexFW-radio input[type="radio"] + .apexFW-radio-label:before {
+.book-list-radio input[type="radio"] + .book-list-radio-label:before {
   content: "";
   background: #f4f4f4;
   border-radius: 100%;
@@ -2026,20 +2026,20 @@ hyphens: auto;
   text-align: center;
   transition: all 250ms ease;
 }
-.apexFW-radio input[type="radio"]:checked + .apexFW-radio-label:before {
+.book-list-radio input[type="radio"]:checked + .book-list-radio-label:before {
   background-color: #ffa700;
   box-shadow: inset 0 0 0 4px #f4f4f4;
 }
-.apexFW-radio input[type="radio"]:focus + .apexFW-radio-label:before {
+.book-list-radio input[type="radio"]:focus + .book-list-radio-label:before {
   outline: none;
   border-color: #ffa700;
 }
-.apexFW-radio input[type="radio"]:disabled + .apexFW-radio-label:before {
+.book-list-radio input[type="radio"]:disabled + .book-list-radio-label:before {
   box-shadow: inset 0 0 0 4px #f4f4f4;
   border-color: #b4b4b4;
   background: #b4b4b4;
 }
-.apexFW-radio input[type="radio"] + .apexFW-radio-label:empty:before {
+.book-list-radio input[type="radio"] + .book-list-radio-label:empty:before {
   margin-right: 0;
 }
 .additional-notice {
@@ -2213,7 +2213,7 @@ hyphens: auto;
 #user-agree textarea {
   width: 100%;
 }
-#user-agree .direct-apexFW-check {
+#user-agree .direct-book-list-check {
   margin-top: 8px;
 }
 #appl-submit h2 {
@@ -2221,7 +2221,7 @@ hyphens: auto;
   font-weight: 700;
   margin-bottom: 30px;
 }
-#appl-submit .direct-apexFW-check {
+#appl-submit .direct-book-list-check {
   margin-bottom:40px;
 }
 #appl-submit p.black {
@@ -2325,23 +2325,23 @@ hyphens: auto;
 }
 
 /* Application form */
-#appl-form .apexFW-checkbox input ~ .pseudo-checkbox, #appl-form .direct-apexFW-check input ~ .pseudo-checkbox {
+#appl-form .book-list-fw-checkbox input ~ .pseudo-checkbox, #appl-form .direct-book-list-check input ~ .pseudo-checkbox {
   width:18px;
   height:18px;
   top:2px;
 }
-#appl-form .direct-apexFW-check input ~ label:before, #appl-form .apexFW-checkbox input ~ .pseudo-checkbox:before {
+#appl-form .direct-book-list-check input ~ label:before, #appl-form .book-list-fw-checkbox input ~ .pseudo-checkbox:before {
   width:18px;
   height:18px;
 }
-#appl-form .direct-apexFW-check input ~ label:before {
+#appl-form .direct-book-list-check input ~ label:before {
   top:46%;
 }
-#appl-form .apexFW-checkbox input ~ .pseudo-checkbox:after{
+#appl-form .book-list-fw-checkbox input ~ .pseudo-checkbox:after{
   left: 5px;
   top: 2px;
 }
-#appl-form .direct-apexFW-check input ~ label:after  {
+#appl-form .direct-book-list-check input ~ label:after  {
   left:5px;
   top:5px;
 }
@@ -2483,8 +2483,8 @@ hyphens: auto;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.16);
   z-index: 90;
 }
-.form-elements .direct-apexFW-check,
-.form-elements .apexFW-checkbox {
+.form-elements .direct-book-list-check,
+.form-elements .book-list-fw-checkbox {
   margin-top: 12px;
 }
 
@@ -3096,19 +3096,19 @@ hyphens: auto;
 .recommend-box.last {
   padding:18px 30px 0;
 }
-.recommend-input .apexFW-radio {
+.recommend-input .book-list-radio {
   overflow:hidden;
 }
-.recommend-input.radio-fifth .apexFW-radio {
+.recommend-input.radio-fifth .book-list-radio {
   padding:20px;
   border-radius:10px;
   border:1px solid #E0E0E0;
   background:#fff;
 }
-.recommend-input .apexFW-radio>span>label>label  {
+.recommend-input .book-list-radio>span>label>label  {
   display:inline-block;
 }
-.recommend-input.radio-fifth .apexFW-radio>span>label>label {
+.recommend-input.radio-fifth .book-list-radio>span>label>label {
 
   width:20%;
   float:left;
@@ -3140,13 +3140,13 @@ hyphens: auto;
   font-weight:600;
   font-family: 'Montserrat','Noto Sans KR', sans-serif;
 }
-.recommend-input .apexFW-radio-label .recommend-radio-kor {
+.recommend-input .book-list-radio-label .recommend-radio-kor {
   color:#1D1D1D;
   font-family: 'Montserrat','Noto Sans KR', sans-serif;
   font-weight:600;
   font-size:16px;
 }
-.recommend-input .apexFW-radio-label .recommend-radio-eng {
+.recommend-input .book-list-radio-label .recommend-radio-eng {
   display:block;
   font-size:16px;
   color:#B0B0B0;
@@ -3154,7 +3154,7 @@ hyphens: auto;
   font-weight:600;
 
 }
-.recommend-input .apexFW-radio-label {
+.recommend-input .book-list-radio-label {
   display:block;
 }
 .recommend-input .select-recommendation-type {

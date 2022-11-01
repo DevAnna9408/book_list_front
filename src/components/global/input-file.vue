@@ -36,7 +36,7 @@
 <script>
 import typeUtil from '@/utils/type'
 import { uuid } from '@/utils/uuid'
-import apxAlert from '@/wrapper/apex-alert'
+import sweetAlert from '@/wrapper/sweet-alert'
 import { i18n } from '@/plugins/i18n'
 export default {
   name: 'input-file',
@@ -111,16 +111,16 @@ export default {
     },
     validFile (type, size, name, files) {
       if (!this.fileType.includes(type)) { // 확장자 체크
-        apxAlert.error(i18n.t('appl.file.file_ext'), this.fileType + i18n.t('appl.file.file_ext_msg'))
+        sweetAlert.error(i18n.t('appl.file.file_ext'), this.fileType + i18n.t('appl.file.file_ext_msg'))
         this.clearFileHandler()
       } else if (size === 0) {
-        apxAlert.error(i18n.t('appl.file.file_size'), i18n.t('appl.file.file_size_0'))
+        sweetAlert.error(i18n.t('appl.file.file_size'), i18n.t('appl.file.file_size_0'))
         this.clearFileHandler()
       } else if (size > this.maxSize) { // 파일 사이즈 체크
-        apxAlert.error(i18n.t('appl.file.file_size'), ((this.maxSize / 1024) / 1024) + i18n.t('appl.file.file_size_msg'))
+        sweetAlert.error(i18n.t('appl.file.file_size'), ((this.maxSize / 1024) / 1024) + i18n.t('appl.file.file_size_msg'))
         this.clearFileHandler()
       } else if (this.isNotValidFileName(name)) { // 파일명 체크
-        apxAlert.error(i18n.t('appl.file.file_name'), i18n.t('appl.file.file_name_msg'))
+        sweetAlert.error(i18n.t('appl.file.file_name'), i18n.t('appl.file.file_name_msg'))
         this.clearFileHandler()
       } else {
         this.files = Array.from(files)

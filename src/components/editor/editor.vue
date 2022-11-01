@@ -7,7 +7,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
-import apxAlert from '@/wrapper/apex-alert'
+import sweetAlert from '@/wrapper/sweet-alert'
 import emojiRegex from 'emoji-regex'
 import defaultOptions from '@/components/editor/options'
 import 'quill/dist/quill.snow.css'
@@ -55,7 +55,7 @@ export default {
     ...mapMutations({}),
     _emoticonCheck () {
       if (emojiRegex().test(this.editor.getText())) {
-        apxAlert.error('', this.$t('emojiMessage'))
+        sweetAlert.error('', this.$t('emojiMessage'))
         this.editor.history.undo()
       }
     },

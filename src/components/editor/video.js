@@ -1,7 +1,7 @@
 import {
   REGEXP
 } from '@/utils/valid'
-import apxAlert from '@/wrapper/apex-alert'
+import sweetAlert from '@/wrapper/sweet-alert'
 import Swal from 'sweetalert2'
 export class Video {
   constructor (quill, options = {}) {
@@ -42,7 +42,7 @@ export class Video {
       }?showinfo=0`
       this.insertToEditor(reUrl, index)
     } else {
-      apxAlert.error('', 'youtube url만 가능합니다')
+      sweetAlert.error('', 'youtube url만 가능합니다')
     }
   }
   insertToEditor (source, index) {

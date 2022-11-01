@@ -1,6 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
-import apxAlert from '@/wrapper/apex-alert'
+import sweetAlert from '@/wrapper/sweet-alert'
 import { i18n } from '@/plugins/i18n'
 
 const API_DOMAIN = process.env.VUE_APP_API_DOMAIN
@@ -11,7 +11,7 @@ const BAD_REQUEST = 400
 const INTERNAL_SERVER_ERROR = 500
 
 const setError = (_data) => {
-  apxAlert.noIcon(null, _data.message, '확인')
+  sweetAlert.noIcon(null, _data.message, '확인')
   store.commit('errors/SET_ERROR', _data)
   throw _data
 }
@@ -35,7 +35,7 @@ const setNetworkError = (result, alert) => {
 }
 
 const removeAccessToken = _err => {
-  apxAlert.noIcon('', _err.message, '확인')
+  sweetAlert.noIcon('', _err.message, '확인')
   store.commit('errors/SET_ERROR', _err)
   store.commit('users/LOGOUT')
   throw _err

@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import apxAlert from '@/wrapper/apex-alert'
+import sweetAlert from '@/wrapper/sweet-alert'
 import ajax from '@/wrapper/ajax'
 import { mapGetters, mapMutations } from 'vuex'
 export default {
@@ -81,7 +81,7 @@ export default {
       setUserCustomInfo: 'users/SET_USER_CUSTOM_INFO'
     }),
     _logout () {
-      apxAlert.question(null, '로그아웃 할까요?', '로그아웃', '아니오').then(con => {
+      sweetAlert.question(null, '로그아웃 할까요?', '로그아웃', '아니오').then(con => {
         if (con.value) {
           this.logout()
         }
@@ -91,12 +91,12 @@ export default {
       window.open('https://www.instagram.com/thousand.book/')
     },
     _editNickName () {
-      apxAlert.input('프로필명을 입력 해 주세요', '변경하기').then(con => {
+      sweetAlert.input('프로필명을 입력 해 주세요', '변경하기').then(con => {
         if (con.value) {
           ajax('PATCH', `/api/users/nick-name/${this.userOid}`, null, null, {
             nickName: con.value
           }).then(res => {
-            apxAlert.noIcon(null, '닉네임이 변경되었습니다.', '확인')
+            sweetAlert.noIcon(null, '닉네임이 변경되었습니다.', '확인')
             this.setUserCustomInfo(res)
             this.nickName = con.value
           })
@@ -104,13 +104,13 @@ export default {
       })
     },
     _deleteUser () {
-      apxAlert.question(null, '회원 탈퇴 하시겠어요? 데이터가 모두 삭제됩니다.', '탈퇴하기', '아니오').then(con => {
+      sweetAlert.question(null, '회원 탈퇴 하시겠어요? 데이터가 모두 삭제됩니다.', '탈퇴하기', '아니오').then(con => {
         if (con.value) {
-          apxAlert.question(null, '한번만 더 생각 해 보세요. 정말 회원탈퇴 하시겠어요?', '탈퇴하기', '아니오').then(con => {
+          sweetAlert.question(null, '한번만 더 생각 해 보세요. 정말 회원탈퇴 하시겠어요?', '탈퇴하기', '아니오').then(con => {
             if (con.value) {
               ajax('DELETE', `/api/users/${this.userOid}`).then(() => {
                 this.logout()
-                apxAlert.noIcon(null, '모든 데이터가 삭제되었습니다. 그 동안 이용 해 주셔서 감사합니다 :)', '확인')
+                sweetAlert.noIcon(null, '모든 데이터가 삭제되었습니다. 그 동안 이용 해 주셔서 감사합니다 :)', '확인')
               })
             }
           })

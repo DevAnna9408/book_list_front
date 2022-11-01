@@ -4,7 +4,7 @@
     :name="name"
     :rules="rules"
     v-slot="{ errors, invalid }">
-      <div class="apexFW-checkbox">
+      <div class="book-list-fw-checkbox">
         <label>
           <input v-model="val" type="checkbox" @change.prevent="onInput">
           <div class="pseudo-checkbox" />{{ label }}

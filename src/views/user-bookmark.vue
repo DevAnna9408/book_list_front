@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import apxAlert from '@/wrapper/apex-alert'
+import sweetAlert from '@/wrapper/sweet-alert'
 import ajax from '@/wrapper/ajax'
 import { mapGetters } from 'vuex'
 
@@ -106,13 +106,13 @@ export default {
       this.isWritten = !this.isWritten
     },
     _deleteBookmark (bookOid) {
-      apxAlert.question(null, '책갈피에서 해제할까요?', '해제한다', '아니오').then(con => {
+      sweetAlert.question(null, '책갈피에서 해제할까요?', '해제한다', '아니오').then(con => {
         if (con.value) {
           ajax('DELETE', '/api/bookmark', null, null, {
             userOid: this.userOid,
             bookOid: bookOid
           }).then(() => {
-            apxAlert.noIcon(null, '책갈피에서 삭제했습니다.', '확인')
+            sweetAlert.noIcon(null, '책갈피에서 삭제했습니다.', '확인')
             this._getBookmarkList()
           })
         }

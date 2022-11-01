@@ -70,7 +70,7 @@
 <script>
 import ajax from '@/wrapper/ajax'
 import { mapActions } from 'vuex'
-import apxAlert from '@/wrapper/apex-alert'
+import sweetAlert from '@/wrapper/sweet-alert'
 export default {
   name: 'user-login',
   data: () => ({
@@ -92,7 +92,7 @@ export default {
     _resetPassword () {
       let userId = ''
       let password = ''
-      apxAlert.findPassword('확인').then(con => {
+      sweetAlert.findPassword('확인').then(con => {
         if (con.value) {
           userId = con.value[0]
           password = con.value[1]
@@ -100,7 +100,7 @@ export default {
             userId: userId,
             nickName: password
           }).then(res => {
-            apxAlert.answerPassword(res, '확인').then(ans => {
+            sweetAlert.answerPassword(res, '확인').then(ans => {
               if (ans.value) {
                 ajax('POST', '/api/answer-password', null, null, {
                   userId: userId,
@@ -108,25 +108,25 @@ export default {
                   answer: ans.value[0].replace(/ /g, '')
                 }).then(ansRes => {
                   if (ansRes) {
-                    apxAlert.resetPassword('확인').then(pass => {
+                    sweetAlert.resetPassword('확인').then(pass => {
                       if (!pass.value[0].match(/^(?=.*[a-z])(?=.*[-0-9])(?=.*[A-Z])(?=.*[A-Z]).{6,}/)) {
-                        apxAlert.noIcon(null, '올바른 비밀번호 형식이 아닙니다.', '확인').then(() => {
+                        sweetAlert.noIcon(null, '올바른 비밀번호 형식이 아닙니다.', '확인').then(() => {
                           this._resetPassword()
                         })
                       } else if (pass.value[0] !== pass.value[1]) {
-                        apxAlert.noIcon(null, '비밀번호가 일치하지 않습니다.', '확인').then(() => {
+                        sweetAlert.noIcon(null, '비밀번호가 일치하지 않습니다.', '확인').then(() => {
                           this._resetPassword()
                         })
                       } else {
                         ajax('PUT', `/api/change-password/${userId}`, {
                           newPassword: pass.value[0]
                         }).then(() => {
-                          apxAlert.noIcon(null, '새로운 비밀번호로 변경되었습니다.', '확인')
+                          sweetAlert.noIcon(null, '새로운 비밀번호로 변경되었습니다.', '확인')
                         }).catch(() => {})
                       }
                     })
                   } else {
-                    apxAlert.noIcon(null, '본인 확인 질문에 대한 답변이 일치하지 않습니다.', '확인')
+                    sweetAlert.noIcon(null, '본인 확인 질문에 대한 답변이 일치하지 않습니다.', '확인')
                   }
                 }).catch(() => {})
               }
@@ -136,21 +136,21 @@ export default {
       })
     },
     _signUp () {
-      apxAlert.signUp('회원가입').then(con => {
+      sweetAlert.signUp('회원가입').then(con => {
         if (!con.value[0].match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)) {
-          apxAlert.noIcon(null, '올바른 이메일 형식이 아닙니다.', '확인').then(() => {
+          sweetAlert.noIcon(null, '올바른 이메일 형식이 아닙니다.', '확인').then(() => {
             this._signUp()
           })
         } else if (!con.value[1].match(/^(?=.*[a-z])(?=.*[-0-9])(?=.*[A-Z])(?=.*[A-Z]).{6,}/)) {
-          apxAlert.noIcon(null, '올바른 비밀번호 형식이 아닙니다.', '확인').then(() => {
+          sweetAlert.noIcon(null, '올바른 비밀번호 형식이 아닙니다.', '확인').then(() => {
             this._signUp()
           })
         } else if (con.value[1] !== con.value[2]) {
-          apxAlert.noIcon(null, '비밀번호가 일치하지 않습니다.', '확인').then(() => {
+          sweetAlert.noIcon(null, '비밀번호가 일치하지 않습니다.', '확인').then(() => {
             this._signUp()
           })
         } else if (con.value[3].trim() === '' || con.value[4].trim() === '') {
-          apxAlert.noIcon(null, '본인 확인 질문과 답변을 작성 해 주세요.', '확인').then(() => {
+          sweetAlert.noIcon(null, '본인 확인 질문과 답변을 작성 해 주세요.', '확인').then(() => {
             this._signUp()
           })
         } else {
@@ -160,7 +160,7 @@ export default {
             question: con.value[3],
             answer: con.value[4]
           }).then(() => {
-            apxAlert.noIcon(null, '회원가입 완료되었습니다.', '확인')
+            sweetAlert.noIcon(null, '회원가입 완료되었습니다.', '확인')
           }).catch(() => {})
         }
       })

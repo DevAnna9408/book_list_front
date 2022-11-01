@@ -1,4 +1,4 @@
-import apxAlert from '@/wrapper/apex-alert'
+import sweetAlert from '@/wrapper/sweet-alert'
 export const REGEXP = {
   IMAGE: /^image\/(gif|jpe?g|a?png|svg|webp|bmp|vnd\.microsoft\.icon)/i,
   YOUTUBE: /^(?:(https?):\/\/)?(?:(?:www|m)\.)?youtube\.com\/watch.*v=([a-zA-Z0-9_-]+)/,
@@ -11,7 +11,7 @@ export const validUtil = {
     if (regexp.test(target)) {
       return true
     } else {
-      apxAlert.error('', message)
+      sweetAlert.error('', message)
       return false
     }
   },
@@ -22,7 +22,7 @@ export const validUtil = {
     if ((REGEXP.IMAGE.test(target) && TargetSize < size)) {
       return true
     } else {
-      apxAlert.error('', message)
+      sweetAlert.error('', message)
       return false
     }
   },
