@@ -9,8 +9,8 @@
       <router-view name="sidebar" />
     </div> -->
     <router-view />
-    <router-view class="footer" name="footer" />
-    <div class="footer-address">
+    <router-view id="footer" name="footer" />
+    <div id="footer" class="footer-address">
       {{ year }}, made by Anna
     </div>
   </div>
@@ -47,7 +47,7 @@ export default {
 </script>
 <style></style>
 <style lang="scss">
-.footer {
+#footer {
 @media screen and (max-width: 600px) {
   display: none;
 }
