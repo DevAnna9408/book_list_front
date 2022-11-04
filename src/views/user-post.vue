@@ -96,6 +96,9 @@ export default {
   },
   mounted () {
     this.userBookIn.userOid = this.userCustomInfo.userOid
+    ajax('GET', '/api/book/check', null, null, {
+      userOid: this.userBookIn.userOid
+    }).then(() => {}).catch(() => {})
   }
 }
 </script>
