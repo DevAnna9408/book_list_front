@@ -107,7 +107,7 @@ let routes = [
 routes.push({
   path: '*',
   redirect: {
-    name: 'user-board'
+    name: 'user-login'
   }
 })
 
