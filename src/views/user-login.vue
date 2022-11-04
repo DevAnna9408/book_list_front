@@ -172,7 +172,9 @@ export default {
       })
         .then(() => {
           this.$router.push({ name: 'user-board' })
-        }).catch(() => {})
+        }).catch(() => {
+          this.$router.push({ name: 'user-login' })
+        })
     }
   }
 }
