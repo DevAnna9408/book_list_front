@@ -11,7 +11,7 @@ export default class RoutePramGoverness extends HeadGoverness {
     } else {
       store.dispatch('errors/populateErrors', {
         detail: {
-          message: '올바르지 않은 접근입니다 Incorrect approach'
+          message: '정상적인 방법으로 로그인 해 주세요.'
         }
       })
       next({
