@@ -1,7 +1,7 @@
 import axios from 'axios'
 import store from '@/store'
 import sweetAlert from '@/wrapper/sweet-alert'
-import { i18n } from '@/plugins/i18n'
+// import { i18n } from '@/plugins/i18n'
 
 const API_DOMAIN = process.env.VUE_APP_API_DOMAIN
 
@@ -10,18 +10,15 @@ const UNAUTHORIZED = 401
 const BAD_REQUEST = 400
 const INTERNAL_SERVER_ERROR = 500
 
-const setError = (_data) => {
+const setError = _data => {
   sweetAlert.noIcon(null, _data.message, '확인')
   store.commit('errors/SET_ERROR', _data)
   throw _data
 }
 
 const setGlobalError = _data => {
-  store.dispatch('errors/populateErrors', {
-    'detail': {
-      message: i18n.t('error.server')
-    }
-  })
+  sweetAlert.noIcon(null, _data.message, '확인')
+  store.commit('errors/SET_ERROR', _data)
   throw _data
 }
 
