@@ -1,4 +1,9 @@
 module.exports = {
+
+  devServer: {
+    host: 'localhost'
+  },
+
   lintOnSave: false,
 
   outputDir: 'dist',
