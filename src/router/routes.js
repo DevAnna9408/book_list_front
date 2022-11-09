@@ -101,6 +101,23 @@ let routes = [
       }
     }
     ]
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    components: parent('admin'),
+    props: {
+      header: {},
+      footer: {}
+    },
+    children: [{
+      path: 'board',
+      name: 'admin-board',
+      component: loadView('admin-board'),
+      meta: {
+        title: '[관리자] 책 목록 조회'
+      }
+    }]
   }
 ]
 

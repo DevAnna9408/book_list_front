@@ -12,6 +12,17 @@
       <ul
         id="nav__icons"
         class="nav-bar-container">
+        <router-link
+          style="color: red"
+          v-if="this.userRole[0].code === 'ROLE_SYS_ADMIN'"
+          :to="{ name: 'admin-board' }">
+          <li>
+            <div style="min-width: 50px;">
+              책장
+            </div>
+            <i class="fa-solid fa-list" />
+          </li>
+        </router-link>
         <router-link :to="{ name: 'user-board' }">
           <li>
             <div style="min-width: 50px;">
@@ -75,7 +86,11 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ isUser: 'users/isUser', userCustomInfo: 'users/userCustomInfo' })
+    ...mapGetters({
+      isUser: 'users/isUser',
+      userCustomInfo: 'users/userCustomInfo',
+      userRole: 'users/loggedInUserRoleType'
+    })
   },
   methods: {
     ...mapMutations({ logout: 'users/LOGOUT' }),
