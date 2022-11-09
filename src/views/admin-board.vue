@@ -160,7 +160,13 @@ export default {
             this._getBookList()
           })
         } else if (con.value === 'false') {
-
+          ajax('DELETE', '/api/admin/user', null, null, {
+            userOid: userOid
+          }).then(() => {
+            sweetAlert.noIcon(null, '회원이 제재 처리 되었습니다.', '확인')
+          }).catch(() => {}).finally(() => {
+            this._getBookList()
+          })
         }
       })
     }
