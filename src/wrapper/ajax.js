@@ -56,19 +56,15 @@ function exception (result, errTitle, alert) {
         break
       default:
         setNetworkError(result, alert)
+        removeAccessToken(err.data)
     }
   }
 }
-
-const instance = axios.create({
-  timeout: 30000
-})
-
 export const ajax = (method, url, data, header, params, errTitle, alert = true) => {
   let accessToken = store.getters['users/loggedInAccessToken']
   let locale = store.getters['i18N/currentLocale']
   store.commit('SET_LOADING', true)
-  return instance.request({
+  return axios.request({
     method,
     url: API_DOMAIN + url,
     data,
