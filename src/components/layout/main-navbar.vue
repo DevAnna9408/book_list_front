@@ -14,7 +14,7 @@
         class="nav-bar-container">
         <router-link
           style="color: red"
-          v-if="this.userRole[0].code === 'ROLE_SYS_ADMIN'"
+          v-if="this.userRole[0].code === 'ROLE_SYS_ADMIN' && this.userRole[0].code !== undefined"
           :to="{ name: 'admin-board' }">
           <li>
             <div style="min-width: 50px;">
