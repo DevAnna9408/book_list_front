@@ -5,6 +5,7 @@ import sweetAlert from '@/wrapper/sweet-alert'
 const API_DOMAIN = process.env.VUE_APP_API_DOMAIN
 
 const FORBIDDEN = 403
+const NOT_FOUUND = 404
 const UNAUTHORIZED = 401
 const BAD_REQUEST = 400
 const INTERNAL_SERVER_ERROR = 500
@@ -50,6 +51,7 @@ function exception (result, errTitle, alert) {
         if (!store.getters['errors/isGlobalError']) { setGlobalError(err.data) }
         break
       case BAD_REQUEST:
+      case NOT_FOUUND:
       case INTERNAL_SERVER_ERROR:
         setError(err.data) // 사용자 에러 처리
         break
