@@ -11,30 +11,17 @@
     <router-view />
     <div class="footer">
       <router-view name="footer" />
-      <div class="footer-address">
-        {{ year }}, made by Anna
-      </div>
     </div>
   </div>
 </template>
 <script>
-import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 // import { isChrome } from '@/utils/browserCheck'
 export default {
   name: 'App',
-  data () {
-    return {
-      year: new Date().getFullYear()
-    }
-  },
   computed: {
-    ...mapGetters({ loading: 'loading', userCustomInfo: 'users/userCustomInfo' })
+    ...mapGetters({ loading: 'loading' })
   },
-  methods: {
-    ...mapMutations({}),
-    ...mapActions({})
-  },
-
   created () {
     // backspace input, textarea 아니면 적용안됨
     window.addEventListener('keydown', e => {

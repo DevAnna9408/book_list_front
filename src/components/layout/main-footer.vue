@@ -8,7 +8,9 @@
           @click="$router.push({ name: 'user-board' })"
         >
       </div>
-<!--      <div class="google_ad">google ad 심사중😂</div>-->
+      <div class="footer-address">
+        {{ year }}, made by Anna
+      </div>
     </div>
   </footer>
 </template>
@@ -29,6 +31,7 @@ export default {
   },
   data () {
     return {
+      year: new Date().getFullYear()
     }
   },
   computed: {
