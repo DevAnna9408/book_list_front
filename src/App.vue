@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <loading-full v-if="loading"></loading-full>
-    <error-toast></error-toast>
+<!--    <error-toast></error-toast>-->
     <div id="header" class="site-navigation">
       <router-view name="header" />
     </div>
@@ -43,7 +43,6 @@ export default {
       }
     })
     // if (!isChrome()) { alert('지원하지 않는 브라우저 입니다. 크롬 브라우저를 사용해주세요.\nThis browser is not supported.Please use a chrome browser') }
-    if (this.userCustomInfo.userOid === undefined) this.$router.push({ name: 'user-login' })
   }
 }
 </script>
