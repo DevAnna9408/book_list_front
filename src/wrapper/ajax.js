@@ -1,7 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
 import sweetAlert from '@/wrapper/sweet-alert'
-// import { i18n } from '@/plugins/i18n'
 
 const API_DOMAIN = process.env.VUE_APP_API_DOMAIN
 
@@ -60,11 +59,12 @@ function exception (result, errTitle, alert) {
     }
   }
 }
+
 export const ajax = (method, url, data, header, params, errTitle, alert = true) => {
   let accessToken = store.getters['users/loggedInAccessToken']
   let locale = store.getters['i18N/currentLocale']
   store.commit('SET_LOADING', true)
-  return axios.request({
+  return axios({
     method,
     url: API_DOMAIN + url,
     data,
