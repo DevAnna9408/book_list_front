@@ -764,3 +764,14 @@ body {
   border: 1px solid black;
 }
 
+.loading__logo {
+  width: 100px;
+}
+
+.loading__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+

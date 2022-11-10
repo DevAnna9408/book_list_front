@@ -9,14 +9,14 @@ function loadLayout (layout) {
   return () => import(`@/components/layout/${layout}.vue`)
 }
 
-const loadViewHeaderFooterSide = view => {
-  return {
-    default: loadView(view),
-    sidebar: loadLayout('main-sidebar'),
-    footer: loadLayout('main-footer'),
-    header: loadLayout('main-navbar')
-  }
-}
+// const loadViewHeaderFooterSide = view => {
+//   return {
+//     default: loadView(view),
+//     sidebar: loadLayout('main-sidebar'),
+//     footer: loadLayout('main-footer'),
+//     header: loadLayout('main-navbar')
+//   }
+// }
 
 const parent = (parentName) => {
   return {
@@ -33,15 +33,10 @@ const parent = (parentName) => {
 let routes = [
   {
     path: '/',
-    name: 'user-board',
-    components: loadViewHeaderFooterSide('user-board'),
-    props: {
-      header: {},
-      sidebar: {},
-      footer: {}
-    },
+    name: 'user-load-page',
+    component: loadView('user-load-page'),
     meta: {
-      title: '책장'
+      title: 'user-load-page'
     }
   },
   {
@@ -74,6 +69,14 @@ let routes = [
       component: loadView('user-register'),
       meta: {
         title: '회원가입'
+      }
+    },
+    {
+      path: 'board',
+      name: 'user-board',
+      component: loadView('user-board'),
+      meta: {
+        title: '책장'
       }
     },
     {
