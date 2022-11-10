@@ -14,7 +14,7 @@
         class="nav-bar-container">
         <router-link
           style="color: red"
-          v-if="this.userRole[0].code === 'ROLE_SYS_ADMIN' && this.userRole[0].code !== undefined"
+          v-if="isAdmin(userRole)"
           :to="{ name: 'admin-board' }">
           <li>
             <div style="min-width: 50px;">
@@ -23,7 +23,9 @@
             <i class="fa-solid fa-list" />
           </li>
         </router-link>
-        <router-link :to="{ name: 'user-board' }">
+        <router-link
+          v-if="isUser(userRole)"
+          :to="{ name: 'user-board' }">
           <li>
             <div style="min-width: 50px;">
               책장
@@ -31,7 +33,9 @@
             <i class="fa-solid fa-list" />
           </li>
         </router-link>
-        <router-link :to="{ name: 'user-post' }">
+        <router-link
+          v-if="isUser(userRole)"
+          :to="{ name: 'user-post' }">
           <li>
             <div style="min-width: 50px;">
               글쓰기
@@ -40,6 +44,7 @@
           </li>
         </router-link>
           <li
+            v-if="isUser(userRole)"
             @click="_getRandomBook"
           >
             <div style="min-width: 50px;">
@@ -47,7 +52,9 @@
             </div>
             <i class="fa-solid fa-book" />
           </li>
-        <router-link :to="{ name: 'user-bookmark' }">
+        <router-link
+          v-if="isUser(userRole)"
+          :to="{ name: 'user-bookmark' }">
         <li>
           <div style="min-width: 50px;">
             책갈피
@@ -63,12 +70,6 @@
           <i class="fa-solid fa-user" />
         </li>
         </router-link>
-<!--        <li v-if="isUser">-->
-<!--          <a @click="_logout()">로그아웃</a>-->
-<!--        </li>-->
-<!--        <li v-else>-->
-<!--          <a @click="$router.push({name: 'user-login'})">로그인</a>-->
-<!--        </li>-->
       </ul>
     </div>
   </div>
@@ -78,23 +79,29 @@
 import sweetAlert from '@/wrapper/sweet-alert'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 import ajax from '@/wrapper/ajax'
+import Constants from '@/Constants'
 export default {
   name: 'main-navbar',
   data () {
     return {
-      userOid: 0
+      userOid: 0,
+      userRole: ''
     }
   },
   computed: {
     ...mapGetters({
-      isUser: 'users/isUser',
-      userCustomInfo: 'users/userCustomInfo',
-      userRole: 'users/loggedInUserRoleType'
+      userCustomInfo: 'users/userCustomInfo'
     })
   },
   methods: {
     ...mapMutations({ logout: 'users/LOGOUT' }),
     ...mapActions({}),
+    isUser (role) {
+      return Constants.ROLE_TYPE.USER === role
+    },
+    isAdmin (role) {
+      return Constants.ROLE_TYPE.SYS_ADMIN === role
+    },
     _logout () {
       this.logout()
     },
@@ -120,6 +127,7 @@ export default {
   },
   created () {
     this.userOid = this.userCustomInfo.userOid
+    this.userRole = this.returnRole()
   }
 }
 </script>
