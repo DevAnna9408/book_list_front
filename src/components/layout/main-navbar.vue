@@ -14,7 +14,7 @@
         class="nav-bar-container">
         <router-link
           style="color: red"
-          v-if="isAdmin(userRole)"
+          v-if="isAdmin(this.loggedInUserRoleType[0].code)"
           :to="{ name: 'admin-board' }">
           <li>
             <div style="min-width: 50px;">
@@ -24,7 +24,7 @@
           </li>
         </router-link>
         <router-link
-          v-if="isUser(userRole)"
+          v-if="isUser(this.loggedInUserRoleType[0].code)"
           :to="{ name: 'user-board' }">
           <li>
             <div style="min-width: 50px;">
@@ -34,7 +34,7 @@
           </li>
         </router-link>
         <router-link
-          v-if="isUser(userRole)"
+          v-if="isUser(this.loggedInUserRoleType[0].code)"
           :to="{ name: 'user-post' }">
           <li>
             <div style="min-width: 50px;">
@@ -44,7 +44,7 @@
           </li>
         </router-link>
           <li
-            v-if="isUser(userRole)"
+            v-if="isUser(this.loggedInUserRoleType[0].code)"
             @click="_getRandomBook"
           >
             <div style="min-width: 50px;">
@@ -53,7 +53,7 @@
             <i class="fa-solid fa-book" />
           </li>
         <router-link
-          v-if="isUser(userRole)"
+          v-if="isUser(this.loggedInUserRoleType[0].code)"
           :to="{ name: 'user-bookmark' }">
         <li>
           <div style="min-width: 50px;">
@@ -84,13 +84,13 @@ export default {
   name: 'main-navbar',
   data () {
     return {
-      userOid: 0,
-      userRole: ''
+      userOid: 0
     }
   },
   computed: {
     ...mapGetters({
-      userCustomInfo: 'users/userCustomInfo'
+      userCustomInfo: 'users/userCustomInfo',
+      loggedInUserRoleType: 'users/loggedInUserRoleType'
     })
   },
   methods: {
@@ -127,7 +127,6 @@ export default {
   },
   created () {
     this.userOid = this.userCustomInfo.userOid
-    this.userRole = this.returnRole()
   }
 }
 </script>

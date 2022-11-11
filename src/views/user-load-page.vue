@@ -25,20 +25,29 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Constants from '@/Constants'
 
 export default {
   name: 'user-load-page',
   computed: {
     ...mapGetters({
-      loggedInAccessToken: 'users/loggedInAccessToken'
+      loggedInAccessToken: 'users/loggedInAccessToken',
+      loggedInUserRoleType: 'users/loggedInUserRoleType'
     })
   },
   methods: {
+    isUser (role) {
+      return Constants.ROLE_TYPE.USER === role
+    },
+    isAdmin (role) {
+      return Constants.ROLE_TYPE.SYS_ADMIN === role
+    },
     _refreshToken () {
       if (this.loggedInAccessToken === '') {
         this.$router.push({ name: 'user-login' })
       } else {
-        this.$router.push({ name: 'user-board' })
+        if (this.isAdmin(this.loggedInUserRoleType[0].code)) this.$router.push({ name: 'admin-board' })
+        else this.$router.push({ name: 'user-board' })
       }
     }
   }

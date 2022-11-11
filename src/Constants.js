@@ -1,3 +1,7 @@
 export default {
-  IMAGE_LIMIT_SIZE: '6291456' // 6MB = 6291456KB FIXME: 프로젝트 수정
+  IMAGE_LIMIT_SIZE: '6291456',
+  ROLE_TYPE: {
+    USER: 'ROLE_USER',
+    SYS_ADMIN: 'ROLE_SYS_ADMIN'
+  }
 }

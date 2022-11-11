@@ -21,7 +21,7 @@ Vue.use(Router)
 const originalPush = Router.prototype.push
 Router.prototype.push = function push (location) {
   return originalPush.call(this, location).catch(err => {
-    if (err.name !== 'NavigationDuplicated') throw err
+    if (err.name !== 'NavigationDuplicated') window.location.reload(true)
   })
 }
 
@@ -47,8 +47,6 @@ router.afterEach((to, from, next) => {
 })
 
 router.beforeEach((to, from, next) => {
-  store.commit('SET_PREPAGE', from.fullPath)
-
   let perimeter = null
 
   to.matched.some((routeRecord) => {
@@ -58,6 +56,7 @@ router.beforeEach((to, from, next) => {
 
     const Governess = routeRecord.meta.governess || RouteGoverness
     const action = routeRecord.meta.perimeterAction || 'read'
+    const path = routeRecord.meta.perimeterPath || 'user-login'
     if (perimeter) {
       const sandbox = createSandbox(child(store), {
         governess: new Governess(),
@@ -66,7 +65,7 @@ router.beforeEach((to, from, next) => {
           perimeter
         ]
       })
-      return sandbox.guard(action, {
+      return sandbox.guard(action, path, {
         from,
         to,
         next

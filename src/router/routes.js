@@ -1,6 +1,3 @@
-/// / 새로고침&url직접 접근 불가 체크 필요시 호출
-// import RoutePramGoverness from '@/kindergarten/governesses/RoutePramGoverness'
-
 function loadView (view) {
   return () => import(/* webpackChunkName: "view-[request]" */ '@/views/' + view + '.vue')
 }
@@ -52,7 +49,8 @@ let routes = [
     name: 'user-my-board',
     component: loadView('user-my-board'),
     meta: {
-      title: '내가 쓴 글'
+      title: '내가 쓴 글',
+      perimeter: 'userPerimeter'
     }
   },
   {
@@ -63,46 +61,40 @@ let routes = [
       header: {},
       footer: {}
     },
-    children: [{
-      path: 'register',
-      name: 'user-register',
-      component: loadView('user-register'),
-      meta: {
-        title: '회원가입'
+    children: [
+      {
+        path: 'board',
+        name: 'user-board',
+        component: loadView('user-board'),
+        meta: {
+          title: '책장',
+          perimeter: 'userPerimeter'
+        }
+      },
+      {
+        path: 'post',
+        name: 'user-post',
+        component: loadView('user-post'),
+        meta: {
+          title: '글쓰기'
+        }
+      },
+      {
+        path: 'bookmark',
+        name: 'user-bookmark',
+        component: loadView('user-bookmark'),
+        meta: {
+          title: '책갈피'
+        }
+      },
+      {
+        path: 'my-page',
+        name: 'user-my-page',
+        component: loadView('user-my-page'),
+        meta: {
+          title: '마이페이지'
+        }
       }
-    },
-    {
-      path: 'board',
-      name: 'user-board',
-      component: loadView('user-board'),
-      meta: {
-        title: '책장'
-      }
-    },
-    {
-      path: 'post',
-      name: 'user-post',
-      component: loadView('user-post'),
-      meta: {
-        title: '글쓰기'
-      }
-    },
-    {
-      path: 'bookmark',
-      name: 'user-bookmark',
-      component: loadView('user-bookmark'),
-      meta: {
-        title: '책갈피'
-      }
-    },
-    {
-      path: 'my-page',
-      name: 'user-my-page',
-      component: loadView('user-my-page'),
-      meta: {
-        title: '마이페이지'
-      }
-    }
     ]
   },
   {
@@ -113,12 +105,15 @@ let routes = [
       header: {},
       footer: {}
     },
+    meta: {
+    },
     children: [{
       path: 'board',
       name: 'admin-board',
       component: loadView('admin-board'),
       meta: {
-        title: '[관리자] 책 목록 조회'
+        title: '[관리자] 책 목록 조회',
+        perimeter: 'adminPerimeter'
       }
     }]
   }
