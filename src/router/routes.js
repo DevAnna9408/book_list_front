@@ -115,6 +115,14 @@ let routes = [
         title: '[관리자] 책 목록 조회',
         perimeter: 'adminPerimeter'
       }
+    },
+    {
+      path: 'my-page',
+      name: 'admin-my-page',
+      component: loadView('admin-my-page'),
+      meta: {
+        title: '[관리자] 마이페이지'
+      }
     }]
   }
 ]

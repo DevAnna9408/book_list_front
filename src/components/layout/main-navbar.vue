@@ -62,7 +62,20 @@
           <i class="fa-solid fa-bookmark" />
         </li>
         </router-link>
-        <router-link :to="{ name: 'user-my-page' }">
+        <router-link
+          style="color: red"
+          v-if="isAdmin(this.loggedInUserRoleType[0].code)"
+          :to="{ name: 'admin-my-page' }">
+          <li>
+            <div style="min-width: 80px;">
+              마이페이지
+            </div>
+            <i class="fa-solid fa-user" />
+          </li>
+        </router-link>
+        <router-link
+          v-else
+          :to="{ name: 'user-my-page' }">
         <li>
           <div style="min-width: 80px;">
             마이페이지
