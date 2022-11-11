@@ -219,13 +219,9 @@ export default {
       })
     }
   },
-  async created () {
-    if (this.userCustomInfo.userOid === undefined) {
-      await this.$router.push({ name: 'user-login' })
-    } else {
-      this.userOid = this.userCustomInfo.userOid
-      await this._getBookList()
-    }
+  mounted () {
+    this.userOid = this.userCustomInfo.userOid
+    this._getBookList()
   }
 }
 </script>

@@ -42,12 +42,12 @@ export default {
     isAdmin (role) {
       return Constants.ROLE_TYPE.SYS_ADMIN === role
     },
-    _refreshToken () {
+    async _refreshToken () {
       if (this.loggedInAccessToken === '') {
-        this.$router.push({ name: 'user-login' })
+        await this.$router.push({ name: 'user-login' })
       } else {
-        if (this.isAdmin(this.loggedInUserRoleType[0].code)) this.$router.push({ name: 'admin-board' })
-        else this.$router.push({ name: 'user-board' })
+        if (this.isAdmin(this.loggedInUserRoleType[0].code)) await this.$router.push({ name: 'admin-board' })
+        else await this.$router.push({ name: 'user-board' })
       }
     }
   }
