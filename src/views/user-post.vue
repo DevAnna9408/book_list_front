@@ -75,21 +75,25 @@ export default {
       } else if (this.userBookIn.title === '제목 혹은 곡명을 입력 해 주세요') {
         sweetAlert.noIcon(null, '', '확인')
       } else {
-        ajax('POST', '/api/book', {
-          content: this.userBookIn.content.replaceAll('\n', '<br />'),
-          author: this.userBookIn.author,
-          title: this.userBookIn.title,
-          userOid: this.userBookIn.userOid
-        }).then(() => {
-          this.userBookIn = {
-            content: '',
-            author: '',
-            title: '',
-            userOid: this.userCustomInfo.userOid
+        sweetAlert.html(`<p>글을 작성 할까요? <br /> <br /> 글은 수정할 수 없고 삭제만 가능하니 <br /> 꼼꼼히 확인 해 주세요 :)<p>`, '작성하기', true, '검토하기').then(con => {
+          if (con.value) {
+            ajax('POST', '/api/book', {
+              content: this.userBookIn.content.replaceAll('\n', '<br />'),
+              author: this.userBookIn.author,
+              title: this.userBookIn.title,
+              userOid: this.userBookIn.userOid
+            }).then(() => {
+              this.userBookIn = {
+                content: '',
+                author: '',
+                title: '',
+                userOid: this.userCustomInfo.userOid
+              }
+              sweetAlert.noIcon(null, '글 작성이 완료되었습니다 :)', '확인')
+            }).catch(err => {
+              sweetAlert.noIcon(null, err.message, '확인')
+            })
           }
-          sweetAlert.noIcon(null, '글 작성이 완료되었습니다 :)', '확인')
-        }).catch(err => {
-          sweetAlert.noIcon(null, err.message, '확인')
         })
       }
     }
