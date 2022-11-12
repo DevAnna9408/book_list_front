@@ -118,7 +118,7 @@ export default {
     return {
       userOid: 0,
       reverseOrder: true,
-      thumbsOrder: false,
+      thumbsOrder: true,
       currentPage: 1,
       results: {
         content: [{
