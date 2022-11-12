@@ -75,7 +75,7 @@ export default {
       } else if (this.userBookIn.title === '제목 혹은 곡명을 입력 해 주세요') {
         sweetAlert.noIcon(null, '', '확인')
       } else {
-        sweetAlert.html(`<p>글을 작성 할까요? <br /> <br /> 글은 수정할 수 없고 삭제만 가능하니 <br /> 꼼꼼히 확인 해 주세요 :)<p>`, '작성하기', true, '검토하기').then(con => {
+        sweetAlert.html(`<p style="font-size: 15px;">글을 작성 할까요? <br /> <br /> 글은 수정할 수 없고 삭제만 가능하니 <br /> 꼼꼼히 확인 해 주세요 :)<p>`, '작성하기', true, '검토하기').then(con => {
           if (con.value) {
             ajax('POST', '/api/book', {
               content: this.userBookIn.content.replaceAll('\n', '<br />'),
@@ -89,7 +89,7 @@ export default {
                 title: '',
                 userOid: this.userCustomInfo.userOid
               }
-              sweetAlert.noIcon(null, '글 작성이 완료되었습니다 :)', '확인')
+              sweetAlert.html('<p style="font-size: 15px;">글 작성이 완료되었습니다 :) <br /><br /> 1) 광고 혹은 <br /> 서비스 의도와 맞지 않는 글 <br /> <br /> 2) 비추천이 30개 이상인 경우 <br /><br /> 글이 제재됩니다.<p>', '확인', false, null)
             }).catch(err => {
               sweetAlert.noIcon(null, err.message, '확인')
             })
