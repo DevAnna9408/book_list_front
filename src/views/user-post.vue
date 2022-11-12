@@ -8,7 +8,7 @@
       <span class="survey-country grid-only">
               <div class="user__post__content">
                 <input-text-area
-                  :maxlength="'100'"
+                  :maxlength="'200'"
                   v-model="userBookIn.content"
                   :placeholder="'내 마음에 와닿은,\n\n다른 사람과 공유하고 싶은\n\n글귀를 적어 주세요 :)'"
                 />
