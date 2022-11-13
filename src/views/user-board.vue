@@ -42,6 +42,9 @@
               style="font-size: 15px;"
               class="fa-regular fa-bookmark" />
           </span>
+          <span style="color: #8DC63F; font-size: 14px;">
+            <i class="fa-solid fa-ban"></i>
+          </span>
         </span>
       </span>
   </div>
