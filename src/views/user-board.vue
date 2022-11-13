@@ -42,7 +42,9 @@
               style="font-size: 15px;"
               class="fa-regular fa-bookmark" />
           </span>
-          <span style="color: #8DC63F; font-size: 14px;">
+          <span
+            @click="_sirenUser(item)"
+            style="color: #8DC63F; font-size: 14px;">
             <i class="fa-solid fa-ban"></i>
           </span>
         </span>
@@ -131,7 +133,8 @@ export default {
           isMarked: false,
           thumbsDown: 0,
           thumbsUp: 0,
-          title: ''
+          title: '',
+          postUserOid: 0
         }],
         number: 1,
         totalPages: 10
@@ -148,6 +151,26 @@ export default {
     })
   },
   methods: {
+    _sirenUser (data) {
+      console.log(data)
+
+      sweetAlert.question(null, '이 책과 작성자를 신고하시겠습니까?', '네', '아니오').then(con => {
+        if (con.value) {
+          sweetAlert.input('신고 사유를 작성 해 주세요', '신고하기').then(con => {
+            if (con.value) {
+              ajax('POST', '/api/siren', {
+                sirenUserOid: this.userOid,
+                sirenedUserOid: data.postUserOid,
+                sirenedBookOid: data.bookOid,
+                reason: con.value
+              }).then(() => {
+                sweetAlert.html('<p style="font-size: 15px;">신고가 완료되었습니다 :) <br /><br /> 무분별한 신고로 확인되면 <br />계정이 제재될 수 있으니 주의 해 주세요.<p>', '확인', false, null)
+              })
+            }
+          })
+        }
+      })
+    },
     _reverseOrder () {
       this.reverseOrder = !this.reverseOrder
     },
