@@ -139,7 +139,7 @@ const sweetAlert = {
       title: '회원가입',
       html:
         '<input id="swal-input1" class="swal2-input" placeholder="이메일" style="font-size: 15px">' +
-        '<p style="font-size: 15px;">비밀번호는 대소문자 및 숫자를 포함한 <br /> 16자 이내로 작성 해 주세요.</p>' +
+        '<p style="font-size: 15px;">비밀번호는 대소문자, 숫자를 포함한 <br /> 16자 이내로 작성 해 주세요.</p>' +
         '<input id="swal-input2" class="swal2-input" placeholder="비밀번호" required="true" maxlength="16" type="password" style="font-size: 15px">' +
         '<input id="swal-input3" class="swal2-input" placeholder="한번 더 입력 해 주세요." required="true" maxlength="16" type="password" style="font-size: 15px">' +
         '<p style="font-size: 15px;">비밀번호 분실시 사용할 <br /> 본인 확인 질문을 작성 해 주세요.</p>' +

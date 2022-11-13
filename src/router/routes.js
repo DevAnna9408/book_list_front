@@ -45,6 +45,14 @@ let routes = [
     }
   },
   {
+    path: '/user/register',
+    name: 'user-register',
+    component: loadView('user-register'),
+    meta: {
+      title: '회원가입'
+    }
+  },
+  {
     path: '/user/my-board',
     name: 'user-my-board',
     component: loadView('user-my-board'),

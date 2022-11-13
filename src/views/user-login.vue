@@ -136,34 +136,7 @@ export default {
       })
     },
     _signUp () {
-      sweetAlert.signUp('회원가입').then(con => {
-        if (!con.value[0].match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)) {
-          sweetAlert.noIcon(null, '올바른 이메일 형식이 아닙니다.', '확인').then(() => {
-            this._signUp()
-          })
-        } else if (!con.value[1].match(/^(?=.*[a-z])(?=.*[-0-9])(?=.*[A-Z])(?=.*[A-Z]).{6,}/)) {
-          sweetAlert.noIcon(null, '올바른 비밀번호 형식이 아닙니다.', '확인').then(() => {
-            this._signUp()
-          })
-        } else if (con.value[1] !== con.value[2]) {
-          sweetAlert.noIcon(null, '비밀번호가 일치하지 않습니다.', '확인').then(() => {
-            this._signUp()
-          })
-        } else if (con.value[3].trim() === '' || con.value[4].trim() === '') {
-          sweetAlert.noIcon(null, '본인 확인 질문과 답변을 작성 해 주세요.', '확인').then(() => {
-            this._signUp()
-          })
-        } else {
-          this.register({
-            userId: con.value[0],
-            password: con.value[1],
-            question: con.value[3],
-            answer: con.value[4]
-          }).then(() => {
-            sweetAlert.noIcon(null, '회원가입 완료되었습니다.', '확인')
-          }).catch(() => {})
-        }
-      })
+      this.$router.push({ name: 'user-register' })
     },
     _login () {
       this.login({

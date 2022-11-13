@@ -152,8 +152,6 @@ export default {
   },
   methods: {
     _sirenUser (data) {
-      console.log(data)
-
       sweetAlert.question(null, '이 책과 작성자를 신고하시겠습니까?', '네', '아니오').then(con => {
         if (con.value) {
           sweetAlert.input('신고 사유를 작성 해 주세요', '신고하기').then(con => {
