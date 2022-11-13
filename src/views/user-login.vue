@@ -14,7 +14,7 @@
             alt="logo">
         </div>
         <ValidationObserver v-slot="{ invalid, passes }">
-          <form @submit.prevent="passes( _login())">
+          <form @submit.prevent="passes( _login)">
             <div class="form-item">
               <input-text
                 v-model="user.userId"
@@ -36,7 +36,7 @@
                 :rules="{
               required: true,
               max: 16,
-              regex: /^(?=.*[a-z])(?=.*[-0-9])(?=.*[A-Z])(?=.*[A-Z]).{6,}/,
+              regex: /^(?=.*[a-z])(?=.*[-0-9])(?=.*[A-Z])(?=.*[A-Z]).{8,}/,
             }"
                 input-type="password"
                 error-msg-class="errors-msg"
@@ -45,7 +45,6 @@
             <div class="submit__btn__wrapper">
               <div class="btn__horizontal__wrapper">
                 <button
-                  @click="apiUrl = 'login'"
                   class="basic__button"
                   type="submit"
                 >로그인
@@ -74,7 +73,6 @@ import sweetAlert from '@/wrapper/sweet-alert'
 export default {
   name: 'user-login',
   data: () => ({
-    apiUrl: '',
     user: {
       userId: '',
       password: ''
