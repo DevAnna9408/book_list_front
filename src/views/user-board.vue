@@ -206,31 +206,21 @@ export default {
       })
     },
     _bookmark (isMarked, bookOid) {
-      if (!isMarked) {
-        sweetAlert.question(null, '내 책갈피에 저장할까요?', '네', '아니오').then(con => {
-          if (con.value) {
-            ajax('POST', '/api/bookmark', null, null, {
-              userOid: this.userOid,
-              bookOid: bookOid
-            }).then(() => {
-              sweetAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
-              this._getBookList()
-            }).catch(() => {})
-          }
-        })
-      }
+      ajax('POST', '/api/bookmark', null, null, {
+        userOid: this.userOid,
+        bookOid: bookOid
+      }).then(() => {
+        sweetAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
+        this._getBookList()
+      }).catch(() => {})
     },
     _deleteBookMark (bookOid) {
-      sweetAlert.question(null, '책갈피에서 해제할까요?', '해제한다', '아니오').then(con => {
-        if (con.value) {
-          ajax('DELETE', '/api/bookmark', null, null, {
-            userOid: this.userOid,
-            bookOid: bookOid
-          }).then(() => {
-            sweetAlert.noIcon(null, '책갈피에서 삭제했습니다.', '확인')
-            this._getBookList()
-          })
-        }
+      ajax('DELETE', '/api/bookmark', null, null, {
+        userOid: this.userOid,
+        bookOid: bookOid
+      }).then(() => {
+        sweetAlert.noIcon(null, '책갈피에서 삭제했습니다.', '확인')
+        this._getBookList()
       })
     },
     _getThumb (bookOid) {
