@@ -5,14 +5,22 @@
   </div>
   <ul class="surveys grid">
     <li
-      @dblclick="_deleteBookmark(item.bookOid)"
       v-for="(item, index) in results.content" :key="index"
       class="survey-item">
-
-      <div
-        id="user__bookmark__content"
-        class="survey-country grid-only">
-        <p v-html="item.content"></p>
+      <div class="pull-right">
+      <span
+        style="display: flex; justify-content: space-between; margin: 0"
+        class="survey-progress-label">
+          <div
+            id="user__bookmark__content"
+            class="survey-country grid-only">
+              <p v-html="item.content"></p>
+      </div>
+          <i
+            @click="_deleteBookmark(item.bookOid)"
+            style="font-size: 15px; margin-left: 5px;"
+            class="fa-solid fa-bookmark" />
+          </span>
       </div>
       <div
         style="text-align: right"
@@ -31,9 +39,6 @@
         중에서
       </span>
       </div>
-<!--      <span class="survey-completes">-->
-<!--        👍 {{ item.thumbsUp }} / 👎 {{ item.thumbsDown }}-->
-<!--      </span>-->
     </li>
   </ul>
   <div class="button__menu__wrapper">

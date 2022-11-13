@@ -7,7 +7,7 @@
     <li
       v-for="(item, index) in results.content" :key="index"
       class="survey-item">
-    <div @dblclick="_getThumb(item.bookOid)">
+    <div>
        <div id="user__board__content"
           class="survey-country grid-only">
          <p v-html="item.content" />
@@ -22,22 +22,26 @@
           </span>
 
         <span class="survey-progress-labels">
-          <span class="survey-progress-label">
+          <span
+            @click="_getThumb(item.bookOid)"
+            class="survey-progress-label">
             👍 {{ Math.ceil(item.thumbsUp / 10 * 100) }}%
           </span>
 
-          <span class="survey-completes">
+          <span
+            class="survey-completes">
             {{ item.thumbsUp }} / 10
           </span>
 
           <span
-            @click="_bookmark(item.isMarked, item.bookOid)"
             class="survey-progress-label">
               <i
+                @click="_deleteBookMark(item.bookOid)"
                 v-if="item.isMarked"
                 style="font-size: 15px;"
                 class="fa-solid fa-bookmark" />
             <i
+              @click="_bookmark(item.isMarked, item.bookOid)"
               v-else
               style="font-size: 15px;"
               class="fa-regular fa-bookmark" />
@@ -215,6 +219,19 @@ export default {
           }
         })
       }
+    },
+    _deleteBookMark (bookOid) {
+      sweetAlert.question(null, '책갈피에서 해제할까요?', '해제한다', '아니오').then(con => {
+        if (con.value) {
+          ajax('DELETE', '/api/bookmark', null, null, {
+            userOid: this.userOid,
+            bookOid: bookOid
+          }).then(() => {
+            sweetAlert.noIcon(null, '책갈피에서 삭제했습니다.', '확인')
+            this._getBookList()
+          })
+        }
+      })
     },
     _getThumb (bookOid) {
       sweetAlert.radio('이 글에 대한 느낌은?', {
