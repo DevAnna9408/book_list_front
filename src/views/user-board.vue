@@ -120,7 +120,7 @@
 <script>
 import sweetAlert from '@/wrapper/sweet-alert'
 import ajax from '@/wrapper/ajax'
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   name: 'user-board',
   data () {
@@ -155,9 +155,6 @@ export default {
     })
   },
   methods: {
-    ...mapActions({
-      login: 'users/login'
-    }),
     _sirenUser (data) {
       sweetAlert.question(null, '이 책과 작성자를 신고하시겠습니까?', '네', '아니오').then(con => {
         if (con.value) {
@@ -256,15 +253,6 @@ export default {
   mounted () {
     this.userOid = this.userCustomInfo.userOid
     this._getBookList()
-  },
-  created () {
-    this.login({
-      userId: 'sysad83@naver.com',
-      password: 'Asc0803asc!'
-    })
-      .then(() => {
-        this.$router.push({ name: 'user-board' })
-      })
   }
 }
 </script>

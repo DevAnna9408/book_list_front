@@ -30,10 +30,10 @@ const parent = (parentName) => {
 let routes = [
   {
     path: '/',
-    name: 'user-board',
-    component: loadView('user-board'),
+    name: 'user-load-page',
+    component: loadView('user-load-page'),
     meta: {
-      title: '책장'
+      title: 'user-load-page'
     }
   },
   {
