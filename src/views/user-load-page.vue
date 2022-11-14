@@ -6,7 +6,9 @@
       <div
         class="loading__wrapper"
       >
-        <span>
+        <span
+          @click="_refreshToken"
+        >
           <img
             class="loading__logo"
             src="@/assets/img/logo.png"
@@ -22,7 +24,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
+import Constants from '@/Constants'
 
 export default {
   name: 'user-load-page',
@@ -33,32 +36,20 @@ export default {
     })
   },
   methods: {
-    ...mapActions({
-      login: 'users/login'
-    })
-    // isUser (role) {
-    //   return Constants.ROLE_TYPE.USER === role
-    // },
-    // isAdmin (role) {
-    //   return Constants.ROLE_TYPE.SYS_ADMIN === role
-    // },
-    // async _refreshToken () {
-    //   if (this.loggedInAccessToken === '') {
-    //     await this.$router.push({ name: 'user-login' })
-    //   } else {
-    //     if (this.isAdmin(this.loggedInUserRoleType[0].code)) await this.$router.push({ name: 'admin-board' })
-    //     else await this.$router.push({ name: 'user-board' })
-    //   }
-    // }
-  },
-  created () {
-    this.login({
-      userId: 'sysad83@naver.com',
-      password: 'Asc0803asc!'
-    })
-      .then(() => {
-        this.$router.push({ name: 'user-board' })
-      })
+    isUser (role) {
+      return Constants.ROLE_TYPE.USER === role
+    },
+    isAdmin (role) {
+      return Constants.ROLE_TYPE.SYS_ADMIN === role
+    },
+    async _refreshToken () {
+      if (this.loggedInAccessToken === '') {
+        await this.$router.push({ name: 'user-login' })
+      } else {
+        if (this.isAdmin(this.loggedInUserRoleType[0].code)) await this.$router.push({ name: 'admin-board' })
+        else await this.$router.push({ name: 'user-board' })
+      }
+    }
   }
 }
 </script>
