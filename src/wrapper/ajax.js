@@ -5,20 +5,22 @@ import sweetAlert from '@/wrapper/sweet-alert'
 const API_DOMAIN = process.env.VUE_APP_API_DOMAIN
 
 const FORBIDDEN = 403
-const NOT_FOUUND = 404
 const UNAUTHORIZED = 401
 const BAD_REQUEST = 400
 const INTERNAL_SERVER_ERROR = 500
 
-const setError = _data => {
+const setError = (_data) => {
   sweetAlert.noIcon(null, _data.message, '확인')
   store.commit('errors/SET_ERROR', _data)
   throw _data
 }
 
 const setGlobalError = _data => {
-  sweetAlert.noIcon(null, _data.message, '확인')
-  store.commit('errors/SET_ERROR', _data)
+  store.dispatch('errors/populateErrors', {
+    'detail': {
+      message: '서버에서 에러가 발생했습니다.'
+    }
+  })
   throw _data
 }
 
@@ -51,13 +53,11 @@ function exception (result, errTitle, alert) {
         if (!store.getters['errors/isGlobalError']) { setGlobalError(err.data) }
         break
       case BAD_REQUEST:
-      case NOT_FOUUND:
       case INTERNAL_SERVER_ERROR:
         setError(err.data) // 사용자 에러 처리
         break
       default:
         setNetworkError(result, alert)
-        removeAccessToken(err.data)
     }
   }
 }
@@ -80,14 +80,6 @@ export const ajax = (method, url, data, header, params, errTitle, alert = true) 
       exception(result, errTitle, alert)
     }).finally(() => {
       store.commit('SET_LOADING', false)
-    })
-}
-
-export const ajaxAll = requests => {
-  return axios.all(requests)
-    .then(result => result)
-    .catch(result => {
-      exception(result)
     })
 }
 
