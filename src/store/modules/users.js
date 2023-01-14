@@ -36,11 +36,9 @@ const mutations = {
     localStorage.setItem('userCustomInfo', JSON.stringify(_data))
   },
   LOGOUT: (_state) => {
-    _state.accessToken = null
+    _state.accessToken = ''
     _state.user = {}
     localStorage.clear()
-    // localStorage.removeItem('accessToken')
-    // localStorage.removeItem('user')
     router.push({
       name: 'user-login'
     })

@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import Constants from '@/Constants'
 
 export default {
@@ -36,6 +36,9 @@ export default {
     })
   },
   methods: {
+    ...mapMutations({
+      logout: 'users/LOGOUT'
+    }),
     isUser (role) {
       return Constants.ROLE_TYPE.USER === role
     },
@@ -44,7 +47,7 @@ export default {
     },
     async _refreshToken () {
       if (this.loggedInAccessToken === '') {
-        await this.$router.push({ name: 'user-login' })
+        await this.logout()
       } else {
         if (this.isAdmin(this.loggedInUserRoleType[0].code)) await this.$router.push({ name: 'admin-board' })
         else await this.$router.push({ name: 'user-board' })
