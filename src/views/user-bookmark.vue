@@ -101,7 +101,7 @@ export default {
       })
     },
     _pageInput (page) {
-      this.searchParam.page = page + 1
+      this.searchParam.page = page - 1
       this._getBookmarkList()
     },
     _getBookmarkList () {
