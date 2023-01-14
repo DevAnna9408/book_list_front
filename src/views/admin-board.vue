@@ -35,33 +35,26 @@
   </ul>
   <div class="button__menu__wrapper">
     <button
-      v-if="reverseOrder"
-      @click="_reverseOrder"
+      @click="_getBookListReversed"
       class="basic__button">
-      등록일 👆
-    </button>
-    <button
-      v-else
-      @click="_reverseOrder"
-      class="basic__button">
-      등록일 👇
-    </button>
-    <button
-      v-if="!thumbsOrder"
-      @click="_thumbsOrder"
-      class="basic__button">
-      추천수 👆
-    </button>
-    <button
-      v-else
-      @click="_thumbsOrder"
-      class="basic__button">
-      추천수 👇
+      최신순
     </button>
     <button
       @click="_getBookList"
       class="basic__button">
-      검색
+      오래된 순
+    </button>
+  </div>
+  <div class="button__menu__wrapper">
+    <button
+      @click="_getBookListByThumbsUp"
+      class="basic__button">
+      추천높은순
+    </button>
+    <button
+      @click="_getBookListByThumbsDown"
+      class="basic__button">
+      추천낮은순
     </button>
   </div>
   <pagination
@@ -123,11 +116,42 @@ export default {
       this.searchParam.page = page - 1
       this._getBookList()
     },
+    _getBookListReversed () {
+      ajax('GET', '/api/book/list/reverse', null, null, {
+        userOid: this.userOid,
+        page: this.searchParam.page,
+        size: this.searchParam.size
+      }).then(res => {
+        this.currentPage = this.searchParam.page + 1
+        this.results = res
+        this._getBookOidsInBookmark()
+      })
+    },
     _getBookList () {
       ajax('GET', '/api/book/list', null, null, {
         userOid: this.userOid,
-        sortParam: this.thumbsOrder,
-        reverse: this.reverseOrder,
+        page: this.searchParam.page,
+        size: this.searchParam.size
+      }).then(res => {
+        this.currentPage = this.searchParam.page + 1
+        this.results = res
+        this._getBookOidsInBookmark()
+      })
+    },
+    _getBookListByThumbsUp () {
+      ajax('GET', '/api/book/list/by-thumbs-up', null, null, {
+        userOid: this.userOid,
+        page: this.searchParam.page,
+        size: this.searchParam.size
+      }).then(res => {
+        this.currentPage = this.searchParam.page + 1
+        this.results = res
+        this._getBookOidsInBookmark()
+      })
+    },
+    _getBookListByThumbsDown () {
+      ajax('GET', '/api/book/list/by-thumbs-down', null, null, {
+        userOid: this.userOid,
         page: this.searchParam.page,
         size: this.searchParam.size
       }).then(res => {
@@ -173,7 +197,7 @@ export default {
   },
   mounted () {
     this.userOid = this.userCustomInfo.userOid
-    this._getBookList()
+    this._getBookListReversed()
   }
 }
 </script>

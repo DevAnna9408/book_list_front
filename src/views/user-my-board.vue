@@ -51,37 +51,13 @@
 
     </li>
   </ul>
-  <div class="button__menu__wrapper">
-    <button
-      v-if="reverseOrder"
-      @click="_reverseOrder"
-      class="basic__button">
-      등록일 👆
-    </button>
-    <button
-      v-else
-      @click="_reverseOrder"
-      class="basic__button">
-      등록일 👇
-    </button>
-    <button
-      v-if="!thumbsOrder"
-      @click="_thumbsOrder"
-      class="basic__button">
-      추천수 👆
-    </button>
-    <button
-      v-else
-      @click="_thumbsOrder"
-      class="basic__button">
-      추천수 👇
-    </button>
-    <button
-      @click="_getBookList"
-      class="basic__button">
-      검색
-    </button>
-  </div>
+<!--  <div class="button__menu__wrapper">-->
+<!--    <button-->
+<!--      @click="_getBookList"-->
+<!--      class="basic__button">-->
+<!--      검색-->
+<!--    </button>-->
+<!--  </div>-->
   <pagination
     id="pagination"
     v-model="currentPage"
@@ -102,8 +78,6 @@ export default {
   data () {
     return {
       userOid: 0,
-      reverseOrder: true,
-      thumbsOrder: false,
       currentPage: 1,
       results: {
         content: [{
@@ -135,12 +109,6 @@ export default {
     })
   },
   methods: {
-    _reverseOrder () {
-      this.reverseOrder = !this.reverseOrder
-    },
-    _thumbsOrder () {
-      this.thumbsOrder = !this.thumbsOrder
-    },
     _pageInput (page) {
       this.searchParam.page = page - 1
       this._getBookList()
@@ -148,8 +116,6 @@ export default {
     _getBookList () {
       ajax('GET', '/api/book/my-list', null, null, {
         userOid: this.userOid,
-        sortParam: this.thumbsOrder,
-        reverse: this.reverseOrder,
         page: this.searchParam.page,
         size: this.searchParam.size
       }).then(res => {
