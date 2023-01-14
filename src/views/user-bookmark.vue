@@ -73,7 +73,7 @@
 
 <script>
 import sweetAlert from '@/wrapper/sweet-alert'
-import { ajaxWithoutLoading } from '@/wrapper/ajax'
+import { ajax, ajaxWithoutLoading } from '@/wrapper/ajax'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -124,11 +124,11 @@ export default {
       })
     },
     _pageInput (page) {
-      this.searchParam.page = page - 1
+      this.searchParam.page = page + 1
       this._getBookmarkList()
     },
     _getBookmarkList () {
-      ajaxWithoutLoading('GET', '/api/bookmark', null, null, {
+      ajax('GET', '/api/bookmark', null, null, {
         userOid: this.userOid,
         isWritten: this.isWritten,
         page: this.searchParam.page,

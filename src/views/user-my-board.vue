@@ -114,7 +114,7 @@ export default {
       this._getBookList()
     },
     _getBookList () {
-      ajaxWithoutLoading('GET', '/api/book/my-list', null, null, {
+      ajax('GET', '/api/book/my-list', null, null, {
         userOid: this.userOid,
         page: this.searchParam.page,
         size: this.searchParam.size
@@ -136,7 +136,7 @@ export default {
     _deleteBook (bookOid) {
       sweetAlert.html(`<p>글을 삭제 하시겠어요? <br /> 다른 사람들의 책갈피에서도 글이 사라집니다.<p>`, '삭제', true, '아니오').then(con => {
         if (con.value) {
-          ajax('DELETE', '/api/book', null, null, {
+          ajaxWithoutLoading('DELETE', '/api/book', null, null, {
             userOid: this.userOid,
             bookOid: bookOid
           }).then(() => {
