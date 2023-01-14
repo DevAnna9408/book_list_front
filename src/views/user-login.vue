@@ -67,9 +67,7 @@
   </div>
 </template>
 <script>
-import ajax from '@/wrapper/ajax'
 import { mapActions } from 'vuex'
-import sweetAlert from '@/wrapper/sweet-alert'
 export default {
   name: 'user-login',
   data: () => ({
@@ -88,50 +86,7 @@ export default {
       register: 'users/register'
     }),
     _resetPassword () {
-      let userId = ''
-      let password = ''
-      sweetAlert.findPassword('확인').then(con => {
-        if (con.value) {
-          userId = con.value[0]
-          password = con.value[1]
-          ajax('GET', '/api/find-password', null, null, {
-            userId: userId,
-            nickName: password
-          }).then(res => {
-            sweetAlert.answerPassword(res, '확인').then(ans => {
-              if (ans.value) {
-                ajax('POST', '/api/answer-password', null, null, {
-                  userId: userId,
-                  nickName: password,
-                  answer: ans.value[0].replace(/ /g, '')
-                }).then(ansRes => {
-                  if (ansRes) {
-                    sweetAlert.resetPassword('확인').then(pass => {
-                      if (!pass.value[0].match(/^(?=.*[a-z])(?=.*[-0-9])(?=.*[A-Z])(?=.*[A-Z]).{6,}/)) {
-                        sweetAlert.noIcon(null, '올바른 비밀번호 형식이 아닙니다.', '확인').then(() => {
-                          this._resetPassword()
-                        })
-                      } else if (pass.value[0] !== pass.value[1]) {
-                        sweetAlert.noIcon(null, '비밀번호가 일치하지 않습니다.', '확인').then(() => {
-                          this._resetPassword()
-                        })
-                      } else {
-                        ajax('PUT', `/api/change-password/${userId}`, {
-                          newPassword: pass.value[0]
-                        }).then(() => {
-                          sweetAlert.noIcon(null, '새로운 비밀번호로 변경되었습니다.', '확인')
-                        }).catch(() => {})
-                      }
-                    })
-                  } else {
-                    sweetAlert.noIcon(null, '본인 확인 질문에 대한 답변이 일치하지 않습니다.', '확인')
-                  }
-                }).catch(() => {})
-              }
-            })
-          }).catch(() => {})
-        }
-      })
+      this.$router.push({ name: 'user-reset-password' })
     },
     _signUp () {
       this.$router.push({ name: 'user-register' })

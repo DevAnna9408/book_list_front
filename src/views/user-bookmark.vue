@@ -73,7 +73,7 @@
 
 <script>
 import sweetAlert from '@/wrapper/sweet-alert'
-import ajax from '@/wrapper/ajax'
+import { ajaxWithoutLoading } from '@/wrapper/ajax'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -113,7 +113,7 @@ export default {
     _deleteBookmark (bookOid) {
       sweetAlert.question(null, '책갈피에서 해제할까요?', '해제한다', '아니오').then(con => {
         if (con.value) {
-          ajax('DELETE', '/api/bookmark', null, null, {
+          ajaxWithoutLoading('DELETE', '/api/bookmark', null, null, {
             userOid: this.userOid,
             bookOid: bookOid
           }).then(() => {
@@ -128,7 +128,7 @@ export default {
       this._getBookmarkList()
     },
     _getBookmarkList () {
-      ajax('GET', '/api/bookmark', null, null, {
+      ajaxWithoutLoading('GET', '/api/bookmark', null, null, {
         userOid: this.userOid,
         isWritten: this.isWritten,
         page: this.searchParam.page,

@@ -53,6 +53,14 @@ let routes = [
     }
   },
   {
+    path: '/user/reset-password',
+    name: 'user-reset-password',
+    component: loadView('user-reset-password'),
+    meta: {
+      title: '비밀번호 찾기'
+    }
+  },
+  {
     path: '/user/my-board',
     name: 'user-my-board',
     component: loadView('user-my-board'),

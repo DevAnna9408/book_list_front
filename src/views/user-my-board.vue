@@ -71,7 +71,7 @@
 
 <script>
 import sweetAlert from '@/wrapper/sweet-alert'
-import ajax from '@/wrapper/ajax'
+import { ajax, ajaxWithoutLoading } from '@/wrapper/ajax'
 import { mapGetters } from 'vuex'
 export default {
   name: 'user-my-board',
@@ -114,7 +114,7 @@ export default {
       this._getBookList()
     },
     _getBookList () {
-      ajax('GET', '/api/book/my-list', null, null, {
+      ajaxWithoutLoading('GET', '/api/book/my-list', null, null, {
         userOid: this.userOid,
         page: this.searchParam.page,
         size: this.searchParam.size
@@ -125,7 +125,7 @@ export default {
       })
     },
     _getBookOidsInBookmark () {
-      ajax('GET', '/api/bookmark/book-oids', null, null, {
+      ajaxWithoutLoading('GET', '/api/bookmark/book-oids', null, null, {
         userOid: this.userOid
       }).then(res => {
         this.results.content.forEach(c => {
@@ -147,7 +147,7 @@ export default {
       })
     },
     _getPostCountAndThumbsUp () {
-      ajax('GET', '/api/book/post-count-and-thumb-up', null, null, {
+      ajaxWithoutLoading('GET', '/api/book/post-count-and-thumb-up', null, null, {
         userOid: this.userOid
       }).then(res => {
         this.bookData = res

@@ -91,7 +91,7 @@
 <script>
 import sweetAlert from '@/wrapper/sweet-alert'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
-import ajax from '@/wrapper/ajax'
+import { ajaxWithoutLoading } from '@/wrapper/ajax'
 import Constants from '@/Constants'
 export default {
   name: 'main-navbar',
@@ -119,7 +119,7 @@ export default {
       this.logout()
     },
     _getRandomBook () {
-      ajax('GET', '/api/book/random', null, null, {
+      ajaxWithoutLoading('GET', '/api/book/random', null, null, {
         userOid: this.userOid
       }).then(res => {
         sweetAlert.html('<p style="font-size: 11px; color: #A1A1A4;">' +
@@ -127,7 +127,7 @@ export default {
           res.author + '_' + res.title + '</p>',
         '책갈피로', true, '닫기').then(con => {
           if (con.value) {
-            ajax('POST', '/api/bookmark', null, null, {
+            ajaxWithoutLoading('POST', '/api/bookmark', null, null, {
               userOid: this.userOid,
               bookOid: res.bookOid
             }).then(() => {

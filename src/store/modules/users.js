@@ -1,4 +1,4 @@
-import ajax from '@/wrapper/ajax'
+import { ajaxWithoutLoading } from '@/wrapper/ajax'
 import Cookies from 'js-cookie'
 import Vue from 'vue'
 import router from '@/router'
@@ -47,7 +47,7 @@ const mutations = {
 const actions = {
   login ({ commit }, _user) {
     return new Promise((resolve, reject) => {
-      ajax('POST', '/api/sign-in', _user)
+      ajaxWithoutLoading('POST', '/api/sign-in', _user)
         .then(_data => {
           let accessToken = _data.accessToken
           let _user = {}
@@ -65,7 +65,7 @@ const actions = {
   },
   register ({ commit }, _user) {
     return new Promise((resolve, reject) => {
-      ajax('POST', '/api/sign-up', _user)
+      ajaxWithoutLoading('POST', '/api/sign-up', _user)
         .then(_data => {
           let _user = {}
           _user.userId = _data.userId

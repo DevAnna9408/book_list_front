@@ -83,4 +83,24 @@ export const ajax = (method, url, data, header, params, errTitle, alert = true) 
     })
 }
 
+export const ajaxWithoutLoading = (method, url, data, header, params, errTitle, alert = true) => {
+  let accessToken = store.getters['users/loggedInAccessToken']
+  let locale = store.getters['i18N/currentLocale']
+  return axios({
+    method,
+    url: API_DOMAIN + url,
+    data,
+    headers: { ...header, 'Content-Type': 'application/json; charset=utf-8', 'Accept-Language': locale, Authorization: `Bearer ${accessToken}` },
+    params
+  })
+    .then(result => {
+      return result.data
+    })
+    .catch(result => {
+      exception(result, errTitle, alert)
+    }).finally(() => {
+      store.commit('SET_LOADING', false)
+    })
+}
+
 export default ajax

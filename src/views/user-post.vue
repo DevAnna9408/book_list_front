@@ -47,7 +47,7 @@
 
 <script>
 import sweetAlert from '@/wrapper/sweet-alert'
-import ajax from '@/wrapper/ajax'
+import { ajaxWithoutLoading } from '@/wrapper/ajax'
 import { mapGetters } from 'vuex'
 export default {
   name: 'user-post',
@@ -77,7 +77,7 @@ export default {
       } else {
         sweetAlert.html(`<p style="font-size: 15px;">글을 작성 할까요? <br /> <br /> 글은 수정할 수 없고 삭제만 가능하니 <br /> 꼼꼼히 확인 해 주세요 :)<p>`, '작성하기', true, '검토하기').then(con => {
           if (con.value) {
-            ajax('POST', '/api/book', {
+            ajaxWithoutLoading('POST', '/api/book', {
               content: this.userBookIn.content.replaceAll('\n', '<br />'),
               author: this.userBookIn.author,
               title: this.userBookIn.title,
@@ -100,7 +100,7 @@ export default {
   },
   mounted () {
     this.userBookIn.userOid = this.userCustomInfo.userOid
-    ajax('GET', '/api/book/check', null, null, {
+    ajaxWithoutLoading('GET', '/api/book/check', null, null, {
       userOid: this.userBookIn.userOid
     }).then(() => {}).catch(() => {})
   }

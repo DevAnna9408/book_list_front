@@ -112,7 +112,7 @@
 
 <script>
 import sweetAlert from '@/wrapper/sweet-alert'
-import ajax from '@/wrapper/ajax'
+import { ajax, ajaxWithoutLoading } from '@/wrapper/ajax'
 import { mapGetters } from 'vuex'
 export default {
   name: 'user-board',
@@ -151,7 +151,7 @@ export default {
         if (con.value) {
           sweetAlert.input('신고 사유를 작성 해 주세요', '신고하기').then(con => {
             if (con.value) {
-              ajax('POST', '/api/siren', {
+              ajaxWithoutLoading('POST', '/api/siren', {
                 sirenUserOid: this.userOid,
                 sirenedUserOid: data.postUserOid,
                 sirenedBookOid: data.bookOid,
@@ -213,7 +213,7 @@ export default {
       })
     },
     _getBookOidsInBookmark () {
-      ajax('GET', '/api/bookmark/book-oids', null, null, {
+      ajaxWithoutLoading('GET', '/api/bookmark/book-oids', null, null, {
         userOid: this.userOid
       }).then(res => {
         this.results.content.forEach(c => {
@@ -222,7 +222,7 @@ export default {
       })
     },
     _bookmark (isMarked, bookOid) {
-      ajax('POST', '/api/bookmark', null, null, {
+      ajaxWithoutLoading('POST', '/api/bookmark', null, null, {
         userOid: this.userOid,
         bookOid: bookOid
       }).then(() => {
@@ -231,7 +231,7 @@ export default {
       }).catch(() => {})
     },
     _deleteBookMark (bookOid) {
-      ajax('DELETE', '/api/bookmark', null, null, {
+      ajaxWithoutLoading('DELETE', '/api/bookmark', null, null, {
         userOid: this.userOid,
         bookOid: bookOid
       }).then(() => {
@@ -245,7 +245,7 @@ export default {
         true: '추천 👍'
       }, '확인').then(con => {
         if (con.value === 'true') {
-          ajax('PUT', '/api/book/thumbs-up', null, null, {
+          ajaxWithoutLoading('PUT', '/api/book/thumbs-up', null, null, {
             userOid: this.userOid,
             bookOid: bookOid
           }).then(() => {
@@ -254,7 +254,7 @@ export default {
             this._getBookList()
           })
         } else if (con.value === 'false') {
-          ajax('PUT', '/api/book/thumbs-down', null, null, {
+          ajaxWithoutLoading('PUT', '/api/book/thumbs-down', null, null, {
             userOid: this.userOid,
             bookOid: bookOid
           }).then(() => {

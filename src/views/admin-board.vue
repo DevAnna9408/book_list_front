@@ -70,7 +70,7 @@
 
 <script>
 import sweetAlert from '@/wrapper/sweet-alert'
-import ajax from '@/wrapper/ajax'
+import { ajax, ajaxWithoutLoading } from '@/wrapper/ajax'
 import { mapGetters } from 'vuex'
 export default {
   name: 'admin-board',
@@ -161,7 +161,7 @@ export default {
       })
     },
     _getBookOidsInBookmark () {
-      ajax('GET', '/api/bookmark/book-oids', null, null, {
+      ajaxWithoutLoading('GET', '/api/bookmark/book-oids', null, null, {
         userOid: this.userOid
       }).then(res => {
         this.results.content.forEach(c => {
@@ -175,7 +175,7 @@ export default {
         true: '글삭제'
       }, '확인').then(con => {
         if (con.value === 'true') {
-          ajax('DELETE', '/api/admin/book', null, null, {
+          ajaxWithoutLoading('DELETE', '/api/admin/book', null, null, {
             userOid: userOid,
             bookOid: bookOid
           }).then(() => {
@@ -184,7 +184,7 @@ export default {
             this._getBookList()
           })
         } else if (con.value === 'false') {
-          ajax('DELETE', '/api/admin/user', null, null, {
+          ajaxWithoutLoading('DELETE', '/api/admin/user', null, null, {
             userOid: userOid
           }).then(() => {
             sweetAlert.noIcon(null, '회원이 제재 처리 되었습니다.', '확인')
