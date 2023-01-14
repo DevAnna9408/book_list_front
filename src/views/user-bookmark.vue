@@ -41,30 +41,11 @@
       </div>
     </li>
   </ul>
-  <div class="button__menu__wrapper">
-    <button
-      v-if="!isWritten"
-      @click="_reverseWritten"
-      class="basic__button">
-      전체
-    </button>
-    <button
-      v-else
-      @click="_reverseWritten"
-      class="basic__button">
-      내가 쓴 글
-    </button>
-      <button
-        @click="_getBookmarkList"
-        class="basic__button">
-        검색
-      </button>
-  </div>
   <pagination
     id="pagination"
     v-model="currentPage"
     with-text
-    :per-page="results.number"
+    :per-page="results.size"
     :page-count="results.totalPages"
     @input="_pageInput"
   ></pagination>
@@ -80,7 +61,6 @@ export default {
   name: 'user-bookmark',
   data () {
     return {
-      isWritten: false,
       userOid: 0,
       currentPage: 1,
       results: {
@@ -107,9 +87,6 @@ export default {
     })
   },
   methods: {
-    _reverseWritten () {
-      this.isWritten = !this.isWritten
-    },
     _deleteBookmark (bookOid) {
       sweetAlert.question(null, '책갈피에서 해제할까요?', '해제한다', '아니오').then(con => {
         if (con.value) {
@@ -130,7 +107,6 @@ export default {
     _getBookmarkList () {
       ajax('GET', '/api/bookmark', null, null, {
         userOid: this.userOid,
-        isWritten: this.isWritten,
         page: this.searchParam.page,
         size: this.searchParam.size
       }).then(res => {
