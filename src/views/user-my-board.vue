@@ -16,6 +16,11 @@
   <div class="pull-right">
           <span class="survey-progress">
         <span class="survey-progress-labels">
+          <span
+            @click="_updateDate(item.bookOid)"
+            class="survey-progress-label">
+            ⏰
+          </span>
           <span class="survey-progress-label">
             👍 {{ item.thumbsUp  }}
           </span>
@@ -152,6 +157,18 @@ export default {
       }).then(res => {
         this.bookData = res
         sweetAlert.html(`<p>지금까지 총 ${this.bookData.postCount}개의 포스팅, <br />${this.bookData.thumbsUp}개의 추천을 받았어요 :)<p>`, '확인', false, null)
+      })
+    },
+    _updateDate (bookOid) {
+      sweetAlert.question(null, '끌어올리기는 시간을 포함하지 않고 날짜순으로 변경되요 :)', '끌어올리기', '그대로두기').then(con => {
+        if (con.value) {
+          ajaxWithoutLoading('GET', '/api/book/update-date', null, null, {
+            userOid: this.userOid,
+            bookOid: bookOid
+          }).then(() => {
+            sweetAlert.noIcon(null, '글을 끌어올렸습니다. 책장에서 확인 해 보세요 :)', '확인')
+          }).catch(() => {})
+        }
       })
     }
   },
