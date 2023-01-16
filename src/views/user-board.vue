@@ -23,7 +23,7 @@
 
         <span class="survey-progress-labels">
           <span
-            @click="_getThumb(item.bookOid)"
+            @click="_getThumb(item)"
             class="survey-progress-label">
             👍 {{ Math.ceil(item.thumbsUp / 10 * 100) }}%
           </span>
@@ -75,30 +75,30 @@
 
     </li>
   </ul>
-  <div class="button__menu__wrapper">
-    <button
-      @click="_getBookListReversed"
-      class="basic__button">
-      최신순
-    </button>
-    <button
-      @click="_getBookList"
-      class="basic__button">
-      오래된 순
-    </button>
-  </div>
-  <div class="button__menu__wrapper">
-    <button
-      @click="_getBookListByThumbsUp"
-      class="basic__button">
-      추천높은순
-    </button>
-    <button
-      @click="_getBookListByThumbsDown"
-      class="basic__button">
-      추천낮은순
-    </button>
-  </div>
+<!--  <div class="button__menu__wrapper">-->
+<!--    <button-->
+<!--      @click="_getBookListReversed"-->
+<!--      class="basic__button">-->
+<!--      최신순-->
+<!--    </button>-->
+<!--    <button-->
+<!--      @click="_getBookList"-->
+<!--      class="basic__button">-->
+<!--      오래된 순-->
+<!--    </button>-->
+<!--  </div>-->
+<!--  <div class="button__menu__wrapper">-->
+<!--    <button-->
+<!--      @click="_getBookListByThumbsUp"-->
+<!--      class="basic__button">-->
+<!--      추천높은순-->
+<!--    </button>-->
+<!--    <button-->
+<!--      @click="_getBookListByThumbsDown"-->
+<!--      class="basic__button">-->
+<!--      추천낮은순-->
+<!--    </button>-->
+<!--  </div>-->
   <pagination
     id="pagination"
     v-model="currentPage"
@@ -166,7 +166,7 @@ export default {
     },
     _pageInput (page) {
       this.searchParam.page = page - 1
-      this._getBookList()
+      this._getBookListReversed()
     },
     _getBookListReversed () {
       ajax('GET', '/api/book/list/reverse', null, null, {
@@ -179,39 +179,39 @@ export default {
         this._getBookOidsInBookmark()
       })
     },
-    _getBookList () {
-      ajax('GET', '/api/book/list', null, null, {
-        userOid: this.userOid,
-        page: this.searchParam.page,
-        size: this.searchParam.size
-      }).then(res => {
-        this.currentPage = this.searchParam.page + 1
-        this.results = res
-        this._getBookOidsInBookmark()
-      })
-    },
-    _getBookListByThumbsUp () {
-      ajax('GET', '/api/book/list/by-thumbs-up', null, null, {
-        userOid: this.userOid,
-        page: this.searchParam.page,
-        size: this.searchParam.size
-      }).then(res => {
-        this.currentPage = this.searchParam.page + 1
-        this.results = res
-        this._getBookOidsInBookmark()
-      })
-    },
-    _getBookListByThumbsDown () {
-      ajax('GET', '/api/book/list/by-thumbs-down', null, null, {
-        userOid: this.userOid,
-        page: this.searchParam.page,
-        size: this.searchParam.size
-      }).then(res => {
-        this.currentPage = this.searchParam.page + 1
-        this.results = res
-        this._getBookOidsInBookmark()
-      })
-    },
+    // _getBookList () {
+    //   ajax('GET', '/api/book/list', null, null, {
+    //     userOid: this.userOid,
+    //     page: this.searchParam.page,
+    //     size: this.searchParam.size
+    //   }).then(res => {
+    //     this.currentPage = this.searchParam.page + 1
+    //     this.results = res
+    //     this._getBookOidsInBookmark()
+    //   })
+    // },
+    // _getBookListByThumbsUp () {
+    //   ajax('GET', '/api/book/list/by-thumbs-up', null, null, {
+    //     userOid: this.userOid,
+    //     page: this.searchParam.page,
+    //     size: this.searchParam.size
+    //   }).then(res => {
+    //     this.currentPage = this.searchParam.page + 1
+    //     this.results = res
+    //     this._getBookOidsInBookmark()
+    //   })
+    // },
+    // _getBookListByThumbsDown () {
+    //   ajax('GET', '/api/book/list/by-thumbs-down', null, null, {
+    //     userOid: this.userOid,
+    //     page: this.searchParam.page,
+    //     size: this.searchParam.size
+    //   }).then(res => {
+    //     this.currentPage = this.searchParam.page + 1
+    //     this.results = res
+    //     this._getBookOidsInBookmark()
+    //   })
+    // },
     _getBookOidsInBookmark () {
       ajaxWithoutLoading('GET', '/api/bookmark/book-oids', null, null, {
         userOid: this.userOid
@@ -227,7 +227,7 @@ export default {
         bookOid: bookOid
       }).then(() => {
         sweetAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
-        this._getBookList()
+        this._getBookOidsInBookmark()
       }).catch(() => {})
     },
     _deleteBookMark (bookOid) {
@@ -236,10 +236,10 @@ export default {
         bookOid: bookOid
       }).then(() => {
         sweetAlert.noIcon(null, '책갈피에서 삭제했습니다.', '확인')
-        this._getBookList()
+        this._getBookOidsInBookmark()
       })
     },
-    _getThumb (bookOid) {
+    _getThumb (data) {
       sweetAlert.radio('이 글에 대한 느낌은?', {
         false: '비추천 👎',
         true: '추천 👍'
@@ -247,21 +247,19 @@ export default {
         if (con.value === 'true') {
           ajaxWithoutLoading('PUT', '/api/book/thumbs-up', null, null, {
             userOid: this.userOid,
-            bookOid: bookOid
-          }).then(() => {
+            bookOid: data.bookOid
+          }).then(_res => {
+            this.results.content.find(it => it.bookOid === data.bookOid).thumbsUp = _res.thumbsUp
             sweetAlert.noIcon(null, '글을 추천했습니다. 감사합니다 :)', '확인')
-          }).catch(() => {}).finally(() => {
-            this._getBookList()
-          })
+          }).catch(() => {})
         } else if (con.value === 'false') {
           ajaxWithoutLoading('PUT', '/api/book/thumbs-down', null, null, {
             userOid: this.userOid,
-            bookOid: bookOid
-          }).then(() => {
+            bookOid: data.bookOid
+          }).then(_res => {
+            this.results.content.find(it => it.bookOid === data.bookOid).thumbsDown = _res.thumbsDown
             sweetAlert.noIcon(null, '글을 비추천 했습니다. 감사합니다 :)', '확인')
-          }).catch(() => {}).finally(() => {
-            this._getBookList()
-          })
+          }).catch(() => {})
         }
       })
     }
