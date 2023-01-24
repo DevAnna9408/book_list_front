@@ -56,6 +56,10 @@ function exception (result, errTitle, alert) {
       case INTERNAL_SERVER_ERROR:
         setError(err.data) // 사용자 에러 처리
         break
+      // 서버가 끊길 때는 status가 상태코드로 오지 않고 문자로 온다.
+      case 'INTERNAL_SERVER_ERROR':
+        setGlobalError(err.data)
+        break
       default:
         setNetworkError(result, alert)
     }
