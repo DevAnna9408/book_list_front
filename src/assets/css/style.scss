@@ -363,7 +363,6 @@ $basePadding: 8px;
   margin-left: 33.33333%;
 }
 .adjacent-header {
-  // padding: $paddingwhenHeaderAbs $prePad 0;
   padding: $paddingwhenHeaderAbs 0 0;
 }
 .mt-1 {
@@ -1420,11 +1419,6 @@ hyphens: auto;
 .home-top .home-featured-box {
   align-items:stretch;
 }
-#setsetset {
-  /*TODO: input세트 지워야함*/
-  background: #eee;
-  padding: 50px;
-}
 /* School main */
 #school-main h2 {
   font-size: 30px;
@@ -1919,17 +1913,7 @@ hyphens: auto;
   font-weight: normal;
 }
 .book-list-fw-checkbox .errors-msg {
-  margin-left:-6px; /*DRMVSN - 단일 체크박스 에러메세지의 경우 */
-}
-.errors-msg::after, .error-if-exist:after {
-  // content: "";
-  // position: absolute;
-  // top: -10px;
-  // left: 50%;
-  // margin-left: -5px;
-  // border-width: 5px;
-  // border-style: solid;
-  // border-color: transparent transparent red transparent;
+  margin-left:-6px;
 }
 .book-list-fw-checkbox,
 .direct-book-list-check {
@@ -3470,11 +3454,6 @@ input:focus { outline: none; }
     z-index: 999;
     min-width: 300px;
   }
-
-  //.nav-brand {
-  //  display: none;
-  //}
-
   .header-container {
     width: 100%;
     max-width: 100%;
@@ -3518,19 +3497,3 @@ input:focus { outline: none; }
 body .swal2-popup {
   width:26em;
  }
-// body .swal2-icon {
-//   width:3em;
-//   height:3em;
-// }
-// body .swal2-icon .swal2-icon-content {
-//   font-size:2.25em;
-// }
-// .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left] {
-//   left:0;
-// }
-// .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right] {
-//   right:0;
-// }
-// .swal2-icon.swal2-error [class^=swal2-x-mark-line] {
-//   top:20px;
-// }
