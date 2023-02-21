@@ -95,7 +95,6 @@ import sweetAlert from '@/wrapper/sweet-alert'
 export default {
   name: 'user-register',
   data: () => ({
-    apiUrl: '',
     user: {
       userId: '',
       password: '',

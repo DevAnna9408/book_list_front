@@ -52,8 +52,6 @@ export default {
   data () {
     return {
       userOid: 0,
-      reverseOrder: true,
-      thumbsOrder: true,
       currentPage: 1,
       results: {
         content: [{

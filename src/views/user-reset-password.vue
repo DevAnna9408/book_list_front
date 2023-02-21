@@ -138,7 +138,6 @@ import { ajaxWithoutLoading } from '@/wrapper/ajax'
 export default {
   name: 'user-reset-password',
   data: () => ({
-    apiUrl: '',
     user: {
       userId: '',
       nickName: '',
