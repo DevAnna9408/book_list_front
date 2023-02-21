@@ -44,9 +44,9 @@ function exception (result, errTitle, alert) {
   if (result instanceof Error && result.message === 'Network Error') {
     setNetworkError(result, alert)
   } else {
-    let err = result.response // api에서 통신이 되었다 전체
+    let err = result.response
     switch (err.status) {
-      case UNAUTHORIZED : // 401(인증)경우 로그인 페이지로 이동시킨다
+      case UNAUTHORIZED :
         removeAccessToken(err.data)
         break
       case FORBIDDEN:

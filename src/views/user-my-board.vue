@@ -56,13 +56,6 @@
 
     </li>
   </ul>
-<!--  <div class="button__menu__wrapper">-->
-<!--    <button-->
-<!--      @click="_getBookList"-->
-<!--      class="basic__button">-->
-<!--      검색-->
-<!--    </button>-->
-<!--  </div>-->
   <pagination
     id="pagination"
     v-model="currentPage"
