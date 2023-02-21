@@ -26,12 +26,6 @@
           <ul style="text-align: left">
             <li>
               <span
-                @click="_openNotice"
-                class="icon" />
-              공지사항 & 가이드
-            </li>
-            <li>
-              <span
                 class="icon"
                 @click="$router.push({ name: 'user-my-board' })"
               />

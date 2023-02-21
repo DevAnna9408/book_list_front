@@ -1,4 +1,3 @@
-import './design-kit'
 import './js-cookie'
 import './vue-components'
 import './vue-derectives'

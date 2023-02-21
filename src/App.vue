@@ -1,13 +1,9 @@
 <template>
   <div id="app">
     <loading-full v-if="loading"></loading-full>
-<!--    <error-toast></error-toast>-->
     <div id="header" class="site-navigation">
       <router-view name="header" />
     </div>
-    <!-- <div id="sidebar" class="sidebar-navigation">
-      <router-view name="sidebar" />
-    </div> -->
     <router-view />
     <div class="footer">
       <router-view name="footer" />
