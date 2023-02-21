@@ -100,7 +100,7 @@ export default {
   },
   mounted () {
     this.userBookIn.userOid = this.userCustomInfo.userOid
-    ajaxWithoutLoading('GET', '/api/book/check', null, null, {
+    ajaxWithoutLoading('GET', '/api/book/check-already-post', null, null, {
       userOid: this.userBookIn.userOid
     }).then(() => {}).catch(() => {})
   }
