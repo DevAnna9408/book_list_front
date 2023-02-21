@@ -1299,15 +1299,6 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apexsoft-quill-image-resize-module@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/apexsoft-quill-image-resize-module/-/apexsoft-quill-image-resize-module-3.0.1.tgz#6b6e7b97b9c591414daf21c0ed5969d810cdf129"
-  integrity sha512-9RGhEO6QEjDsOLBjw547R5uIStNoa0Oc3UaEw95VEbFumuhdDX2/fGivFswMNonbOfVa8c7+nQcS3ZxxPVfirQ==
-  dependencies:
-    lodash "^4.17.4"
-    quill "^1.2.2"
-    raw-loader "^0.5.1"
-
 aproba@^1.0.3, aproba@^1.1.1:
   version "1.2.0"
   resolved "http://registry.npm.taobao.org/aproba/download/aproba-1.2.0.tgz#6802e6264efd18c790a1b0d517f0f2627bf2c94a"

@@ -17,13 +17,11 @@ import Quill from 'quill'
 import { ImageUpload } from '@/components/editor/image-upload'
 import { ImageDrop } from '@/components/editor/image-drop'
 import { Video } from '@/components/editor/video'
-import ImageResize from 'apexsoft-quill-image-resize-module'
 import VideoResize from 'quill-video-resize-module2'
 Quill.register('modules/VideoResize', VideoResize)
 Quill.register('modules/Video', Video, true)
 Quill.register('modules/imageUpload', ImageUpload, true)
 Quill.register('modules/imageDrop', ImageDrop, true)
-Quill.register('modules/imageResize', ImageResize)
 export default {
   name: 'editor',
   props: {
@@ -70,7 +68,7 @@ export default {
       const tooltipWidthMargin = 10 // tooltip 이 등장하는 경우 에디트 영역 내에 width margin
       const tooltipHeightMargin = 30 // tooltip 이 등장하는 경우 에디트 영역 내에 height margin
 
-      e.addEventListener('click', function (e) {
+      e.addEventListener('click', function () {
         // 사이즈 조정 값 가져오기
         const editorWidth = document.querySelector('.ql-editor').clientWidth
 
