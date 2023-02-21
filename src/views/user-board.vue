@@ -171,7 +171,7 @@ export default {
       }).then(() => {
         sweetAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
         this._getBookOidsInBookmark()
-      }).catch(() => {})
+      })
     },
     _deleteBookMark (bookOid) {
       ajaxWithoutLoading('DELETE', '/api/bookmark', null, null, {
@@ -194,7 +194,7 @@ export default {
           }).then(_res => {
             this.results.content.find(it => it.bookOid === data.bookOid).thumbsUp = _res.thumbsUp
             sweetAlert.noIcon(null, '글을 추천했습니다. 감사합니다 :)', '확인')
-          }).catch(() => {})
+          })
         } else if (con.value === 'false') {
           ajaxWithoutLoading('PUT', '/api/book/thumbs-down', null, null, {
             userOid: this.userOid,
@@ -202,7 +202,7 @@ export default {
           }).then(_res => {
             this.results.content.find(it => it.bookOid === data.bookOid).thumbsDown = _res.thumbsDown
             sweetAlert.noIcon(null, '글을 비추천 했습니다. 감사합니다 :)', '확인')
-          }).catch(() => {})
+          })
         }
       })
     }

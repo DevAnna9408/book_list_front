@@ -132,10 +132,10 @@ export default {
               bookOid: res.bookOid
             }).then(() => {
               sweetAlert.noIcon(null, '내 책갈피에 저장되었습니다.', '확인')
-            }).catch(() => {})
+            })
           }
         })
-      }).catch(() => {})
+      })
     }
   },
   created () {

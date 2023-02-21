@@ -114,7 +114,7 @@ export default {
             bookOid: bookOid
           }).then(() => {
             sweetAlert.noIcon(null, '글이 삭제되었습니다.', '확인')
-          }).catch(() => {}).finally(() => {
+          }).finally(() => {
             this._getBookList()
           })
         } else if (con.value === 'false') {
@@ -122,7 +122,7 @@ export default {
             userOid: userOid
           }).then(() => {
             sweetAlert.noIcon(null, '회원이 제재 처리 되었습니다.', '확인')
-          }).catch(() => {}).finally(() => {
+          }).finally(() => {
             this._getBookList()
           })
         }

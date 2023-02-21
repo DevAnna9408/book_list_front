@@ -81,9 +81,6 @@ export default {
         }
       })
     },
-    _openNotice () {
-      window.open('https://www.instagram.com/thousand.book/')
-    },
     _editNickName () {
       sweetAlert.input('프로필명을 입력 해 주세요', '변경하기').then(con => {
         if (con.value) {

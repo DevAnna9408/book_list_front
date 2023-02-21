@@ -160,7 +160,7 @@ export default {
             bookOid: bookOid
           }).then(() => {
             sweetAlert.noIcon(null, '글을 끌어올렸습니다. 책장에서 확인 해 보세요 :)', '확인')
-          }).catch(() => {})
+          })
         }
       })
     }

@@ -124,7 +124,7 @@ export default {
         }).then(() => {
           sweetAlert.noIcon(null, '회원가입 완료되었습니다.', '확인')
           this.$router.push({ name: 'user-login' })
-        }).catch(() => {})
+        })
       }
     }
   }
