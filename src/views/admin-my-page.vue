@@ -93,7 +93,8 @@ export default {
     _editNickName () {
       sweetAlert.input('프로필명을 입력 해 주세요', '변경하기').then(con => {
         if (con.value) {
-          ajaxWithoutLoading('PATCH', `/api/users/nick-name/${this.userOid}`, null, null, {
+          ajaxWithoutLoading('PATCH', '/api/users/nick-name', null, null, {
+            userOid: this.userOid,
             nickName: con.value
           }).then(res => {
             sweetAlert.noIcon(null, '닉네임이 변경되었습니다.', '확인')
@@ -108,7 +109,9 @@ export default {
         if (con.value) {
           sweetAlert.question(null, '한번만 더 생각 해 보세요. 정말 회원탈퇴 하시겠어요?', '탈퇴하기', '아니오').then(con => {
             if (con.value) {
-              ajaxWithoutLoading('DELETE', `/api/users/${this.userOid}`).then(() => {
+              ajaxWithoutLoading('DELETE', '/api/users', null, null, {
+                userOid: this.userOid
+              }).then(() => {
                 this.logout()
                 sweetAlert.noIcon(null, '모든 데이터가 삭제되었습니다. 그 동안 이용 해 주셔서 감사합니다 :)', '확인')
               })
