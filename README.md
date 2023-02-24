@@ -65,7 +65,7 @@
 | @babel/polyfill                    | 7.4.4         | IE 적용하기                  |
 | vue-plugin-load-script             | 1.2.0         |                              |
 
-## 폴더 구조
+## 디렉토리 구조
 
 ```bash
 ├── assets
